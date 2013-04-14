@@ -1,0 +1,24 @@
+# OVERRIDES SET BY GITHUB
+# safe: true
+# lsi: false
+# pygments: true
+# source: <your pages repo>
+# destination: <the build dir>
+
+#SITE SETTINGS
+name: "Rodaine"
+description: "Chris Roche blogs about web development."
+url: 'http://rodaine.com'
+
+#SERVER SETTINGS
+auto: true
+server: true
+
+#RENDERING
+markdown: maruku
+pygments: true
+permalink: /:year/:month/:title/
+paginate: 10
+
+#EXCLUSIONS / INCLUSIONS
+exclude: README.md, codekit-config.json, config.rb
