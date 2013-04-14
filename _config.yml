@@ -21,4 +21,4 @@ permalink: /:year/:month/:title/
 paginate: 10
 
 #EXCLUSIONS / INCLUSIONS
-exclude: README.md, codekit-config.json, config.rb
+exclude: README.md, codekit-config.json, config.rb, CNAME
