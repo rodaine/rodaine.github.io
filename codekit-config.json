@@ -2,6 +2,15 @@
   "CodeKitInfo" : "This is a CodeKit project configuration file. It is designed to sync project settings across multiple machines. Modifying the contents of this file can be a poor life decision if you don't know what you're doing. This file is not useful unless accompanied by the project that created it in CodeKit. For more information, see: http:\/\/incident57.com\/codekit",
   "creatorBuild" : "8283",
   "files" : {
+    "\/_site\/resources\/bootstrap\/css\/bootstrap.min.css" : {
+      "ignoreWasSetByUser" : 0,
+      "ignore" : 0,
+      "hidden" : 0,
+      "outputPathIsSetByUser" : 0,
+      "inputAbbreviatedPath" : "\/_site\/resources\/bootstrap\/css\/bootstrap.min.css",
+      "outputAbbreviatedPath" : "No Output Path",
+      "fileType" : 16
+    },
     "\/resources\/bootstrap\/scripts\/bootstrap.min.js" : {
       "ignoreWasSetByUser" : 0,
       "ignore" : 0,
@@ -12,15 +21,6 @@
       "syntaxCheckerStyle" : 0,
       "outputAbbreviatedPath" : "\/resources\/bootstrap\/scripts\/bootstrap.min-ck.js",
       "fileType" : 64
-    },
-    "\/_site\/resources\/bootstrap\/css\/bootstrap.min.css" : {
-      "ignoreWasSetByUser" : 0,
-      "ignore" : 0,
-      "hidden" : 0,
-      "outputPathIsSetByUser" : 0,
-      "inputAbbreviatedPath" : "\/_site\/resources\/bootstrap\/css\/bootstrap.min.css",
-      "outputAbbreviatedPath" : "No Output Path",
-      "fileType" : 16
     },
     "\/resources\/css\/ie.css" : {
       "ignoreWasSetByUser" : 0,
@@ -54,21 +54,21 @@
       "outputAbbreviatedPath" : "\/_site\/resources\/bootstrap\/scripts\/bootstrap-ck.js",
       "fileType" : 64
     },
-    "\/resources\/styles\/ie.css" : {
-      "ignoreWasSetByUser" : 0,
-      "ignore" : 1,
-      "hidden" : 0,
-      "outputPathIsSetByUser" : 0,
-      "inputAbbreviatedPath" : "\/resources\/styles\/ie.css",
-      "outputAbbreviatedPath" : "No Output Path",
-      "fileType" : 16
-    },
     "\/resources\/styles\/print.css" : {
       "ignoreWasSetByUser" : 0,
       "ignore" : 1,
       "hidden" : 0,
       "outputPathIsSetByUser" : 0,
       "inputAbbreviatedPath" : "\/resources\/styles\/print.css",
+      "outputAbbreviatedPath" : "No Output Path",
+      "fileType" : 16
+    },
+    "\/resources\/styles\/ie.css" : {
+      "ignoreWasSetByUser" : 0,
+      "ignore" : 1,
+      "hidden" : 0,
+      "outputPathIsSetByUser" : 0,
+      "inputAbbreviatedPath" : "\/resources\/styles\/ie.css",
       "outputAbbreviatedPath" : "No Output Path",
       "fileType" : 16
     },
@@ -83,15 +83,6 @@
       "initialSize" : 12799,
       "fileType" : 8192
     },
-    "\/_site\/resources\/styles\/ie.css" : {
-      "ignoreWasSetByUser" : 0,
-      "ignore" : 0,
-      "hidden" : 0,
-      "outputPathIsSetByUser" : 0,
-      "inputAbbreviatedPath" : "\/_site\/resources\/styles\/ie.css",
-      "outputAbbreviatedPath" : "No Output Path",
-      "fileType" : 16
-    },
     "\/_resources\/scss\/ie.scss" : {
       "ignoreWasSetByUser" : 0,
       "ignore" : 0,
@@ -104,6 +95,15 @@
       "fileType" : 4,
       "debugStyle" : 0
     },
+    "\/resources\/styles\/screen.css" : {
+      "ignoreWasSetByUser" : 0,
+      "ignore" : 1,
+      "hidden" : 0,
+      "outputPathIsSetByUser" : 0,
+      "inputAbbreviatedPath" : "\/resources\/styles\/screen.css",
+      "outputAbbreviatedPath" : "No Output Path",
+      "fileType" : 16
+    },
     "\/_site\/resources\/css\/screen.css" : {
       "ignoreWasSetByUser" : 0,
       "ignore" : 0,
@@ -113,12 +113,12 @@
       "outputAbbreviatedPath" : "No Output Path",
       "fileType" : 16
     },
-    "\/resources\/styles\/screen.css" : {
+    "\/_site\/resources\/styles\/ie.css" : {
       "ignoreWasSetByUser" : 0,
-      "ignore" : 1,
+      "ignore" : 0,
       "hidden" : 0,
       "outputPathIsSetByUser" : 0,
-      "inputAbbreviatedPath" : "\/resources\/styles\/screen.css",
+      "inputAbbreviatedPath" : "\/_site\/resources\/styles\/ie.css",
       "outputAbbreviatedPath" : "No Output Path",
       "fileType" : 16
     },
@@ -151,16 +151,14 @@
       "outputAbbreviatedPath" : "\/_site\/resources\/scripts\/test-ck.js",
       "fileType" : 64
     },
-    "\/resources\/bootstrap\/scripts\/bootstrap.js" : {
+    "\/_site\/resources\/css\/print.css" : {
       "ignoreWasSetByUser" : 0,
       "ignore" : 0,
       "hidden" : 0,
       "outputPathIsSetByUser" : 0,
-      "inputAbbreviatedPath" : "\/resources\/bootstrap\/scripts\/bootstrap.js",
-      "outputStyle" : 1,
-      "syntaxCheckerStyle" : 0,
-      "outputAbbreviatedPath" : "\/resources\/bootstrap\/scripts\/bootstrap-ck.js",
-      "fileType" : 64
+      "inputAbbreviatedPath" : "\/_site\/resources\/css\/print.css",
+      "outputAbbreviatedPath" : "No Output Path",
+      "fileType" : 16
     },
     "\/_resources\/coffee\/test.coffee" : {
       "ignoreWasSetByUser" : 0,
@@ -174,21 +172,21 @@
       "outputStyle" : 0,
       "fileType" : 32
     },
-    "\/_site\/resources\/css\/print.css" : {
-      "ignoreWasSetByUser" : 0,
-      "ignore" : 0,
-      "hidden" : 0,
-      "outputPathIsSetByUser" : 0,
-      "inputAbbreviatedPath" : "\/_site\/resources\/css\/print.css",
-      "outputAbbreviatedPath" : "No Output Path",
-      "fileType" : 16
-    },
     "\/resources\/bootstrap\/css\/bootstrap.min.css" : {
       "ignoreWasSetByUser" : 0,
       "ignore" : 0,
       "hidden" : 0,
       "outputPathIsSetByUser" : 0,
       "inputAbbreviatedPath" : "\/resources\/bootstrap\/css\/bootstrap.min.css",
+      "outputAbbreviatedPath" : "No Output Path",
+      "fileType" : 16
+    },
+    "\/_site\/resources\/styles\/screen.css" : {
+      "ignoreWasSetByUser" : 0,
+      "ignore" : 0,
+      "hidden" : 0,
+      "outputPathIsSetByUser" : 0,
+      "inputAbbreviatedPath" : "\/_site\/resources\/styles\/screen.css",
       "outputAbbreviatedPath" : "No Output Path",
       "fileType" : 16
     },
@@ -203,14 +201,16 @@
       "outputAbbreviatedPath" : "\/_site\/resources\/bootstrap\/scripts\/bootstrap.min-ck.js",
       "fileType" : 64
     },
-    "\/_site\/resources\/styles\/screen.css" : {
+    "\/resources\/bootstrap\/scripts\/bootstrap.js" : {
       "ignoreWasSetByUser" : 0,
       "ignore" : 0,
       "hidden" : 0,
       "outputPathIsSetByUser" : 0,
-      "inputAbbreviatedPath" : "\/_site\/resources\/styles\/screen.css",
-      "outputAbbreviatedPath" : "No Output Path",
-      "fileType" : 16
+      "inputAbbreviatedPath" : "\/resources\/bootstrap\/scripts\/bootstrap.js",
+      "outputStyle" : 1,
+      "syntaxCheckerStyle" : 0,
+      "outputAbbreviatedPath" : "\/resources\/bootstrap\/scripts\/bootstrap-ck.js",
+      "fileType" : 64
     },
     "\/config.rb" : {
       "ignoreWasSetByUser" : 0,
@@ -232,15 +232,6 @@
       "outputAbbreviatedPath" : "\/resources\/scripts\/test-ck.js",
       "fileType" : 64
     },
-    "\/_site\/index.html" : {
-      "ignoreWasSetByUser" : 0,
-      "ignore" : 0,
-      "hidden" : 0,
-      "outputPathIsSetByUser" : 0,
-      "inputAbbreviatedPath" : "\/_site\/index.html",
-      "outputAbbreviatedPath" : "No Output Path",
-      "fileType" : 2048
-    },
     "\/_site\/resources\/bootstrap\/css\/bootstrap.css" : {
       "ignoreWasSetByUser" : 0,
       "ignore" : 0,
@@ -249,6 +240,15 @@
       "inputAbbreviatedPath" : "\/_site\/resources\/bootstrap\/css\/bootstrap.css",
       "outputAbbreviatedPath" : "No Output Path",
       "fileType" : 16
+    },
+    "\/_site\/index.html" : {
+      "ignoreWasSetByUser" : 0,
+      "ignore" : 0,
+      "hidden" : 0,
+      "outputPathIsSetByUser" : 0,
+      "inputAbbreviatedPath" : "\/_site\/index.html",
+      "outputAbbreviatedPath" : "No Output Path",
+      "fileType" : 2048
     },
     "\/_site\/resources\/bootstrap\/img\/glyphicons-halflings-white.png" : {
       "ignoreWasSetByUser" : 0,
@@ -282,6 +282,15 @@
       "fileType" : 4,
       "debugStyle" : 0
     },
+    "\/_site\/resources\/css\/ie.css" : {
+      "ignoreWasSetByUser" : 0,
+      "ignore" : 0,
+      "hidden" : 0,
+      "outputPathIsSetByUser" : 0,
+      "inputAbbreviatedPath" : "\/_site\/resources\/css\/ie.css",
+      "outputAbbreviatedPath" : "No Output Path",
+      "fileType" : 16
+    },
     "\/resources\/bootstrap\/img\/glyphicons-halflings-white.png" : {
       "ignoreWasSetByUser" : 0,
       "ignore" : 0,
@@ -292,15 +301,6 @@
       "outputAbbreviatedPath" : "\/resources\/bootstrap\/img\/glyphicons-halflings-white.png",
       "initialSize" : 8777,
       "fileType" : 8192
-    },
-    "\/_site\/resources\/css\/ie.css" : {
-      "ignoreWasSetByUser" : 0,
-      "ignore" : 0,
-      "hidden" : 0,
-      "outputPathIsSetByUser" : 0,
-      "inputAbbreviatedPath" : "\/_site\/resources\/css\/ie.css",
-      "outputAbbreviatedPath" : "No Output Path",
-      "fileType" : 16
     },
     "\/resources\/bootstrap\/css\/bootstrap.css" : {
       "ignoreWasSetByUser" : 0,
