@@ -1,5 +1,6 @@
 ---
 title: Hello, World!
+layout: page
 ---
 
 # Hello, World!

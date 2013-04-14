@@ -19,6 +19,7 @@ markdown: maruku
 pygments: true
 permalink: /:year/:month/:title/
 paginate: 10
+future: false
 
 #EXCLUSIONS / INCLUSIONS
 exclude: README.md, codekit-config.json, config.rb, CNAME
