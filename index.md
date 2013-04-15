@@ -1,9 +1,7 @@
 ---
 title: Hello, World!
-layout: page
+layout: home
 ---
-
-# Hello, World!
 
 This is a test of the global broadcasting system...
 

@@ -1,0 +1,11 @@
+<div class="well sidebar-nav-list">
+	<ul class="nav nav-list">
+		<li class="nav-header"><span class="icon-th-list"></span> Recent Posts</li>
+		{% for post in site.posts limit:5 %}
+		<li><a href="{{ post.url }}">
+			{{ post.title }}<br/>
+			<small class="muted">{{ post.date | date_to_string }}</small>
+		</a></li>
+		{% endfor %}
+	</ul>
+</div>

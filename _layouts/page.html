@@ -5,11 +5,28 @@ layout: default
 <div class="row-fluid">
 	
 	<div class="span8">
+		<div class="page-header">
+		
+			<h1>
+				{{ page.title }}
+				<small>{{ page.subtitle }}</small>
+			</h1>
+			
+			{% if page.feature %}
+			<img src="{{ page.feature }}" class="page-feature img-polaroid" />
+			{% endif %}
+			
+		</div>
+		
 		{{ content }}
+		
 	</div>
 	
-	<div class="span4 well">
-		<h3>Rodaine === Chris Roche</h3>
+	<div class="span4">
+		{% if page.title != 'Chris Roche' %}{% include sidebar-about.html %}{% endif %}
+		{% include sidebar-recent.html %}
+		{% include sidebar-social.html %}
+		{% include sidebar-lastfm.html %}
 	</div>
 	
 </div>
