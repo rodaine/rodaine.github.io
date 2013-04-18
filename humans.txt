@@ -1,0 +1,25 @@
+/* TEAM */
+
+	Owner & Developer: Chris Roche
+	Contact: rodaine [at] gmail [dot] com
+	Twitter: @rodaine
+	Location: Winter Haven, Florida, US
+
+/* SITE */
+
+	Standards: HTML5, CSS3
+	Components:
+		Sass (SCSS - Flavor): http://sass-lang.com
+		Coffeescript: http://coffeescript.org
+		jQuery: http://jquery.com
+		Twitter Bootstrap: http://twitter.github.io/bootstrap
+		RequireJS (AMD): http://requirejs.org
+		JSON2: http://www.JSON.org/js.html
+		MomentJS: http://momentjs.com
+		UnderscoreJS: http://underscorejs.org
+		Elusive Icons: http://shoestrap.org/downloads/elusive-icons-webfont
+	Software:
+		Github Pages: http://pages.github.com
+		Jekyll: https://github.com/mojombo/jekyll
+		Codekit: http://incident57.com/codekit
+		Sublime Text 2: http://www.sublimetext.com/2
