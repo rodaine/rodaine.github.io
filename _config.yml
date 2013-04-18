@@ -7,8 +7,8 @@
 
 #SITE SETTINGS
 name: "Rodaine"
-description: "Chris Roche blogs about web development."
-url: "http://rodaine.com"
+description: "Chris Roche blogs about web development and the questionably finer things in life."
+url: "http://www.rodaine.com"
 
 #SERVER SETTINGS
 auto: true
