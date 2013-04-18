@@ -9,13 +9,18 @@ root.require =
 	paths:
 
 		jquery: [
-			'http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min'
+			'//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min'
 			'jquery'
 		]
 
 		underscore: [
-			'//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.4.4/underscore-min',
+			'//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.4.4/underscore-min'
 			'underscore'
+		]
+
+		moment: [
+			'//cdnjs.cloudflare.com/ajax/libs/moment.js/2.0.0/moment.min'
+			'moment'
 		]
 
 		'jasmine-core': 'tests/lib/jasmine-1.3.1/jasmine'

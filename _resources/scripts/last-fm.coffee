@@ -13,7 +13,6 @@ define ['underscore', 'jquery', 'json2'], (_, $, JSON) ->
 
 	$document = $ document
 
-	firstRequest = true
 	currentTrack = undefined
 
 	listeners = []
@@ -80,6 +79,9 @@ define ['underscore', 'jquery', 'json2'], (_, $, JSON) ->
 			url:       rawTrack.url                    ? 'http:///www.last.fm'
 			image:     rawTrack.image[1]['#text']      ? 'http://placehold.it/64&text=last.fm'
 
+		if not track.image then track.image = 'http://placehold.it/64&text=last.fm'
+		return track
+
 	#----------------------------------------------------------------------------
 	# TRACK REQUEST
 	#----------------------------------------------------------------------------
@@ -93,7 +95,8 @@ define ['underscore', 'jquery', 'json2'], (_, $, JSON) ->
 	failedToGetTheTrack = (jqXHR, status, error) ->
 		console.log "Failed to get track: #{error}"
 		stopPoll()
-		$document.trigger 'lastFM.failure'
+		currentTrack ?= getTrackFromStorage()
+		$document.trigger 'lastFM.track_recieved' if currentTrack?
 
 	requestTrack = ->
 		$.ajax url,
@@ -102,22 +105,18 @@ define ['underscore', 'jquery', 'json2'], (_, $, JSON) ->
 			dataType: 'json'
 			success: updateTheTrack
 			error: failedToGetTheTrack
+			timeout: 0.75 * pollInterval
 
 	#----------------------------------------------------------------------------
 	# GLOBAL EVENT BINDINGS
 	#----------------------------------------------------------------------------	
 
-	$document.bind 'lastFM.poll', ->
-		if firstRequest and track = getTrackFromStorage() 
-			currentTrack = track 
-			$document.trigger 'lastFM.track_recieved'
-		firstRequest = false
-		requestTrack()
+	$document.bind 'lastFM.poll', -> requestTrack()
 
 	$document.bind 'lastFM.track_recieved', ->
 		setTrackToStorage currentTrack
 		for $listener in listeners
-			listener.trigger 'lastFM.track_updated', currentTrack
+			$listener.trigger 'lastFM.track_updated', currentTrack
 
 	#----------------------------------------------------------------------------
 	# JQUERY PLUGIN
@@ -126,6 +125,7 @@ define ['underscore', 'jquery', 'json2'], (_, $, JSON) ->
 	$.fn.lastFM = (callback) ->
 		$this = $ this
 		$this.on 'lastFM.track_updated', callback
+		listeners.push $this
 		startPoll()
 		return this
 
