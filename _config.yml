@@ -10,6 +10,7 @@ name: "Rodaine"
 url: "http://www.rodaine.com"
 description: "Chris Roche blogs about web development and the questionably finer things in life."
 keywords: "chris, roche, web, development"
+contact: "rodaine@gmail.com"
 
 #SERVER SETTINGS
 auto: true
@@ -19,7 +20,7 @@ server: true
 markdown: maruku
 pygments: true
 permalink: /:year/:month/:title/
-paginate: 10
+paginate: 1
 future: false
 
 #EXCLUSIONS / INCLUSIONS
