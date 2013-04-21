@@ -1,12 +1,15 @@
+---
+layout: none
+---
 <?xml version="1.0" encoding="UTF-8"?>
 <OpenSearchDescription xmlns="http://a9.com/-/spec/opensearch/1.1/">
-	<ShortName>Rodaine</ShortName>
-	<LongName>Rodaine Search Results</LongName>
-	<Description>Search through articles posted on the Rodaine Blog</Description>
-	<Tags>php js css html chris roche rodaine coffeescript sass scss programming development web mysql</Tags>
-	<Contact>rodaine@gmail.com</Contact>
-	<Url type="text/html" template="http://rodaine.com/search/?q={searchTerms}"/>
-	<Image height="16" width="16" type="image/vnd.microsoft.icon">http://rodaine.com/favicon.ico</Image>
+	<ShortName>{{ site.name }}</ShortName>
+	<LongName>{{ site.name }} Search Results</LongName>
+	<Description>Search through articles posted on {{ site.name }}</Description>
+	<Tags>{{ site.keywords }}</Tags>
+	<Contact>{{ site.contact }}</Contact>
+	<Url type="text/html" template="{{ site.url }}/search/?q={searchTerms}"/>
+	<Image height="16" width="16" type="image/vnd.microsoft.icon">{{ site.url }}/favicon.ico</Image>
 	<Developer>Chris Roche</Developer>
 	<Attribution>Search data for http://rodaine.com provided by Google Custom Search</Attribution>
 	<SyndicationRight>open</SyndicationRight>
