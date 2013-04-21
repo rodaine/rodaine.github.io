@@ -1,3 +1,6 @@
+---
+layout: none
+---
 User-agent: *
 Disallow: /
-Sitemap: http://www.rodaine.com/sitemap.xml
+Sitemap: {{ site.url }}/sitemap.xml

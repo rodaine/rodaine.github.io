@@ -11,7 +11,7 @@ layout: none
 	<Url type="text/html" template="{{ site.url }}/search/?q={searchTerms}"/>
 	<Image height="16" width="16" type="image/vnd.microsoft.icon">{{ site.url }}/favicon.ico</Image>
 	<Developer>Chris Roche</Developer>
-	<Attribution>Search data for http://rodaine.com provided by Google Custom Search</Attribution>
+	<Attribution>Search data for {{ site.url }} provided by Google Custom Search</Attribution>
 	<SyndicationRight>open</SyndicationRight>
 	<AdultContent>false</AdultContent>
 	<Language>en-us</Language>
