@@ -24,5 +24,16 @@ paginate: 1
 paginate_path: 'page/:num'
 future: false
 
+#NAVIGATION
+nav:
+ - 
+  url: "/index.html"
+  icon: "icon-home"
+  text: "Home"
+ - 
+  url: "/chris-roche/index.html"
+  icon: "icon-user"
+  text: ' Chris Roche'
+
 #EXCLUSIONS / INCLUSIONS
 exclude: README.md, codekit-config.json, config.rb, CNAME
