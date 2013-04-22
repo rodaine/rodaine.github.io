@@ -12,9 +12,10 @@
 	<meta name="description" itemprop="description" content="{% if page.description %}{{ page.description }}{% else %}{{ site.description }}{% endif %}">
 	<meta name="keywords"    itemprop="keywords"    content="{% if page.keywords %}{{ page.keywords }}{% else %}{{ site.keywords }}{% endif %}">
 
-	<link rel="author"     href="/humans.txt"     type="text/plain">
-	<link rel="search"     href="/opensearch.xml" type="application/opensearchdescription+xml" title="Rodaine Search Results">
-	<link rel="alternate"  href="/feed.xml"       type="application/atom+xml"                  title="Rodaine Atom Feed" >
+	<link rel="author"     href="/humans.txt"                         type="text/plain">
+	<link rel="search"     href="/opensearch.xml"                     type="application/opensearchdescription+xml" title="Rodaine Search Results">
+	<link rel="alternate"  href="http://feeds.feedburner.com/rodaine" type="application/atom+xml"                  title="Rodaine Atom Feed" >
+	<link rel="canonical"  href="{{ page.url || remove: 'index.html' }}" >
 	
 	<link rel="stylesheet" href="/resources/styles/screen.css">
 </head>
