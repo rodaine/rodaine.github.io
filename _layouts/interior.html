@@ -1,0 +1,18 @@
+---
+layout: exterior
+---
+
+<div class="page-header">
+
+	<h1>
+		{{ page.title }}
+		<small>{{ page.subtitle }}</small>
+	</h1>
+	
+	{% if page.feature %}
+	<img src="{{ page.feature }}" class="page-feature img-polaroid" alt="{{ page.feature-alt }}" />
+	{% endif %}
+	
+</div>
+
+{{ content }}
