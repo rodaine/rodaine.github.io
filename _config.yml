@@ -21,6 +21,7 @@ markdown: maruku
 pygments: true
 permalink: /:year/:month/:title/
 paginate: 1
+paginate_path: 'page/:num'
 future: false
 
 #EXCLUSIONS / INCLUSIONS
