@@ -6,34 +6,43 @@
 # destination: <the build dir>
 
 #SITE SETTINGS
-name: "Rodaine"
-url: "http://www.rodaine.com"
+name:        "Rodaine"
+url:         "http://www.rodaine.com"
 description: "Chris Roche blogs about web development and the questionably finer things in life."
-keywords: "chris, roche, web, development"
-contact: "rodaine@gmail.com"
+keywords:    "chris, roche, web, development"
+contact:     "rodaine@gmail.com"
 
 #SERVER SETTINGS
-auto: true
+auto:   true
 server: true
 
 #RENDERING
-markdown: maruku
-pygments: true
-permalink: /:year/:month/:title/
-paginate: 1
-paginate_path: 'page/:num'
-future: false
+markdown:  "maruku"
+pygments:  true
+permalink: "/:year/:month/:title/"
+future:    false
+
+#PAGINATION
+paginate:      1
+paginate_path: "page/:num"
 
 #NAVIGATION
 nav:
  - 
-  url: "/index.html"
+  url:  "/index.html"
   icon: "icon-home"
   text: "Home"
  - 
-  url: "/chris-roche/index.html"
+  url:  "/chris-roche/index.html"
   icon: "icon-user"
-  text: ' Chris Roche'
+  text: " Chris Roche"
+
+#IMAGE CDN
+img:
+  base:    "http://res.cloudinary.com/rodaine/image/upload/"
+  og:      "t_og/"
+  feature: "t_feature/"
+  default: "florida_state_fair_hfqsc3.jpg"
 
 #EXCLUSIONS / INCLUSIONS
 exclude: README.md, codekit-config.json, config.rb, CNAME
