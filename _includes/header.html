@@ -14,7 +14,6 @@
 
 	<meta property="fb:admins"      content="2057767">
 	<meta property="og:title"       content="{{ page.title }} « {{ site.name }}">
-	{{ page.layout }}
 	<meta property="og:type"        content="{% if page.lead %}article{% else %}website{% endif %}">
 	<meta property="og:url"         content="{{ site.url }}{{ page.url || remove: 'index.html' }}">
 	<meta property="og:image"       content="{{ site.img.base }}{{ site.img.og }}{% if page.feature %}{{ page.feature }}{% else %}{{ site.img.default }}{% endif %}">
