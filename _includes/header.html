@@ -12,11 +12,12 @@
 	<meta name="description" itemprop="description" content="{% if page.description %}{{ page.description }}{% else %}{{ site.description }}{% endif %}">
 	<meta name="keywords"    itemprop="keywords"    content="{% if page.keywords %}{{ page.keywords }}{% else %}{{ site.keywords }}{% endif %}">
 
-	<meta property="fb:admins" content="2057767">
-	<meta property="og:title"  content="{{ page.title }} « {{ site.name }}">
-	<meta property="og:type"   content="{% if page.layout == 'post' %}article{% else %}website{% endif %}">
-	<meta property="og:url"    content="{{ site.url }}{{ page.url || remove: 'index.html' }}">
-	<meta property="og:image"  content="{{ site.img.base }}{{ site.img.og }}{% if page.feature %}{{ page.feature }}{% else %}{{ site.img.default }}{% endif %}">
+	<meta property="fb:admins"      content="2057767">
+	<meta property="og:title"       content="{{ page.title }} « {{ site.name }}">
+	<meta property="og:type"        content="{% if page.layout == 'post' %}article{% else %}website{% endif %}">
+	<meta property="og:url"         content="{{ site.url }}{{ page.url || remove: 'index.html' }}">
+	<meta property="og:image"       content="{{ site.img.base }}{{ site.img.og }}{% if page.feature %}{{ page.feature }}{% else %}{{ site.img.default }}{% endif %}">
+	<meta property="og:description" content="{% if page.description %}{{ page.description }}{% else %}{{ site.description }}{% endif %}">
 
 	<link rel="author"     href="/humans.txt"                         type="text/plain">
 	<link rel="search"     href="/opensearch.xml"                     type="application/opensearchdescription+xml" title="Rodaine Search Results">
