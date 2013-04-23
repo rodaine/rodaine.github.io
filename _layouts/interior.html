@@ -10,7 +10,7 @@ layout: exterior
 	</h1>
 	
 	{% if page.feature %}
-	<img src="{{ page.feature }}" class="page-feature img-polaroid" alt="{{ page.feature-alt }}" />
+	<img class="page-feature img-polaroid" src="{{ site.img.base }}{{ site.img.feature }}{{ page.feature }}" alt="{{ page.feature-alt }}" />
 	{% endif %}
 	
 </div>
