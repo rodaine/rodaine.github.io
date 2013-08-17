@@ -1,0 +1,115 @@
+.pagination {
+	margin: 0.5em -1em;
+	font-family: $sans-serif;
+
+	&:after {
+		display: block;
+		content: ' ';
+		clear: both;
+	}
+
+	ul {
+		margin: 0;
+		padding: 0;
+		text-align: center;
+	}
+
+	li {
+		display: none;
+		list-style-type: none;
+
+		a {
+			width: 2em;
+			height: 2em;
+			display: block;
+			background: $color-link;
+			color: $color-background;
+			text-decoration: none;
+			padding: 0.25em 0.5em;
+			margin: 0.25em 0;
+		}
+	}
+
+	.bookend a, .direction a {
+		background: $color-link-visited;
+	}
+
+	.current, .bookend .current, .ellipsis a {
+		color: $color-link;
+		background: $color-background;
+		pointer-events: none;
+		cursor: default;
+	}
+
+	.direction {
+		display: block;
+		width: 100%;
+	}
+
+	.next:after {
+		content: ' ↣';
+	}
+
+	.prev:before {
+		content: '↢ ';
+	}
+
+	.next, .prev {
+		width: 45%;
+	}
+
+	.prev {
+		float: left;
+		margin-right: 0.25em;
+		text-align: left;
+	}
+
+	.next {
+		float: right;
+		text-align: right;
+		margin-left: 0.25em;
+	}
+
+	.ellipsis {
+		display: none;
+	}
+
+	@media (min-width: 481px) {
+		margin: 0.5em 0;
+
+		.next, .prev { width: auto; }
+
+		li { display: inline-block; }
+	}
+
+	@media (min-width: 800px) {
+		.ellipsis { display: inline-block; }
+	}
+}
+
+.post-nav {
+		font-size: 1.25em;
+		line-height: 1.25;
+
+	.next:before, .prev:before { 
+		display: block; 
+		text-align: center;
+		margin-bottom: .5em;
+	}
+	.next:after { content: ''; }
+	.next:before { content: '↣'; }
+	.prev:before { content: '↢'}
+
+	.next, .prev { 
+		height: auto; 
+		width: 47.5%;
+		text-align: left;
+		@include hyphens(auto);
+		text-transform: uppercase;
+		padding: .75em;
+	}
+
+	@media (min-width: 481px) {
+		.next, .prev { width: 47.5%; }
+	}
+}

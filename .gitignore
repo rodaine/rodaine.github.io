@@ -1,9 +1,11 @@
-_site/*
-Thumbs.db
-.DS_Store
 !.gitkeep
+.DS_Store
 .rbenv-version
 .rvmrc
 .sass-cache
+_site/*
 codekit-config.json
-
+rodaine.com.sublime-project
+rodaine.com.sublime-workspace
+Thumbs.db
+node_modules/

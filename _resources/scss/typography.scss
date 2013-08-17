@@ -1,0 +1,94 @@
+body { 
+	font-family: $serif; 
+	font-weight: $weight-normal;
+
+	text-rendering: optimizeLegibility;
+	font-smooth: always;
+	transform: rotate(-0.0000000000001deg);
+	-webkit-font-smoothing: subpixel-antialiased;
+	
+	color: $color-copy;
+	background: $color-background;
+}
+
+h1,h2,h3,h4,h5,h6 { font-family: $sans-serif;}
+
+a {
+	color: $color-link;
+	-webkit-tap-highlight-color: rgba($color-link, 0.25);
+	&:visited { color: $color-link-visited; }
+	header & { text-decoration: none; }
+}
+
+b,strong {
+	font-weight: $weight-bold;
+}
+
+blockquote {
+	position: relative;
+	top: 0;
+	left: 0;
+
+	margin-left: 2em;
+	margin-right: 2em;
+	color: rgba($color-link, 0.85);
+
+	cite {
+		display: block;
+		text-align: right;
+		&:before { content: "–"; }
+	}
+
+	&:before, &:after {
+		font-size: 4em;
+		position: absolute;
+		opacity: .5;
+	}
+	&:before {
+		content: "“";
+		top: .25em;
+		left: -.75em;
+	}
+	&:after {
+		content: "”";
+		bottom: -.25em;
+		right: -.75em;
+	}
+}
+
+pre,code,abbr,acronym { 
+	@include hyphens(none);
+	font-family: $monospace; 
+	font-weight: 400;
+}
+
+code {
+	display: block;
+	white-space: pre;
+	overflow-x: scroll;
+	background: rgba($color-link, 0.25);
+	margin-left: 1em;
+	margin-right: 1em;
+	padding: .5em 1em;
+	@include box-shadow(1px 1px 1px rgba(255,255,255,0.75));
+}
+
+p code {
+	display: inline;
+	padding: 0 .25em;
+	margin: inherit;
+}
+
+strike, strike span, del, del span {
+	color: rgba($color-copy, 0.25);
+}
+
+aside {
+	font-size: 0.75em;
+	font-style: italic;
+	line-height: 1.5;
+	margin: 0 auto;
+	background: rgba(0, 0, 0, 0.05);
+	padding: 0.5em;
+		@include box-shadow(1px 1px 1px rgba(255,255,255,0.75));
+}

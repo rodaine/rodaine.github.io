@@ -1,41 +1,46 @@
 #SITE SETTINGS
 name:        "Rodaine"
+me:          "Chris Roche"
 url:         "http://www.rodaine.com"
-description: "Chris Roche blogs about web development and the questionably finer things in life."
-keywords:    "chris, roche, web, development"
-contact:     "rodaine@gmail.com"
+description: "In which Chris Roche blogs about web development and the questionably finer things in life."
+keywords:    "chris, roche, web, development, rodaine"
 
-#SERVER SETTINGS
-auto:   true
-server: true
+#CONTACT / SOCIAL INFO
+email:       "rodaine@gmail.com"
+twitter:     "@rodaine"
+facebook:    "2057767"
 
 #RENDERING
-markdown:  "maruku"
+markdown: rdiscount
 pygments:  true
 permalink: "/:year/:month/:title/"
 future:    false
+rdiscount:
+  extensions: 
+   - smart
 
 #PAGINATION
-paginate:      3
+paginate:      5
 paginate_path: "page/:num"
+paginate_items: 5
 
 #NAVIGATION
 nav:
  - 
   url:  "/index.html"
-  icon: "icon-home"
   text: "Home"
  - 
   url:  "/chris-roche/index.html"
-  icon: "icon-user"
-  text: " Chris Roche"
-
-#IMAGE CDN
-img:
-  base:    "http://res.cloudinary.com/rodaine/image/upload/"
-  og:      "t_og/"
-  feature: "t_feature/"
-  default: "florida_state_fair_hfqsc3.jpg"
+  text: "About"
 
 #EXCLUSIONS / INCLUSIONS
-exclude: README.md, codekit-config.json, config.rb, CNAME
+exclude:
+ - README.md
+ - codekit-config.json
+ - config.rb
+ - CNAME
+ - rodaine.com.sublime-project
+ - rodaine.com.sublime-workspace
+ - node_modules
+ - Gruntfile.coffee
+ - package.json

@@ -1,0 +1,2 @@
+define ['fluff/strike'], ->
+	return ->

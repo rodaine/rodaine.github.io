@@ -1,10 +1,14 @@
-	</div>
+</main>
 
-	<footer class="container"><hr/>
-		<p class="muted">© {{ site.time | date: "%Y" }} Chris Roche. All rights reserved.</p>
-	</footer>
+<footer>
+	<nav role="navigation" id="nav">
+		<a href="/">Home</a>
+		<a href="/chris-roche/">About</a>
+		<a href="/projects/">Projects</a>
+	</nav>
+</footer>
 
-	<script src="/resources/scripts/require.config.js"></script>
-	<script data-main="app" src="/resources/scripts/require.js"></script>
+<script src="/resources/scripts.js"></script>
+<script>require('app')();</script>
 </body>
 </html>

@@ -1,18 +1,15 @@
 ---
-layout: exterior
+layout: base
 ---
 
-<div class="page-header">
+<article>
 
-	<h1>
-		{{ page.title }}
-		<small>{{ page.subtitle }}</small>
-	</h1>
-	
-	{% if page.feature %}
-	<img class="page-feature img-polaroid" src="{{ site.img.base }}{{ site.img.feature }}{{ page.feature }}" alt="{{ page.feature-alt }}" />
-	{% endif %}
-	
-</div>
+<header>
+	{% include widgets/page-title.html %}
+</header>
 
+<section itemprop="mainContentOfPage">
 {{ content }}
+</section>
+
+</article>

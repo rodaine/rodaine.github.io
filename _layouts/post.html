@@ -1,5 +1,30 @@
 ---
-layout: interior
+layout: base
 ---
 
+<article role="article" itemscope itemtype="http://schema.org/BlogPosting">
+
+<header>
+{% include widgets/post-meta.html %}
+{% include widgets/page-title.html %}
+</header>
+
+<section itemprop="articleBody">
 {{ content }}
+</section>
+
+<h3>Comments</h3>
+<section itemprop="comment" id="comments">
+<!-- COMMENTS LOADED VIA DISQUS -->
+</section>
+
+</article>
+
+{% if page.next.url or page.previous.url %}
+<nav class="pagination post-nav">
+	<ul>
+		{% if page.previous.url %}<li class="direction"><a rel="next" class="next" href="{{page.previous.url}}">{{page.previous.title}}</a></li>{% endif %}
+		{% if page.next.url %}<li class="direction"><a rel="prev" class="prev" href="{{page.next.url}}">{{page.next.title}}</a></li class="direction">{% endif %}
+	</ul>
+</nav>
+{% endif %}

@@ -1,0 +1,31 @@
+body > footer {
+	padding: 0.5em 1em;
+	background: $color-link;
+	color: $color-background;
+	font-family: $sans-serif;
+
+	@media (min-width: 481px) {
+		margin: 0 5%;
+	}
+
+	@media (min-width: 686px) {
+		width: 61.8%;
+		margin: 0 14.5898% 0 auto;
+	}
+
+	nav {
+		a {
+			background: $color-background;
+			color: $color-link;
+			text-decoration: none;
+			display: block;
+			text-align: center;
+			margin: 0.5em 0;
+			padding: 0.25em 0;
+			@include box-shadow(1px 1px 1px rgba(0,0,0,0.25));
+			font-weight: $weight-bold;
+		}
+	}
+
+	p { margin: 0; padding: 0; }
+}

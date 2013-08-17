@@ -1,0 +1,4 @@
+<a href="{{ page.url || remove: 'index.html' }}" itemprop="url">
+	<h2 itemprop="headline">{{ page.title }}</h2>
+</a>
+{% if page.description %}<h3 itemprop="alternateHeadline">{{ page.description }}</h3>{% endif %}
