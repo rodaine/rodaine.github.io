@@ -27,6 +27,7 @@ module.exports = (grunt) ->
 				baseUrl: '<%= jsSource %>'
 				name:    'app'
 				almond:  true
+				preserveLicenseComments: false
 				paths:
 					jquery: '../vendor/jquery'
 

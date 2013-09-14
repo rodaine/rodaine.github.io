@@ -2,7 +2,9 @@ body > header {
 	@include rotate(180deg);
 	height: 3em;
 	position: relative;
-	top: -1.25em;
+	top: -.25em;
+	margin: 0;
+	line-height: 1;
 	padding: 0 .5em;
 }
 

@@ -1,2 +1,5 @@
-define ['fluff/strike'], ->
-	return ->
+define [
+	'fluff/strike'
+	'disqus/feed'
+	'disqus/count'
+], ->

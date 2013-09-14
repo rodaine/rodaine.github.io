@@ -12,26 +12,17 @@ facebook:    "2057767"
 
 #RENDERING
 markdown: rdiscount
-pygments:  true
+rdiscount:
+  extensions: [smart]
+
+drafts:    false
 permalink: "/:year/:month/:title/"
 future:    false
-rdiscount:
-  extensions: 
-   - smart
 
 #PAGINATION
 paginate:      5
 paginate_path: "page/:num"
 paginate_items: 5
-
-#NAVIGATION
-nav:
- - 
-  url:  "/index.html"
-  text: "Home"
- - 
-  url:  "/chris-roche/index.html"
-  text: "About"
 
 #EXCLUSIONS / INCLUSIONS
 exclude:
