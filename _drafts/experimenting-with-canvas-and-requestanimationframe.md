@@ -22,9 +22,13 @@ Honestly, I wrote this portion last, but since I make reference to it throughout
 
 The `config` object provides a bunch of static settings for tweaking the behavior of the animation, including the number of triangles to render, their speed, and the ranges for color and opacity for each of the shapes. 
 
-`clamp` keeps numbers inside a range; this is particularly useful for keeping the triangle vertices within the canvas boundary. `rand` is a small random number utility to keep us DRY.
+`clamp` keeps numbers inside a range; this is particularly useful for keeping the triangle vertices within the canvas boundary. `rand` is a small random number utility to keep us DRY. And finally, `requestAnimFrame` is a compatibility wrapper for [`requestAnimationFrame`][raf]. 
 
-`requestAnimFrame` is a compatibility wrapper for [`requestAnimationFrame`][raf]. Ok…so what the heck is `requestAnimationFrame`? Back in the day, JS animations relied on `setTimeout(animate, 1000/60)` as the event/update/render loop for animations. While this worked, it was suboptimal especially if multiple animations were occurring simultaneously. Thus, browser vendors implemented this new API which allows developers to update their animations right before a repaint. Our version of `requestAnimFrame` is brought to you by [Paul Irish][paul], which handles vendor prefixed versions of this method with a fallback to the old-school `setTimeout`.
+#### Ok…so what the heck is `requestAnimationFrame`? ####
+
+Back in the day, JS animations relied on `setTimeout(animate, 1000/60)` as the event/update/render loop for animations. While this worked, it was suboptimal especially if multiple animations were occurring simultaneously. 
+
+Thus, browser vendors implemented this new API which allows developers to update their animations right before a repaint. Our version of `requestAnimFrame` is brought to you by [Paul Irish][paul], which handles vendor prefixed versions of this method with a fallback to the old-school `setTimeout` method.
 
 ### In the Beginning: The Vector ###
 
