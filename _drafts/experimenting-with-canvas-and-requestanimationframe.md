@@ -102,11 +102,25 @@ All that's left is to bootstrap our animation onto a canvas element. We do rely 
 
 {% gist 6575633 bootstrap.script.coffee %}
 
+First, we grab the canvas element in our document and set it's actual width & height, to the CSS width & height. Why? Think of a canvas element like an image; you can use CSS to stretch an image to any size, but it will end up looking deformed. Same goes for a canvas, but you can modify it's width & height prior to drawing on it to expand it appropriately. If you check out the [pen][pen], you'll notice that I wanted the canvas to fill the screen, so this technique made sure the canvas dimensions were changed accordingly.
 
+Next, based off these dimensions, we define the `Bounds` in which we will render the animation. You could simply set the boundary to be the same as the canvas element, but the animation is not as pretty (due to the many triangle points on screen at once). Instead, the bounds are set to account for some overflow by extending it 25% in every direction. I encourage you to experiment with these values for your own aesthetic.
 
+Now, we create the `Canvas` object with our canvas element and add our triangles to the stack (the quantity of which we defined in `config`). Finally, to get things rolling, we make the call to `Canvas#start`. Profit!
 
+So, what does it look like?
 
 {% include widgets/codepen.html slug='mEnuw' height=400 %}
+
+### What's Next ###
+
+There is a *lot* of room for improvement here. Looking at the memory profile in dev tools reveals there aren't any memory leaks, but there is a pattern of garbage collection spikes resulting from discarded objects, most likely from the temporary `points` collection in `Triangle#render`. If we were to forgo creating those objects in the firt place or cache those points on the `Triangle` instance (overwritting the coordinates on each render), those spikes would be minimized.
+
+Another cool addition would be to also animate the color of each triangle. Switching the colors to a HSLA implementation would allow you to loop through the hue value similar to the actual bezier screensaver. Actually, I'm kicking myself for not thinking of it when I first implemented this. Blast you, 20-20 hindsight!
+
+Lastly, it would be nice if it responded appropriately to DOM events, especially resize. Right now if you were to resize the preview screen on the [pen][pen], the animation will distort with it. Basic DOM event handling would avoid this.
+
+Of course, I leave these as exercises for my dear readers (or future self, more likely). This was a fun foray into the land of JS/canvas animations, and I'm tempted to delve into the topic deeper. Perhaps, a game... more to come!
 
 [taylor]: http://taylorpatrickgorman.com/
 [bezier]: http://www.youtube.com/watch?v=sql60Bvz0rU
