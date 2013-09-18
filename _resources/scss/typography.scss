@@ -67,7 +67,13 @@ pre,code,abbr,acronym {
 	font-weight: 400;
 }
 
+.gist {
+	font-size: 0.75em;
+	line-height: 1.5;
+}
+
 code {
+	font-size: .85em;
 	display: block;
 	white-space: pre;
 	overflow-x: scroll;
@@ -78,7 +84,7 @@ code {
 	@include box-shadow(1px 1px 1px rgba(255,255,255,0.75));
 }
 
-p code {
+h1 code, h2 code, h3 code, h4 code, h5 code, h6 code, p code {
 	display: inline;
 	padding: 0 .25em;
 	margin: inherit;

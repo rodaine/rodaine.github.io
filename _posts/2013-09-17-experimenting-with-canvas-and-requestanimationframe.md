@@ -1,7 +1,6 @@
 ---
-published: false
 layout: post
-title: "Experimenting with Canvas & requestAnimationFrame"
+title: "Experimenting with Canvas &amp; request&shy;Animation&shy;Frame"
 description: Or that giddiness you feel when something is way easier than you expected
 keywords: "html5, canvas, requestAnimationFrame, JavaScript"
 ---
@@ -26,7 +25,7 @@ The `config` object provides a bunch of static settings for tweaking the behavio
 
 #### Ok…so what the heck is `requestAnimationFrame`? ####
 
-Back in the day, JS animations relied on `setTimeout(animate, 1000/60)` as the event/update/render loop for animations. While this worked, it was suboptimal especially if multiple animations were occurring simultaneously. 
+Back in the day, JS animations relied on `setTimeout` as the event/update/render loop for animations. While this worked, it was suboptimal especially if multiple animations were occurring simultaneously. 
 
 Thus, browser vendors implemented this new API which allows developers to update their animations right before a repaint. Our version of `requestAnimFrame` is brought to you by [Paul Irish][paul], which handles vendor prefixed versions of this method with a fallback to the old-school `setTimeout` method.
 
@@ -36,7 +35,7 @@ Our first class will be the `Vector`, which is somewhat of a misnomer. In this c
 
 {% gist 6575633 vector.script.coffee %}
 
-A `Vector` instance stores the coordinates (or bearing) in it's `x` and `y` properties. The rest of the methods are helper functions related to boundaries and reflections, just a bit of baby linear algebra.
+A `Vector` instance stores the coordinates (or bearing) in it's `x` and `y` properties. The rest of the methods are helper functions related to boundaries, translations and reflections, just a bit of baby linear algebra.
 
 `Vector.random` will generate a random instance within the boundary provided (we'll cover the `Bounds` class next, don't you worry). Since each of the triangles will be randomly generated, this function is more than just a fancy little toy.
 
@@ -76,7 +75,7 @@ First, `Triangle#render` generates the points it needs to render. Basically, thi
 
 To counteract this lag, `Triangle#render` is passed how many partial update steps &ndash; `partialStep` &ndash; the animation is behind. This will be a real number between 0 (completely in-sync) and 1 (exclusive). `partialStep` is then used to extrapolate the true position of the `Vertex` by translating it partially. Notice, that no collision detection is done, so it is possible the point may render outside of the bounds, but this will only exist for a single frame (hopefully) and the next render will be more closely caught up with the updates). Overkill? Perhaps considering the simplicity of this example, but it guarantees the smoothest possible animation. 
 
-Lastly, notice that the points coordinates are run through `parseInt` to get an integer value. When rendering to a canvas, using non-integers will result in really hideous anti-aliasing. You could probably also use `Math.floor`, `Math.ceil` or `Math.round` to the same effect.
+Lastly, notice that the points' coordinates are run through `parseInt` to get an integer value. When rendering to a canvas, using non-integers will result in really hideous anti-aliasing. You could probably also use `Math.floor`, `Math.ceil` or `Math.round` to the same effect.
 
 Now that we have our points, we can actually draw them on the `context`, our canvas' instance of [`CanvasRenderingContext2D`][context]. The `fillStyle` is set to the RGBA color for the triangle, a path is drawn between each point in the triangle and then filled with our specified color. Simple as that. We're almost there; hang in!
 
@@ -86,7 +85,7 @@ Okay, so probably not the best name for the class considering it's not the actua
 
 {% gist 6575633 canvas.script.coffee %}
 
-`updateStep` stores the time (in ms) between each update. It's defaulted to 60fps (`1000ms / 60fps = 16.67ms`) but should be a value less than or equal to the time between frames (inverse of fps).
+`updateStep` stores the time (in ms) between each update. It's defaulted to 60fps (1000ms / 60fps = 16.67ms) but should be a value less than or equal to the time between frames (inverse of fps).
 
 When a `new Canvas` is created, the 2d  `context` is retrieved from the passed canvas `el`, and the other properties are set.
 
@@ -94,7 +93,7 @@ When a `new Canvas` is created, the 2d  `context` is retrieved from the passed c
 
 On to the update loop: `Canvas#loop`. The actual logic for this method was inspired by [Bob Nystrom][bob] in his online book *[Game Programming Patterns][gpp]*; I strongly encourage you check it out, even if you aren't interested in game dev. First, the `current` timestamp is obtained, and the time difference between `current` and our `previous` timestamp is added to the cumulative `lag` of our animation. Next, we attempt to perform an update for each `updateStep` in `lag`, attempting to catch us up with the real-time position of the triangles in the animation. Once the `lag` is reduced to below a single `updateStep`, `Canvas#render` is called and passed the ratio of `lag` to `updateStep` as the `partialStep` extrapolation value.
 
-And, finally, the ON button for this whole contraption: `Canvas#start`. This method makes the self referencing call to our `requestAnimFrame` wrapper and then calls calls `Canvas#loop`. Why loop after the rAF? If the animation has fallen-back to the `setTimeout` method, calling it first will ensure we are as close to 60fps as possible.
+And, finally, the ON button for this whole contraption: `Canvas#start`. This method makes the self referencing call to our `requestAnimFrame` wrapper and then calls `Canvas#loop`. Why loop after the rAF? If the animation has fallen-back to the `setTimeout` method, calling it first will ensure we are as close to 60fps as possible.
 
 ### Putting it all together ###
 
@@ -114,7 +113,7 @@ So, what does it look like?
 
 ### What's Next ###
 
-There is a *lot* of room for improvement here. Looking at the memory profile in dev tools reveals there aren't any memory leaks, but there is a pattern of garbage collection spikes resulting from discarded objects, most likely from the temporary `points` collection in `Triangle#render`. If we were to forgo creating those objects in the firt place or cache those points on the `Triangle` instance (overwritting the coordinates on each render), those spikes would be minimized.
+There is a *lot* of room for improvement here. Looking at the memory profile in dev tools reveals there aren't any memory leaks, but there is a pattern of garbage collection spikes resulting from discarded objects, most likely from the temporary `points` collection in `Triangle#render`. If we were to forgo creating those objects in the first place or cache those points on the `Triangle` instance (overwritting the coordinates on each render), those spikes would be minimized.
 
 Another cool addition would be to also animate the color of each triangle. Switching the colors to a HSLA implementation would allow you to loop through the hue value similar to the actual bezier screensaver. Actually, I'm kicking myself for not thinking of it when I first implemented this. Blast you, 20-20 hindsight!
 
