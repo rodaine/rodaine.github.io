@@ -12,10 +12,10 @@
 		<sy:updateFrequency>1</sy:updateFrequency>
 		<atom:link href="{{ site.url }}/feed.xml" rel="self" type="application/rss+xml" />
 		{% for post in site.posts limit:10 %}<item>
-				<title>{{ post.title }}</title>
+				<title><![CDATA[{{ post.title }}]]></title>
 				<link>{{ site.url }}{{ post.url }}</link>
 				<guid isPermaLink="true">{{ site.url }}{{ post.url }}</guid>
-				<comments>{{site.url}}{{ post.url }}#comments</comments>
+				<comments>{{site.url}}{{ post.url }}#disqus_thread</comments>
 				<pubDate>{{ post.date | date_to_rfc822 }}</pubDate>
 				<dc:creator>{{ site.me }}</dc:creator>
 				<description><![CDATA[{{ post.description }}]]></description>
