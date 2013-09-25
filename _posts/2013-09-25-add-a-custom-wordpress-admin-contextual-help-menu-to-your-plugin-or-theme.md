@@ -1,8 +1,7 @@
 ---
-published: false
 title: Add A Custom WordPress Admin Contextual Help Menu To Your Plugin Or Theme
 description: Or building documentation right into the WP admin
-keywords: "wordpress, help tab, contextual help, wordpress admin"
+keywords: "wordpress, admin, help, documentation, docs, help tab, contextual help, wordpress admin, WP_Screen, add_help_tab, set_help_sidebar"
 layout: post
 ---
 
