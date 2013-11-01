@@ -1,8 +1,8 @@
 ---
 layout: interior
 title: About Me
-description: "Howdy, the name's Chris and I'm a web developer for Clark/Nikdel/Powell in Winter Haven, Florida. Nice to meet you!"
-keywords: "chris roche, rodaine, rodune, about, web developer"
+description: "Howdy, the name's Chris and I'm a software engineer for VSCO in Emeryville, California. Nice to meet you!"
+keywords: "chris roche, rodaine, rodune, about, web, developer, software engineer, full stack"
 schema: AboutPage
 published: true
 ---
