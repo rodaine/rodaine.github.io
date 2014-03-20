@@ -1,21 +1,20 @@
 ---
 ---
-/* TEAM */
+/* WHO DAT IS? */
 
 		Owner & Developer: {{ site.me }}
-		Contact: {{ site.email }}
-		Twitter: {{ site.twitter }}
+		Contact:           {{ site.email }}
+		Twitter:           {{ site.twitter }}
 
-/* SITE */
+/* WHERE WE BE! */
 
 	Last Updated: {{ site.time | date_to_xmlschema }}
 
-	Components:
-		CoffeeScript: http://coffeescript.org
-		jQuery: http://jquery.com
+	Software / Components:
+		CoffeeScript:         http://coffeescript.org
+		Github Pages:         http://pages.github.com
+		Grunt:                http://gruntjs.com/
+		Jekyll:               https://github.com/mojombo/jekyll
+		Node/NPM:             http://nodejs.org/
 		Sass (SCSS - Flavor): http://sass-lang.com
-
-	Software:
-		Github Pages: http://pages.github.com
-		Jekyll: https://github.com/mojombo/jekyll
-		Sublime Text 2: http://www.sublimetext.com/2
+		Sublime Text 2:       http://www.sublimetext.com/2

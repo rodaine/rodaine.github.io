@@ -1,39 +1,16 @@
 <!DOCTYPE html>
 <html prefix="og: http://ogp.me/ns#" itemscope itemtype="http://schema.org/{% if page.schema %}{{ page.schema }}{% else %}WebPage{% endif %}">
 <head>
-	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-	<meta name="viewport"              content="width=device-width, initial-scale=1, minimum-scale=1">
-
-	<title>{{ page.title }} « {{ site.name }}</title>
-	<meta name="keywords"    itemprop="keywords"    content="{% if page.keywords %}{{ page.keywords }}{% else %}{{ site.keywords }}{% endif %}">
-	<meta name="author"      itemprop="author"      content="Chris Roche">
-	<meta name="description" itemprop="description" content="{% if page.description %}{{ page.description }}{% else %}{{ site.description }}{% endif %}">
-	
-	<meta property="fb:admins"   content="{{ site.facebook }}">
-	<meta property="og:type"     content="{% if page.date %}article{% else %}website{% endif %}">
-	
-	<meta name="twitter:card"    content="summary">
-	<meta name="twitter:creator" content="{{ site.twitter }}">
-
-	<meta name="twitter:title"       property="og:title"       content="{{ page.title }} « {{ site.name }}">
-	<meta name="twitter:url"         property="og:url"         content="{{ site.url }}{{ page.url || remove: 'index.html' }}">
-	<meta name="twitter:image"       property="og:image"       content="{{ site.img.base }}{{ site.img.og }}{% if page.feature %}{{ page.feature }}{% else %}{{ site.img.default }}{% endif %}">
-	<meta name="twitter:description" property="og:description" content="{% if page.description %}{{ page.description }}{% else %}{{ site.description }}{% endif %}">
-
-	<link rel="author"     href="https://plus.google.com/106083414604718331836">
-	<link rel="search"     href="/opensearch.xml"                     type="application/opensearchdescription+xml" title="Search Results « {{ site.name }}">
-	<link rel="alternate"  href="http://feeds.feedburner.com/rodaine" type="application/atom+xml"                  title="Atom Feed « {{ site.name }}" >
-	<link rel="canonical"  href="{{ page.url || remove: 'index.html' }}" >
-	
-	<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Merriweather:700,300,300italic,700italic|Open+Sans:300italic,700italic,300,700|Droid+Sans+Mono">
-	<link rel="stylesheet" href="/resources/styles.css?cb=1">
+	{% include meta/basic.html %}
+	{% include meta/open-graph.html %}
+	{% include meta/disqus.html %}
+	{% include meta/links.html %}
+	{% include meta/styles.html %}
 </head>
 <body>
-
 <header role="banner">
 	<a href="/"><h1 class="logo">Rodaine</h1></a>
 	<a href="#nav" class="menu">menu</a>
-</header>
+</header> 
 
 <main role="main">

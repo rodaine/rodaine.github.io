@@ -1,5 +1,5 @@
 define [
 	'fluff/strike'
-	'disqus/feed'
 	'disqus/count'
+	'disqus/thread'
 ], ->

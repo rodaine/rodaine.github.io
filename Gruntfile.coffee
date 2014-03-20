@@ -1,8 +1,11 @@
 module.exports = (grunt) ->
 	grunt.initConfig
-		pkg:           grunt.file.readJSON 'package.json'
-		coffeeSource: '_resources/coffee/'
-		jsSource:     '_resources/js/'
+		pkg:            grunt.file.readJSON 'package.json'
+		coffeeSource:   '_resources/coffee/'
+		jsSource:       '_resources/js/'
+		amdSource:      '_resources/amd/scripts.js'
+		jsDestination:  'resources/scripts.js'
+		jsFooter:       "require('app');"
 
 #------------------------------------------------------------------------------
 # Coffeescript Compiling
@@ -24,17 +27,26 @@ module.exports = (grunt) ->
 
 		requirejs:
 			options:
-				baseUrl: '<%= jsSource %>'
-				name:    'app'
-				almond:  true
+				baseUrl:                 '<%= jsSource %>'
+				useStrict:               true
+				name:                    'app'
+				almond:                  true
 				preserveLicenseComments: false
-				paths:
-					jquery: '../vendor/jquery'
+				optimize:                'uglify2'
 
 			production:
 				options:
-					out:      'resources/scripts.js'
-					optimize: 'hybrid'
+					out:      '<%= amdSource %>'
+
+		concat:
+			options:
+				separator: ''
+				footer: '<%= jsFooter %>'
+
+			production:
+				files:
+					'resources/scripts.js': '<%= amdSource %>'
+
 
 #------------------------------------------------------------------------------
 # Sass
@@ -47,7 +59,7 @@ module.exports = (grunt) ->
 
 			styles:
 				files:
-					'resources/styles.css': '_resources/scss/app.scss'
+					'<%= cssDestination %>': '_resources/scss/app.scss'
 
 #------------------------------------------------------------------------------
 # Jekyll
@@ -70,11 +82,11 @@ module.exports = (grunt) ->
 
 			scripts:
 				files: '<%= coffeeSource %>/**/*.coffee'
-				tasks: ['coffee', 'requirejs']
+				tasks: ['scripts']
 
 			styles:
 				files: '_resources/scss/**/*.scss'
-				tasks: ['sass']
+				tasks: ['styles']
 
 #------------------------------------------------------------------------------
 # Load & Register Tasks
@@ -82,6 +94,7 @@ module.exports = (grunt) ->
 
 	load = [
 		'grunt-contrib-coffee'
+		'grunt-contrib-concat'
 		'grunt-contrib-sass'
 		'grunt-contrib-watch'
 		'grunt-requirejs'
@@ -89,9 +102,9 @@ module.exports = (grunt) ->
 	]
 
 	register =
-		default: ['coffee', 'requirejs', 'sass']
+		default: ['scripts', 'styles']
 		styles:  ['sass']
-		scripts: ['coffee', 'requirejs']
+		scripts: ['coffee', 'requirejs', 'concat']
 
 	grunt.loadNpmTasks(task) for task in load
 	grunt.registerTask(key, value) for key, value of register
