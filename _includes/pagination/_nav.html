@@ -1,0 +1,85 @@
+{% assign max_dist = site.paginate_items | minus:1 %}
+{% assign half_dist = max_dist | divided_by:2 %}
+{% if 0 < half_dist | modulo:1 %}{% assign half_dist = half_dist | minus:.5 %}{%  endif %}
+
+{% assign total_below = paginator.page | minus:2 %}
+{% if total_below < 0 %}{% assign total_below = 0 %}{% endif %}
+{% assign total_above = paginator.total_pages | minus:paginator.page | minus:1 %}
+{% if total_above < 0 %}{% assign total_above = 0 %}{% endif %}
+
+{% assign dist_below = total_below %}
+{% if dist_below > half_dist %}{% assign dist_below = half_dist %}{% endif %}
+
+{% assign dist_above = max_dist | minus:dist_below %}
+{% if dist_above > total_above %}{% assign dist_above = total_above %}{% endif %}
+{% if dist_above < 0 %}{% assign dist_above = 0 %}{% endif %}
+
+{% assign dist_below = max_dist | minus:dist_above %}
+{% if dist_below > total_below %}{% assign dist_below = total_below %}{% endif %}
+{% if dist_below < 0 %}{% assign dist_below = 0 %}{% endif %}
+
+{% if paginator.page == 1 %}
+{% assign dist_below = -1 %}
+{% assign dist_above = site.paginate_items %}
+{% endif %}
+
+{% if paginator.page == paginator.total_pages %}
+{% assign dist_below = site.paginate_items %}
+{% assign dist_above = -1 %}
+{% endif %}
+
+{% if dist_below > total_below %}{% assign dist_below = total_below %}{% endif %}
+{% if dist_above > total_above %}{% assign dist_above = total_above %}{% endif %}
+
+{% assign min = paginator.page | minus:dist_below %}
+{% assign max = paginator.page | plus:dist_above %}
+
+{% assign min_ellipsis = 2 %}
+{% assign max_ellipsis = paginator.total_pages | minus:1 %}
+
+{% if paginator.total_pages > 1 %}
+<nav class="pagination">
+	<ul>
+		{% if paginator.previous_page %}
+		<li class="direction">
+			<a rel="prev" class="prev" href="{{ paginator.previous_page_path | remove:'index.html' }}">Newer</a>
+		</li>
+		{% endif %}
+
+		{% if paginator.next_page %}
+		<li class="direction">
+			<a rel="next" class="next" href="{{ paginator.next_page_path }}">Older</a>
+		</li>
+		{% endif %}
+
+		<li class="bookend">
+			<a href="/" rel="first" {% if paginator.page == 1 %}aria-disabled="true" class="current"{% endif %}>1</a>
+		</li>
+
+		{% if min > min_ellipsis %}
+		<li class="ellipsis">
+			<a href="#">⋯</a>
+		</li>
+		{% endif %}
+
+		{% for num in (min..max) %}
+		<li>
+			<a href="/page/{{num}}" {% if num == paginator.page %}aria-disabled="true" class="current"{% endif %}>{{ num }}</a>
+		</li>
+		{% endfor %}
+
+		{% if max < max_ellipsis %}
+		<li class="ellipsis">
+			<a href="#">⋯</a>
+		</li>
+		{% endif %}
+
+		{% if paginator.total_pages > 1 %}
+		<li class="bookend">
+			<a href="/page/{{ paginator.total_pages }}" rel="last" {% if paginator.page == paginator.total_pages %}aria-disabled="true" class="current"{% endif %}>{{ paginator.total_pages }}</a>
+		</li>
+		{% endif %}
+	</ul>
+
+</nav>
+{% endif %}
