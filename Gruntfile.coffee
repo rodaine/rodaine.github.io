@@ -1,11 +1,33 @@
 module.exports = (grunt) ->
 	grunt.initConfig
 		pkg:            grunt.file.readJSON 'package.json'
-		coffeeSource:   '_resources/coffee/'
+
+		coffeeSource:   '_resources/coffee/'	
 		jsSource:       '_resources/js/'
+		amdMain:        'app'
 		amdSource:      '_resources/amd/scripts.js'
 		jsDestination:  'resources/scripts.js'
-		jsFooter:       "require('app');"
+		jsFooter:       "require('<%= amdMain %>');"
+
+		sassSource:     '_resources/scss'
+		sassRoot:       '<%= sassSource %>/app.scss'
+		cssDestination: 'resources/styles.css'
+
+		paginationSource:      '_includes/pagination/_nav.html'
+		paginationDestination: '_includes/pagination/nav.html'
+
+#------------------------------------------------------------------------------
+# Coffeescript Linting
+#------------------------------------------------------------------------------
+
+		coffeelint:
+			options:
+				no_tabs: 
+					level: 'ignore'
+				indentation:
+					level: 'ignore'
+
+			source: ['<%= coffeeSource %>/**/*.coffee']
 
 #------------------------------------------------------------------------------
 # Coffeescript Compiling
@@ -27,26 +49,29 @@ module.exports = (grunt) ->
 
 		requirejs:
 			options:
-				baseUrl:                 '<%= jsSource %>'
-				useStrict:               true
-				name:                    'app'
 				almond:                  true
-				preserveLicenseComments: false
+				baseUrl:                 '<%= jsSource %>'
+				name:                    '<%= amdMain %>'
 				optimize:                'uglify2'
+				preserveLicenseComments: false
+				useStrict:               true
 
-			production:
+			scripts:
 				options:
-					out:      '<%= amdSource %>'
+					out: '<%= amdSource %>'
+
+#------------------------------------------------------------------------------
+# File Concatenation
+#------------------------------------------------------------------------------
 
 		concat:
 			options:
 				separator: ''
-				footer: '<%= jsFooter %>'
+				footer:    '<%= jsFooter %>'
 
-			production:
+			scripts:
 				files:
-					'resources/scripts.js': '<%= amdSource %>'
-
+					'<%= jsDestination %>': '<%= amdSource %>'
 
 #------------------------------------------------------------------------------
 # Sass
@@ -55,11 +80,11 @@ module.exports = (grunt) ->
 		sass:
 			options:
 				compass: true
-				style: 'compressed'
+				style:   'compressed'
 
 			styles:
 				files:
-					'<%= cssDestination %>': '_resources/scss/app.scss'
+					'<%= cssDestination %>': '<%= sassRoot %>'
 
 #------------------------------------------------------------------------------
 # Jekyll
@@ -68,9 +93,22 @@ module.exports = (grunt) ->
 		jekyll:
 			serve:
 				options:
-					watch: true
-					serve: true
+					watch:  true
+					serve:  true
 					drafts: true
+
+#------------------------------------------------------------------------------
+# Replace (Mostly to compress pagination)
+#------------------------------------------------------------------------------
+
+		replace:
+			pagination:
+				src:  '<%= paginationSource %>'
+				dest: '<%= paginationDestination %>'
+				replacements: [{
+					from: /\n|\t/g
+					to: ''
+				}]
 
 #------------------------------------------------------------------------------
 # Watch
@@ -85,26 +123,32 @@ module.exports = (grunt) ->
 				tasks: ['scripts']
 
 			styles:
-				files: '_resources/scss/**/*.scss'
+				files: '<%= sassSource %>/**/*.scss'
 				tasks: ['styles']
+
+			pagination:
+				files: '<%= paginationSource %>'
+				tasks: ['replace']
 
 #------------------------------------------------------------------------------
 # Load & Register Tasks
 #------------------------------------------------------------------------------
 
 	load = [
+		'grunt-coffeelint'
 		'grunt-contrib-coffee'
 		'grunt-contrib-concat'
 		'grunt-contrib-sass'
 		'grunt-contrib-watch'
-		'grunt-requirejs'
 		'grunt-jekyll'
+		'grunt-requirejs'
+		'grunt-text-replace'
 	]
 
 	register =
 		default: ['scripts', 'styles']
 		styles:  ['sass']
-		scripts: ['coffee', 'requirejs', 'concat']
+		scripts: ['coffeelint', 'coffee', 'requirejs', 'concat']
 
 	grunt.loadNpmTasks(task) for task in load
 	grunt.registerTask(key, value) for key, value of register

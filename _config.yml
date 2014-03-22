@@ -27,12 +27,13 @@ paginate_items: 5
 
 #EXCLUSIONS / INCLUSIONS
 exclude:
- - README.md
+ - CNAME
  - codekit-config.json
  - config.rb
- - CNAME
+ - Gruntfile.coffee
+ - LICENSE.md
+ - node_modules
+ - package.json
+ - README.md
  - rodaine.com.sublime-project
  - rodaine.com.sublime-workspace
- - node_modules
- - Gruntfile.coffee
- - package.json

@@ -1,22 +1,36 @@
 {
   "name": "rodaine.com",
-  "version": "0.0.2",
-  "description": "Personal Blog",
+  "version": "0.1.0",
+  "description": "The Personal Blog of Chris Roche",
+  "license": "./LICENSE.md",
+  "private": true,
+  "author": {
+    "name": "Chris Roche",
+    "email": "rodaine@gmail.com",
+    "url": "http://rodaine.com/"
+  },
   "repository": {
     "type": "git",
     "url": "git://github.com/rodaine/rodaine.github.io.git"
   },
-  "author": "Chris Roche",
   "bugs": {
-    "url": "https://github.com/rodaine/rodaine.github.io/issues"
+    "url": "https://github.com/rodaine/rodaine.github.io/issues",
+    "email": "rodaine@gmail.com"
+  },
+  "scripts": {
+    "prestart": "grunt",
+    "start":    "grunt jekyll",
+    "test":     "grunt test"
   },
   "devDependencies": {
     "grunt": "latest",
+    "grunt-coffeelint": "latest",
     "grunt-contrib-coffee": "latest",
+    "grunt-contrib-concat": "latest",
     "grunt-contrib-sass": "latest",
     "grunt-contrib-watch": "latest",
-    "grunt-requirejs": "latest",
     "grunt-jekyll": "latest",
-    "grunt-contrib-concat": "latest"
+    "grunt-requirejs": "latest",
+    "grunt-text-replace": "latest"
   }
 }
