@@ -2,14 +2,25 @@
  * Injects a span inside strike and del elements for styling purposes
 ###
 define [], () ->
+	###*
+	 * Tags to inject a span into
+	 * @type {Array}
+	###
+	tags      = ['strike', 'del']
 
 	###*
-	 * Wraps the inner HTML of an element in a span, and applies styles.
+	 * Class name to add to the the tags for styling purposes
+	 * @type {String}
+	###
+	className = 'fluff-strike'
+
+	###*
+	 * Wraps the inner HTML of an element in a span, and applies the class name.
 	 * @param  {NodeElement} el The element in which to inject the span
 	###
 	injectSpan = (el) ->
-		el.innerHTML = "<span>#{ el.innerHTML }</span>"
-		el.style.color = '#536895'
+		el.innerHTML   = "<span>#{ el.innerHTML }</span>"
+		el.className  += " #{className}"
 
-	injectSpan(el) for el in document.getElementsByTagName 'strike'
-	injectSpan(el) for el in document.getElementsByTagName 'del'
+	for tag in tags
+		injectSpan(el) for el in document.getElementsByTagName(tag)

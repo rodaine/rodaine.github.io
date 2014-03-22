@@ -1,6 +1,4 @@
-* {
-	@include box-sizing(border-box);
-}
+* { @include box-sizing(border-box); }
 
 body {
 	position: relative;
@@ -8,16 +6,4 @@ body {
 	left: 0;
 }
 
-main {
-	margin: 0 1em;
-
-	@media (min-width: 481px) {
-		margin: 0 5%;
-	}
-
-	@media (min-width: 686px) {
-		width: 61.8%;
-		margin: 0 14.5898% 0 auto;
-	}
-
-}
+main { @extend %content-margins; }

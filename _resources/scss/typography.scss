@@ -1,33 +1,31 @@
 ::selection {
+	@extend %color-background;
 	background: $color-link-visited;
-	color: $color-background;
 }
 
 body { 
-	font-family: $serif; 
-	font-weight: $weight-normal;
+	@extend %serif;
+	@extend %weight-normal;
+	@extend %color-copy;
+	@extend %background-color;
 
 	text-rendering: optimizeLegibility;
 	font-smooth: always;
-	transform: rotate(-0.0000000000001deg);
+	@include rotate(-0.001deg);
+
 	-webkit-font-smoothing: subpixel-antialiased;
-	
-	color: $color-copy;
-	background: $color-background;
 }
 
-h1,h2,h3,h4,h5,h6 { font-family: $sans-serif; }
+h1,h2,h3,h4,h5,h6 { @extend %sans-serif; }
 
 a {
-	color: $color-link;
+	@extend %color-link;
 	-webkit-tap-highlight-color: rgba($color-link, 0.25);
-	&:visited { color: $color-link-visited; }
+	&:visited { @extend %color-link-visited; }
 	header & { text-decoration: none; }
 }
 
-b,strong {
-	font-weight: $weight-bold;
-}
+b,strong { @extend %weight-bold; }
 
 blockquote {
 	position: relative;
@@ -63,8 +61,8 @@ blockquote {
 
 pre,code,abbr,acronym { 
 	@include hyphens(none);
-	font-family: $monospace; 
-	font-weight: 400;
+	@extend %monospace;
+	@extend %weight-normal;
 }
 
 .gist {
@@ -82,16 +80,20 @@ code {
 	margin-right: 1em;
 	padding: .5em 1em;
 	@include box-shadow(1px 1px 1px rgba(255,255,255,0.75));
-}
 
-h1 code, h2 code, h3 code, h4 code, h5 code, h6 code, p code {
-	display: inline;
-	padding: 0 .25em;
-	margin: inherit;
+	h1 &, h2 &, h3 &, h4 &, h5 &, h6 &, p & {
+		display: inline;
+		padding: 0 .25em;
+		margin: inherit;
+	}
 }
 
 strike, strike span, del, del span {
 	color: rgba($color-copy, 0.25);
+}
+
+.fluff-strike {
+	@extend %color-link;
 }
 
 aside {

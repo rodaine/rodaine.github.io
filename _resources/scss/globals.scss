@@ -1,12 +1,12 @@
-$serif: 'Merriweather', serif;
+$serif:      'Crimson', serif;
 $sans-serif: 'Open Sans', sans-serif;
-$monospace: 'Droid Sans Mono', monospace;
+$monospace:  'Source Code Pro', monospace;
 
-$weight-normal: 300;
-$weight-bold: 700;
+$weight-normal: 400;
+$weight-bold:   700;
 
-$color-background: #fcfcfc;
-$color-copy: #1D1D1D;
-$color-link: #536895;
+$color-background:   #fcfcfc;
+$color-copy:         #1D1D1D;
+$color-link:         #536895;
 $color-link-visited: darken($color-link, 10%);
-$color-logo: rgba(0,0,0,0.15);
+$color-logo:         rgba(0,0,0,0.15);

@@ -1,6 +1,6 @@
 body > header {
 	@include rotate(180deg);
-	height: 3em;
+	height: 2.5em;
 	position: relative;
 	top: -.25em;
 	margin: 0;
@@ -9,18 +9,18 @@ body > header {
 }
 
 .logo, .menu {
-	font-family: $sans-serif;
+	@extend %sans-serif;
+	@extend %weight-normal;
+
 	display: block;
-	font-size: 3em;
-	font-weight: 300;
+	font-size: 2.5em;
 	text-transform: lowercase;
 	margin: 0;
 	padding: 0;
 }
 
-.logo { 
-	float: left; 
-		color: $color-logo;
-}
-
 .menu { float: right; }
+.logo { 
+	@extend %color-logo;
+	float: left; 
+}

@@ -1,28 +1,28 @@
 define ['disqus/settings'], (loadDisqusScript) ->
-	el               = document.getElementById 'disqus_thread'
+	doc              = document
+	el               = doc.getElementById 'disqus_thread'
+
+	if !el then return
+
+	docElement       = doc.documentElement || doc.body.parentNode || doc.body
 	timeout          = null
 	delay            = 100
 	buffer           = 250
 	originalOnScroll = window.onscroll || (e) ->
 
-	if !el then return
+	windowHeight = () ->
+		window.innerHeight
 
-	scrollTop = () -> 
-		if window.pageYOffset != undefined
-			window.pageYOffset
-		else
-			(document.documentElement || document.body.parentNode || document.body).scrollTop
+	elementOffset = () ->
+		el.offsetTop
 
-	windowHeight    = () -> window.innerHeight
-	elementOffset   = () -> el.offsetTop
+	scrollTop = () ->
+		window.pageYOffset || docElement.scrollTop
 
-	elementIsInView = () -> 
-		offset = elementOffset()
-		scroll = scrollTop()
-		height = windowHeight() 
-		offset - buffer <= scroll + height
+	elementIsInView = () ->
+		elementOffset() - buffer <= scrollTop() + windowHeight()
 
-	loadComments    = () -> 
+	loadComments = () ->
 		if !elementIsInView() then return
 		window.onscroll = originalOnScroll
 		clearTimeout timeout

@@ -5,7 +5,7 @@ article {
 
 	header {
 		h3 {
-			font-weight: $weight-normal;
+			@extend %weight-normal;
 			font-style: italic;
 		}
 		.meta {
@@ -16,10 +16,6 @@ article {
 			margin-top: 0;
 			text-transform: uppercase;
 		}
-	}
-	section, p {
-		text-align: justify;
-		@include hyphens(auto);
 	}
 
 	p { clear: both; }
@@ -39,10 +35,10 @@ article {
 		}
 	}
 
-	.summary {
+	.summary, .summary:visited {
+		@extend %color-copy;
 		display: block;
 		text-decoration: none;
-		color: $color-copy;
 		min-height: 6em;
 		max-height: 9em;
 		overflow: hidden;

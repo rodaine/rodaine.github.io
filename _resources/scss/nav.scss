@@ -1,6 +1,6 @@
 .pagination {
+	@extend %sans-serif;
 	margin: 0.5em -1rem;
-	font-family: $sans-serif;
 
 	&:after {
 		display: block;
@@ -19,11 +19,12 @@
 		list-style-type: none;
 
 		a {
+			@extend %color-background;
+
 			width: 2em;
 			height: 2em;
 			display: block;
 			background: $color-link;
-			color: $color-background;
 			text-decoration: none;
 			padding: 0.25em 0.5em;
 			margin: 0.25em 0;
@@ -35,8 +36,8 @@
 	}
 
 	.current, .bookend .current, .ellipsis a {
-		color: $color-link;
-		background: $color-background;
+		@extend %color-link;
+		@extend %background-color;
 		pointer-events: none;
 		cursor: default;
 	}
@@ -107,6 +108,7 @@
 		@include hyphens(auto);
 		text-transform: uppercase;
 		padding: .75em;
+		overflow-x: hidden;
 	}
 
 	@media (min-width: 481px) {

@@ -1,0 +1,27 @@
+%serif      { font-family: $serif; }
+%sans-serif { font-family: $sans-serif }
+%monospace  { font-family: $monospace; }
+
+%weight-normal { font-weight: $weight-normal; }
+%weight-bold   { font-weight: $weight-bold; }
+
+%color-copy         { color: $color-copy; }
+%color-link         { color: $color-link; }
+%color-link-visited { color: $color-link-visited; }
+%color-logo         { color: $color-logo; }
+%color-background   { color: $color-background; }
+
+%background-color   { background: $color-background; }
+
+%content-margins {
+	margin: 0 1em;
+
+	@media (min-width: 481px) {
+		margin: 0 5%;
+	}
+
+	@media (min-width: 686px) {
+		width: 61.8%;
+		margin: 0 14.590% 0 auto;
+	}
+}
