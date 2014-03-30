@@ -12,7 +12,7 @@ define [], () ->
 	for setting in settings
 		window[setting] = getMetaContent setting
 
-	src_base = "//#{window.disqus_shortname}.disqus.com/"
+	src_base = "//go.disqus.com/"
 
 	loadDisqusScript = (script) ->
 		s = document.createElement 'script'

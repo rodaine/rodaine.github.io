@@ -1,0 +1,9 @@
+{% if include.id %}{% assign id = include.id %}{% else %}{% assign id = '' %}{% endif %}
+{% if include.user %}{% assign user = include.user %}{% else %}{% assign user = 'rodaine' %}{% endif %}
+{% if include.file %}{% assign file = include.file %}{% else %}{% assign file = '' %}{% endif %}
+{% if file %}{% assign hash = file | replace: '.', '-' | prepend: '#file-' %}{% else %}{% assign hash = '' %}{% endif %}
+{% if file %}{% assign query = file | prepend: '?file=' %}{% else %}{% assign query = '' %}{% endif %}
+
+<div class="gist-wrapper" data-id="{{ id }}" data-user="{{ user }}" data-file="{{ file }}">
+	<p>View this <a href="https://gist.github.com/{{ user }}/{{ id }}{{ hash }}">Gist</a> on GitHub.</p>
+</div>

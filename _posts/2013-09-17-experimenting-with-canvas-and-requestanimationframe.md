@@ -19,7 +19,7 @@ The goal was to have a bunch of overlapping translucent triangles animate within
 
 The `config` object provides a bunch of static settings for tweaking the behavior of the animation, including the number of triangles to render, their speed, and the ranges for color and opacity for each of the shapes. 
 
-{% gist 6575633 config.script.coffee %}
+{% include widgets/gist.html id="6575633" file="config.script.coffee" %}
 
 `clamp` keeps numbers inside a range; this is particularly useful for keeping the triangle vertices within the canvas boundary. `rand` is a small random number utility to keep us DRY. And finally, `requestAnimFrame` is a compatibility wrapper for [`requestAnimationFrame`][raf]. 
 
@@ -33,7 +33,7 @@ Thus, browser vendors implemented this new API which allows developers to update
 
 Our first class will be the `Vector`, which is somewhat of a misnomer. In this case, a `Vector` object is either used as a point or bearing on the canvas. Let's dig into the definition:
 
-{% gist 6575633 vector.script.coffee %}
+{% include widgets/gist.html id="6575633" file="vector.script.coffee" %}
 
 A `Vector` instance stores the coordinates (or bearing) in it's `x` and `y` properties. The rest of the methods are helper functions related to boundaries, translations and reflections, just a bit of baby linear algebra.
 
@@ -55,7 +55,7 @@ All super exciting stuff, right?! I promise things will get more exciting, but f
 
 This little class describes a rectangular boundary on the Cartesian plane, defined by two `Vector` instances at the top-left and bottom-right. It also includes a few helper methods to characterize the extrema:
 
-{% gist 6575633 bounds.script.coffee %}
+{% include widgets/gist.html id="6575633" file="bounds.script.coffee" %}
 
 This one is super-straightforward, so we'll skip ahead to the bread-and-butter of the animation...
 
@@ -63,7 +63,7 @@ This one is super-straightforward, so we'll skip ahead to the bread-and-butter o
 
 Our meat-and-potatoes (I can do these food analogies all day, if you'd like), a `Triangle` instance is described by its three vertices & corresponding bearings, the bounds it's contained within, and its color & opacity. For each update step, the triangle translates each vertex by its bearing, performing any collision detection necessary. A `Triangle` object is also responsible for rendering itself on the canvas context. Enough preamble!
 
-{% gist 6575633 triangle.script.coffee %}
+{% include widgets/gist.html id="6575633" file="triangle.script.coffee" %}
 
 A `new Triangle` takes a `Bounds` to create a completely random instance. First, the fill color RGBA values are randomly selected from the ranges specified in `config`. Notice that the color numbers must be floored; any non-integer value for the RGB  will result in opaque black triangles. Nooooot what we're looking for. Next, random `vertices` are generated for the three points of the triangle. Likewise, random `bearings` are created from a boundary between `{-1, -1}` and `{1, 1}`, which are then scaled by the speed factor defined in `config`. 
 
@@ -83,7 +83,7 @@ Now that we have our points, we can actually draw them on the `context`, our can
 
 Okay, so probably not the best name for the class considering it's not the actual `<canvas/>` element. A `Canvas` instance will wrap the element however, hold references to all the triangles to be displayed, and contain the update/render loop:
 
-{% gist 6575633 canvas.script.coffee %}
+{% include widgets/gist.html id="6575633" file="canvas.script.coffee" %}
 
 `updateStep` stores the time (in ms) between each update. It's defaulted to 60fps (1000ms / 60fps = 16.67ms) but should be a value less than or equal to the time between frames (inverse of fps).
 
@@ -99,7 +99,7 @@ And, finally, the ON button for this whole contraption: `Canvas#start`. This met
 
 All that's left is to bootstrap our animation onto a canvas element. We do rely on a bit of jQuery here (read: laziness), but depending on how you were to implement the canvas, it may not be necessary:
 
-{% gist 6575633 bootstrap.script.coffee %}
+{% include widgets/gist.html id="6575633" file="bootstrap.script.coffee" %}
 
 First, we grab the canvas element in our document and set it's actual width & height, to the CSS width & height. Why? Think of a canvas element like an image; you can use CSS to stretch an image to any size, but it will end up looking deformed. Same goes for a canvas, but you can modify it's width & height prior to drawing on it to expand it appropriately. If you check out the [pen][pen], you'll notice that I wanted the canvas to fill the screen, so this technique made sure the canvas dimensions were changed accordingly.
 

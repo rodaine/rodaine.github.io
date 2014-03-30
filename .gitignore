@@ -2,7 +2,8 @@
 
 _site/
 node_modules/
-_resources/js/
+_resources/js
+_resources/amd
 
 .DS_Store
 .rbenv-version
@@ -13,4 +14,3 @@ rodaine.com.sublime-project
 rodaine.com.sublime-workspace
 Thumbs.db
 
-/_resources/js
