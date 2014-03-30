@@ -1,11 +1,8 @@
 body > footer {
 	@extend %content-margins;
+	@extend %flush-margins;
 	@extend %sans-serif;
 	@extend %color-background;
-	
-	@media (max-width: 480px) {
-		margin: 0;
-	}
 
 	padding: 0.5em 1em;
 	background: $color-link;

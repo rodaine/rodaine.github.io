@@ -1,11 +1,11 @@
 body > header {
+	@extend %content-margins;
+	@extend %flush-margins;
 	@include rotate(180deg);
 	height: 2.5em;
 	position: relative;
 	top: -.25em;
-	margin: 0;
 	line-height: 1;
-	padding: 0 .5em;
 }
 
 .logo, .menu {

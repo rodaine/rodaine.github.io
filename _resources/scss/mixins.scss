@@ -25,3 +25,9 @@
 		margin: 0 14.590% 0 auto;
 	}
 }
+
+%flush-margins {
+	@media (max-width: 480px) {
+		margin: 0;
+	}
+}
