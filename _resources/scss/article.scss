@@ -20,7 +20,6 @@ article {
 
 	p { clear: both; }
 
-
 	aside {
 		@media (min-width: 900px) {
 			width: 30%;
@@ -64,8 +63,6 @@ article {
 		display: block;
 		padding: .25em;
 		background: white;
-		border-radius: .125em;
-		border: 1px solid rgba(0, 0, 0, 0.05);
-		@include box-shadow(rgba(0,0,0,0.1) 1px 1px);
+		border: 1px solid $color-image-border;
 	}
 }

@@ -1,3 +1,3 @@
-define ['disqus/settings'], (loadDisqusScript) ->
-	loadDisqusScript 'count.js'
-	null
+define ['disqus/loader'], (loader) ->
+	loader('count.js')
+	return

@@ -1,4 +1,4 @@
-define ['disqus/settings'], (loadDisqusScript) ->
+define ['disqus/loader'], (loader) ->
 	doc              = document
 	el               = doc.getElementById 'disqus_thread'
 
@@ -10,23 +10,15 @@ define ['disqus/settings'], (loadDisqusScript) ->
 	buffer           = 250
 	originalOnScroll = window.onscroll || (e) ->
 
-	windowHeight = () ->
-		window.innerHeight
-
-	elementOffset = () ->
-		el.offsetTop
-
-	scrollTop = () ->
-		window.pageYOffset || docElement.scrollTop
-
 	elementIsInView = () ->
-		elementOffset() - buffer <= scrollTop() + windowHeight()
+		scrollTop = window.pageYOffset || docElement.scrollTop
+		el.offsetTop - buffer <= scrollTop + window.innerHeight
 
 	loadComments = () ->
 		if !elementIsInView() then return
 		window.onscroll = originalOnScroll
 		clearTimeout timeout
-		loadDisqusScript 'embed.js'
+		loader 'embed.js'
 
 	window.onscroll = (e) ->
 		originalOnScroll e
@@ -35,4 +27,4 @@ define ['disqus/settings'], (loadDisqusScript) ->
 
 	window.onscroll()
 		
-	null
+	return

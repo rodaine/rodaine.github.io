@@ -1,4 +1,4 @@
-define [], ->
+define ['util/script-loader'], (loader) ->
 	els = document.getElementsByClassName('gist-wrapper')
 	return unless els.length
 
@@ -25,11 +25,10 @@ define [], ->
 			success loadedData[url]
 			return
 
+		s = loader(url, true, false)
+
 		rand = Math.floor(Math.random() * (99999 - 10001)) + 10000
 		callback = "gist#{rand}"
-
-		s = document.createElement('script')
-		s.async = true
 
 		window[callback] = (data) ->
 			loadedData[url] = data
@@ -39,7 +38,6 @@ define [], ->
 
 		prefix = if url.indexOf('?') > 0 then '&' else '?'
 		url += "#{prefix}callback=#{callback}"
-
 
 		s.src = url
 		body.appendChild s
@@ -66,3 +64,4 @@ define [], ->
 		if data.file then src += "?file=#{data.file}"
 		getJSON src, success(el)
 
+	return

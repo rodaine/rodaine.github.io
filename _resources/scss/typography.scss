@@ -19,7 +19,7 @@ h1,h2,h3,h4,h5,h6 { @extend %sans-serif; }
 a {
 	@extend %color-link;
 	-webkit-tap-highlight-color: $color-link-focus;
-	&:focus { background: $color-link-focus; }
+	&:focus, { background: $color-link-focus; }
 	&:visited { @extend %color-link-visited; }
 	header & { text-decoration: none; }
 }

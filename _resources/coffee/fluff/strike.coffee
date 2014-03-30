@@ -16,11 +16,10 @@ define [], () ->
 
 	###*
 	 * Wraps the inner HTML of an element in a span, and applies the class name.
-	 * @param  {NodeElement} el The element in which to inject the span
 	###
-	injectSpan = (el) ->
-		el.innerHTML   = "<span>#{ el.innerHTML }</span>"
-		el.className  += " #{className}"
-
 	for tag in tags
-		injectSpan(el) for el in document.getElementsByTagName(tag)
+		for el in document.getElementsByTagName(tag)
+			el.innerHTML   = "<span>#{ el.innerHTML }</span>"
+			el.className  += " #{className}"
+
+	return
