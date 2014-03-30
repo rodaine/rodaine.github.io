@@ -9,4 +9,5 @@ $color-background:   #fcfcfc;
 $color-copy:         #1D1D1D;
 $color-link:         #536895;
 $color-link-visited: darken($color-link, 10%);
+$color-link-focus:   rgba($color-link, 0.25);
 $color-logo:         rgba(0,0,0,0.15);

@@ -11,8 +11,6 @@ body {
 
 	text-rendering: optimizeLegibility;
 	font-smooth: always;
-	@include rotate(-0.001deg);
-
 	-webkit-font-smoothing: subpixel-antialiased;
 }
 
@@ -20,7 +18,8 @@ h1,h2,h3,h4,h5,h6 { @extend %sans-serif; }
 
 a {
 	@extend %color-link;
-	-webkit-tap-highlight-color: rgba($color-link, 0.25);
+	-webkit-tap-highlight-color: $color-link-focus;
+	&:focus { background: $color-link-focus; }
 	&:visited { @extend %color-link-visited; }
 	header & { text-decoration: none; }
 }
