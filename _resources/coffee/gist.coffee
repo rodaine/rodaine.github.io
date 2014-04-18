@@ -47,7 +47,7 @@ define ['util/script-loader'], (loader) ->
 		loadedCss[url] = 1
 		link = document.createElement('link')
 		link.rel = 'stylesheet'
-		link.href = "https://gist.github.com#{url}"
+		link.href = url
 		head.appendChild link
 
 	success = (el) -> (gist) ->
