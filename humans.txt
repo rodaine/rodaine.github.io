@@ -14,7 +14,7 @@
 		CoffeeScript:         http://coffeescript.org
 		Github Pages:         http://pages.github.com
 		Grunt:                http://gruntjs.com/
-		Jekyll:               https://github.com/mojombo/jekyll
+		Jekyll:               http://jekyllrb.org
 		Node/NPM:             http://nodejs.org/
 		Sass (SCSS - Flavor): http://sass-lang.com
 		Sublime Text 2:       http://www.sublimetext.com/2
