@@ -5,7 +5,11 @@
 		Owner & Developer: {{ site.me }}
 		Contact:           {{ site.email }}
 		Twitter:           {{ site.twitter }}
-
+		GitHub:            {{ site.username }}
+{% if site.github.contributors %}
+		Contributors (Thanks!):{% assign sortedContributors = site.github.contributors | sort_by:contributions %}{% for contributor in sortedContributors %}{% unless contributor.login == 'rodaine' %}
+			{{ contributor.login }} <{{ contributor.html_url }}>
+{% endunless %}{% endfor %}{% endif %}
 /* WHERE WE BE! */
 
 	Last Updated: {{ site.time | date_to_xmlschema }}
