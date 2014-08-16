@@ -9,7 +9,7 @@ published: true
 
 ![Photo of Chris at the Florida State Fair](http://res.cloudinary.com/rodaine/image/upload/v1366602702/florida_state_fair_hfqsc3.jpg "Undoubtably I was really impressed with this yard of kettle corn…")
 
-I'm a 25-year-old web developer born in Oakland, California, and raised in Orlando, Florida. Currently, I am a full stack engineer with the amazing [Visual Supply Co.][vsco] Previously, I worked with the kick-ass team at [Clark/Nikdel/Powell][cnp] as their back-end developer. 
+I'm a 26-year-old web developer born in Oakland, California, and raised in Orlando, Florida. Currently, I am a full stack engineer with the amazing [Visual Supply Co.][vsco] Previously, I worked with the kick-ass team at [Clark/Nikdel/Powell][cnp] as their back-end developer. 
 
 ### Choose Your Weapon! ###
 
