@@ -1,5 +1,6 @@
 define ['util/script-loader'], (loader) ->
-	els = document.getElementsByClassName('gist-wrapper')
+	els     = document.getElementsByClassName('gist-wrapper')
+	counter = 0
 	return unless els.length
 
 	body = document.getElementsByTagName('body')[0]
@@ -27,8 +28,7 @@ define ['util/script-loader'], (loader) ->
 
 		s = loader(url, true, false)
 
-		rand = Math.floor(Math.random() * (99999 - 10001)) + 10000
-		callback = "gist#{rand}"
+		callback = "gist#{counter++}"
 
 		window[callback] = (data) ->
 			loadedData[url] = data
