@@ -1,5 +1,5 @@
 {% if include.id %}{% assign id = include.id %}{% else %}{% assign id = '' %}{% endif %}
-{% if include.user %}{% assign user = include.user %}{% else %}{% assign user = 'rodaine' %}{% endif %}
+{% if include.user %}{% assign user = include.user %}{% else %}{% assign user = site.username %}{% endif %}
 {% if include.file %}{% assign file = include.file %}{% else %}{% assign file = '' %}{% endif %}
 {% if file %}{% assign hash = file | replace: '.', '-' | prepend: '#file-' %}{% else %}{% assign hash = '' %}{% endif %}
 {% if file %}{% assign query = file | prepend: '?file=' %}{% else %}{% assign query = '' %}{% endif %}
