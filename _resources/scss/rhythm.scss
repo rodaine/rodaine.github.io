@@ -1,13 +1,15 @@
-$default-font-size: 18px;
-$base-font-size: $default-font-size;
-$base-line-height: $base-font-size * 1.5;
-@include establish-baseline();
+$size: 18px;
+$base-size: 16px;
 
-@for $i from 1 through 10 {
-	$width: 900px + $i * 200px;
-	@media (min-width: $width) {
-		$base-font-size: $default-font-size + $i * 2px;
-		$base-line-height: $base-font-size * 1.5;
-		@include establish-baseline();
+html {
+	line-height: 1.5em;
+	font-size: percentage($size / $base-size);
+
+	@for $i from 1 through 10 {
+		@media (min-width: 900px + $i * 200px) {
+			$size: $size + 2px !global;
+			test: $size;
+			font-size: percentage($size / $base-size);
+		}
 	}
 }

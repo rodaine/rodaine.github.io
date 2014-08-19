@@ -1,7 +1,7 @@
 body > header {
 	@extend %content-margins;
 	@extend %flush-margins;
-	@include rotate(180deg);
+	transform: rotate(180deg);
 	height: 2.5em;
 	position: relative;
 	top: -.25em;
@@ -20,7 +20,7 @@ body > header {
 }
 
 .menu { float: right; }
-.logo { 
+.logo {
 	@extend %color-logo;
-	float: left; 
+	float: left;
 }

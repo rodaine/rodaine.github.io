@@ -3,7 +3,7 @@
 	background: $color-link-visited;
 }
 
-body { 
+body {
 	@extend %serif;
 	@extend %weight-normal;
 	@extend %color-copy;
@@ -19,8 +19,9 @@ h1,h2,h3,h4,h5,h6 { @extend %sans-serif; }
 a {
 	@extend %color-link;
 	-webkit-tap-highlight-color: $color-link-focus;
-	&:focus, { background: $color-link-focus; }
-	&:visited { @extend %color-link-visited; }
+	&:focus { background: $color-link-focus; }
+	&:hover { @extend %color-link-hover; }
+	//&:visited { @extend %color-link-visited; }
 	header & { text-decoration: none; }
 }
 
@@ -58,8 +59,7 @@ blockquote {
 	}
 }
 
-pre,code,abbr,acronym { 
-	@include hyphens(none);
+pre,code,abbr,acronym {
 	@extend %monospace;
 	@extend %weight-normal;
 }
@@ -78,7 +78,6 @@ code {
 	margin-left: 1em;
 	margin-right: 1em;
 	padding: .5em 1em;
-	@include box-shadow(1px 1px 1px rgba(255,255,255,0.75));
 
 	h1 &, h2 &, h3 &, h4 &, h5 &, h6 &, p & {
 		display: inline;
@@ -102,5 +101,4 @@ aside {
 	margin: 0 auto;
 	background: rgba(0, 0, 0, 0.05);
 	padding: 0.5em;
-	@include box-shadow(1px 1px 1px rgba(255,255,255,0.75));
 }

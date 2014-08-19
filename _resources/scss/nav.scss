@@ -92,8 +92,8 @@
 		font-size: 1.25em;
 		line-height: 1.25;
 
-	.next:before, .prev:before { 
-		display: block; 
+	.next:before, .prev:before {
+		display: block;
 		text-align: center;
 		margin-bottom: .5em;
 	}
@@ -101,11 +101,12 @@
 	.next:before { content: '↣'; }
 	.prev:before { content: '↢'}
 
-	.next, .prev { 
-		height: auto; 
+	.next, .prev {
+		height: auto;
 		width: 47.5%;
 		text-align: left;
-		@include hyphens(auto);
+	  -moz-hyphens: auto;
+	  hyphens: auto;
 		text-transform: uppercase;
 		padding: .75em;
 		overflow-x: hidden;

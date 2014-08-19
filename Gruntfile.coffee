@@ -2,7 +2,7 @@ module.exports = (grunt) ->
 	grunt.initConfig
 		pkg:            grunt.file.readJSON 'package.json'
 
-		coffeeSource:   '_resources/coffee/'	
+		coffeeSource:   '_resources/coffee/'
 		jsSource:       '_resources/js/'
 		amdMain:        'app'
 		amdSource:      '_resources/amd/scripts.js'
@@ -22,7 +22,7 @@ module.exports = (grunt) ->
 
 		coffeelint:
 			options:
-				no_tabs: 
+				no_tabs:
 					level: 'ignore'
 				indentation:
 					level: 'ignore'
@@ -32,6 +32,7 @@ module.exports = (grunt) ->
 #------------------------------------------------------------------------------
 # Coffeescript Compiling
 #------------------------------------------------------------------------------
+
 		coffee:
 			options:
 				bare: true
@@ -79,7 +80,7 @@ module.exports = (grunt) ->
 
 		sass:
 			options:
-				compass: true
+				sourcemap: true
 				style:   'compressed'
 
 			styles:
@@ -149,6 +150,7 @@ module.exports = (grunt) ->
 		default: ['scripts', 'styles']
 		styles:  ['sass']
 		scripts: ['coffeelint', 'coffee', 'requirejs', 'concat']
+		test:    []
 
 	grunt.loadNpmTasks(task) for task in load
 	grunt.registerTask(key, value) for key, value of register
