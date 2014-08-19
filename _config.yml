@@ -13,9 +13,7 @@ disqus:      "rodaine"
 username:    "rodaine"
 
 #RENDERING
-markdown: rdiscount
-rdiscount:
-  extensions: [smart]
+markdown: kramdown
 
 drafts:    false
 permalink: "/:year/:month/:title/"
