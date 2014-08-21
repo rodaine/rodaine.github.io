@@ -1,7 +1,5 @@
 module.exports = (grunt) ->
 	grunt.initConfig
-		pkg:            grunt.file.readJSON 'package.json'
-
 		coffeeSource:   '_resources/coffee/'
 		jsSource:       '_resources/js/'
 		amdMain:        'app'
@@ -75,19 +73,6 @@ module.exports = (grunt) ->
 					'<%= jsDestination %>': '<%= amdSource %>'
 
 #------------------------------------------------------------------------------
-# Sass
-#------------------------------------------------------------------------------
-
-		sass:
-			options:
-				sourcemap: true
-				style:   'compressed'
-
-			styles:
-				files:
-					'<%= cssDestination %>': '<%= sassRoot %>'
-
-#------------------------------------------------------------------------------
 # Jekyll
 #------------------------------------------------------------------------------
 
@@ -123,10 +108,6 @@ module.exports = (grunt) ->
 				files: '<%= coffeeSource %>/**/*.coffee'
 				tasks: ['scripts']
 
-			styles:
-				files: '<%= sassSource %>/**/*.scss'
-				tasks: ['styles']
-
 			pagination:
 				files: '<%= paginationSource %>'
 				tasks: ['replace']
@@ -139,7 +120,6 @@ module.exports = (grunt) ->
 		'grunt-coffeelint'
 		'grunt-contrib-coffee'
 		'grunt-contrib-concat'
-		'grunt-contrib-sass'
 		'grunt-contrib-watch'
 		'grunt-jekyll'
 		'grunt-requirejs'
@@ -147,8 +127,7 @@ module.exports = (grunt) ->
 	]
 
 	register =
-		default: ['scripts', 'styles']
-		styles:  ['sass']
+		default: ['scripts']
 		scripts: ['coffeelint', 'coffee', 'requirejs', 'concat']
 		test:    []
 

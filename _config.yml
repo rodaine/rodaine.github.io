@@ -24,8 +24,13 @@ paginate:      5
 paginate_path: "page/:num"
 paginate_items: 5
 
+#PLUGINS AND EXTENSIONS
 gems:
  - jekyll-sitemap
+
+sass:
+  sass_dir: _resources/scss
+  style: :compressed
 
 #EXCLUSIONS / INCLUSIONS
 exclude:

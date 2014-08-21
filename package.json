@@ -27,7 +27,6 @@
     "grunt-coffeelint": "latest",
     "grunt-contrib-coffee": "latest",
     "grunt-contrib-concat": "latest",
-    "grunt-contrib-sass": "latest",
     "grunt-contrib-watch": "latest",
     "grunt-jekyll": "latest",
     "grunt-requirejs": "latest",
