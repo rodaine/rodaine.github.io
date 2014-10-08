@@ -1,0 +1,84 @@
+==================================================================
+https://keybase.io/rodaine
+--------------------------------------------------------------------
+
+I hereby claim:
+
+  * I am an admin of http://rodaine.com
+  * I am rodaine (https://keybase.io/rodaine) on keybase.
+  * I have a public key with fingerprint 3A81 0489 67F8 B7E0 1D4C  1198 00AD F8A1 DA5A D971
+
+To claim this, I am signing this object:
+
+{
+    "body": {
+        "client": {
+            "name": "keybase.io node.js client",
+            "version": "0.7.2"
+        },
+        "key": {
+            "fingerprint": "3a81048967f8b7e01d4c119800adf8a1da5ad971",
+            "host": "keybase.io",
+            "key_id": "00ADF8A1DA5AD971",
+            "uid": "9e2ab41f5469d91bba255e7bf2190300",
+            "username": "rodaine"
+        },
+        "merkle_root": {
+            "ctime": 1412797248,
+            "hash": "254d58d2b241c00578ac86e7a92769aa18dcba65ac039c8bb5a4cdae722d2c040958d509bbeed2d15ada44c014c77eb5ac556ff387ba419e1ebbaae6e51ad50e",
+            "seqno": 75185
+        },
+        "service": {
+            "hostname": "rodaine.com",
+            "protocol": "http:"
+        },
+        "type": "web_service_binding",
+        "version": 1
+    },
+    "ctime": 1412797284,
+    "expire_in": 157680000,
+    "prev": "d1a065f28fa1909776547b2189e5b658086a6a100822b5379cfcc33f82bf0dd6",
+    "seqno": 3,
+    "tag": "signature"
+}
+
+with the aforementioned key, yielding the PGP signature:
+
+-----BEGIN PGP MESSAGE-----
+Version: GnuPG/MacGPG2 v2.0.22 (Darwin)
+Comment: GPGTools - https://gpgtools.org
+
+owFdkn1MVWUcxy8oCNxIdAojU9wxSZddnufc85wXUureIcmdGE1ngRN4zjnPuRzF
+c+DcKwoINHzPIAdLRwLLkfEyjRVlE0HRFd6GmqnQhM2bM8q3ZYucLyF2jtnK/nue
+PZ/v9/f7/n7P7ugJtqgQ26F7+4eyLxWF9F8XbStQnVxGibpcQiWXUVKBSjS/ddLw
+OkIlU2tJiYh9xKHqszVdJo41vtlPmAVUMTF8qq6ZFHBwDpoqX2DhllhRNS8xCg3V
+8qKcmIeA4QWWU3iRIwDKjAShwAOAZYXHUMYIywIHTct83ed/qir12DNXla0qwJWa
+xrtgqgu5Uv/m1z9+EAiNRQYqiGEFWYCiiGmECCcqNBSAEwAL9BHjSSRDl7GqEavd
+dcRYW0ByDV1/nFnyqxYBGUhzAkczvNkQ9uWbGhoxMuJlWqQZKAGAOB5LPEs4LNAc
+K2AMeVkSMYuwBJyCxIsiwowkY8LRtExLgAGCqUZAEEVCZFqGZmDMMBKAjMRxxKQl
+hFhFcfKciBkoEEjMEJiwBEFs6oiZwEeKNJ1K5hDkUbl1NYpViVhtW0N7OptD0teZ
+kkJD9+uSXmA+5Pv9hclWZH9JoQVuIGKuadFueeSKqiabG/vvSqGJ/m8cPLOAIhsL
+VYPkqhaBONZcIQBWHVJsesoQAxYpNK9gc+4Cx7GI4UQa8gJBIot4wLOYxRAAnqZF
+5OQESZEkp1PhaVEBssz+G9Jp9om9pqVP9WrYv94wt7Uz9PmJtpAoW3hYqPVnbVGR
+Mf98ZHv15Ef+hHjn6Dvde2oSEvLEF7zbH7y8O6Kv6OGBiXVj5389UWCvt3uSZFl9
+7ZlfWlLmCpy+uuJm65nw7Nvln4JDs05W7+p+Y4nNFZuWZmxJ/WgkYlvf4c9ielNP
+Ln178NnXK1vu3V++dKhtxvKVFbU7Lh78fNxbfmXKnaZaas1Pp4KN15YNDXVVJN7M
+3yyFdLUGvPzPYaXlU/oXpfPfeptX1p2e9t5A05qqO39m7k+IhL7iBMepnGXB0fi+
+6KJA+5Wzhy5X+jxcXNYtKjieVVp6VNic05U0/cKj4YM+Z3/f2Rsjc+5vyPF+uTHG
+OW3+okkFTR/vKO04py2+OpU93tbWc2F4TnTceYcSmOk+EzvLfQb1TE3pcknbTmd8
+sndRIMnhudgQPHZcD8/7IkMN/752StXlsd6HoSPVedeVrHom0D0SWNjRuLHixqbD
+7xZ/FefUXkqu7n9F+y64d7B5Xz8T39ls97CL69xh49Pv3t2KB9JLsmH3m2X1v+eF
+VV06MHPfgXHY09Nw+tj7K0Y9A5m/NQ51jZHIrW5P56TU0Djf5NiUb1Z57Ee666pQ
+zdd5rc/dWt1ZeyRH3HK9NntJ5vof98RmZLRW/rApMTgI0udrrw412q+eCN6Wyxoa
+kt+aMG/Y+CDOHpl47cMZJYMvDgbOdaSs7Z2HZw0fjex2R7Rnb0ctDy7PrfljZNXY
++K6F7r8A
+=U0/k
+-----END PGP MESSAGE-----
+
+And finally, I am proving ownership of this host by posting or
+appending to this document.
+
+View my publicly-auditable identity here: https://keybase.io/rodaine
+
+==================================================================
+
