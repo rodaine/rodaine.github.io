@@ -73,17 +73,6 @@ module.exports = (grunt) ->
 					'<%= jsDestination %>': '<%= amdSource %>'
 
 #------------------------------------------------------------------------------
-# Jekyll
-#------------------------------------------------------------------------------
-
-		jekyll:
-			serve:
-				options:
-					watch:  true
-					serve:  true
-					drafts: true
-
-#------------------------------------------------------------------------------
 # Replace (Mostly to compress pagination)
 #------------------------------------------------------------------------------
 
@@ -121,15 +110,14 @@ module.exports = (grunt) ->
 		'grunt-contrib-coffee'
 		'grunt-contrib-concat'
 		'grunt-contrib-watch'
-		'grunt-jekyll'
 		'grunt-requirejs'
 		'grunt-text-replace'
 	]
 
 	register =
-		default: ['scripts']
-		scripts: ['coffeelint', 'coffee', 'requirejs', 'concat']
-		test:    []
+		default: ['scripts', 'replace:pagination']
+		scripts: ['coffee', 'requirejs', 'concat']
+		test:    ['coffeelint']
 
 	grunt.loadNpmTasks(task) for task in load
 	grunt.registerTask(key, value) for key, value of register
