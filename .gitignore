@@ -1,9 +1,10 @@
 !.gitkeep
 
 _site/
-node_modules/
 _resources/js
 _resources/amd
+node_modules/
+vendor/
 
 .DS_Store
 .rbenv-version

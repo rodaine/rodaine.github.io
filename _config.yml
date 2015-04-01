@@ -37,10 +37,12 @@ exclude:
  - CNAME
  - codekit-config.json
  - config.rb
+ - Gemfile
+ - Gemfile.lock
  - Gruntfile.coffee
  - LICENSE.md
  - node_modules
  - package.json
  - README.md
  - rodaine.com.sublime-project
- - rodaine.com.sublime-workspace
+ - vendor
