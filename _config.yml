@@ -45,4 +45,5 @@ exclude:
  - package.json
  - README.md
  - rodaine.com.sublime-project
+ - script
  - vendor
