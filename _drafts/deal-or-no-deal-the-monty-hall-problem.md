@@ -2,7 +2,7 @@
 layout: post
 title: "Deal or No Deal: The Monty Hall Problem"
 description: Coming to terms with the nuances of probability
-keywords: probability, monty hall, deal or no deal, javascript, simulation, math trick
+keywords: probability, Monty Hall, Deal or No Deal, JavaScript, simulation, math trick
 ---
 
 Lacking in dexterity and the patience for practice, I was never any good at magic or slight-of-hand. I compensated – though in a far less glamorous fashion – with math tricks. I'll be first to admit they aren't nearly as popular as doing fancy things with cards and coins (and scarfs, and doves, and …), but when you have a small room of tipsy engineers, strange math can have some pretty entertaining effects.
