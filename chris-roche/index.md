@@ -19,7 +19,7 @@ I love experimenting with new technologies and workflows. Between the torrential
 
 ### Free Time ###
 
-In my time away from code, you can usually find me playing videogames on the PlayStation or PC, watching TV shows on Netflix and Hulu (or CrunchyRoll for anime), or cooking up something new in the kitchen. I try to run daily and love the outdoors; I am an avid camper and really enjoy hiking and rock climbing. Weekends you'll find me hanging out with my friends either watching UF Gators Football or at the bottom of a craft beer.
+In my time away from code, you can usually find me playing video games on the PlayStation or PC, watching TV shows on Netflix and Hulu (or CrunchyRoll for anime), or cooking up something new in the kitchen. I try to run daily and love the outdoors; I am an avid camper and really enjoy hiking and rock climbing. Weekends you'll find me hanging out with my friends either watching UF Gators Football or at the bottom of a craft beer.
 
 [vsco]: https://vsco.co/
 [cnp]: http://www.clarknikdelpowell.com
