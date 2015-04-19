@@ -1,0 +1,34 @@
+$base: "https://brick.a.ssl.fastly.net/fonts/";
+
+@mixin brick-font ($name, $formalName, $weight, $isItalic: false){
+  $style: normal;
+  $fileSuffix: "";
+
+  @if $isItalic {
+    $style: italic;
+    $fileSuffix: "i";
+  }
+
+  $fontDir: to-lower-case(str-replace($name, " ")) + "/";
+  $fileName: inspect($weight) + $fileSuffix + ".woff";
+
+  @font-face {
+    font-family: $name;
+    font-style: $style;
+    font-weight: $weight;
+    src: local($formalName), url($base + $fontDir + $fileName) format("woff");
+  }
+}
+
+@include brick-font('Crimson', 'Crimson Roman', 400);
+@include brick-font('Crimson', 'Crimson Bold', 700);
+@include brick-font('Crimson', 'Crimson Italic', 400, true);
+@include brick-font('Crimson', 'Crimson Bold Italic', 700, true);
+
+@include brick-font('Open Sans', 'Open Sans Regular', 400);
+@include brick-font('Open Sans', 'Open Sans Bold', 700);
+@include brick-font('Open Sans', 'Open Sans Italic', 400, true);
+@include brick-font('Open Sans', 'Open Sans Bold Italic', 700, true);
+
+@include brick-font('Source Code Pro', 'Source Code Pro Regular', 400);
+@include brick-font('Source Code Pro', 'Source Code Pro Bold', 700);

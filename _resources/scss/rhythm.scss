@@ -7,9 +7,7 @@ html {
 
 	@for $i from 1 through 10 {
 		@media (min-width: 900px + $i * 200px) {
-			$size: $size + 2px !global;
-			test: $size;
-			font-size: percentage($size / $base-size);
+			font-size: percentage(($size + 2px * $i)/ $base-size);
 		}
 	}
 }
