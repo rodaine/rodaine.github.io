@@ -1,11 +1,10 @@
 define ['util/script-loader'], (loader) ->
-	els     = document.getElementsByClassName('gist-wrapper')
+	els     = document.getElementsByClassName 'gist-wrapper'
 	counter = 0
 	return unless els.length
 
-	body = document.getElementsByTagName('body')[0]
-	head = document.getElementsByTagName('head')[0]
-
+	body = document.body
+	head = document.head
 	loadedData = {}
 	loadedCss = {}
 

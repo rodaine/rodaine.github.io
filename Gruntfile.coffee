@@ -4,12 +4,8 @@ module.exports = (grunt) ->
 		jsSource:       '_resources/js/'
 		amdMain:        'app'
 		amdSource:      '_resources/amd/scripts.js'
-		jsDestination:  'resources/scripts.js'
+		jsDestination:  's.js'
 		jsFooter:       "require('<%= amdMain %>');"
-
-		sassSource:     '_resources/scss'
-		sassRoot:       '<%= sassSource %>/app.scss'
-		cssDestination: 'resources/styles.css'
 
 		paginationSource:      '_includes/pagination/_nav.html'
 		paginationDestination: '_includes/pagination/nav.html'

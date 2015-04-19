@@ -1,15 +1,9 @@
 define ['util/script-loader'], (loader) ->
 
-	settings = [
-		'disqus_shortname'
-		'disqus_identifier'
-		'disqus_url'
-	]
-
-	for setting in settings
+	for setting in ['disqus_shortname', 'disqus_identifier', 'disqus_url']
 		el = document.querySelector("meta[name='#{setting}']")
 		window[setting] = el.getAttribute 'content'
 
 	loadDisqusScript = (script) ->
-		src = "//go.disqus.com/#{script}"
+		src = "https://go.disqus.com/#{script}"
 		loader(src)

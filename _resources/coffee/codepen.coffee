@@ -1,6 +1,6 @@
 define ['util/script-loader'], (loader) ->
 	els = document.getElementsByClassName 'codepen'
-	src = '//codepen.io/assets/embed/ei.js'
-	return if els.length < 1
+	src = 'https://codepen.io/assets/embed/ei.js'
+	return unless els.length
 	loader(src)
 	return

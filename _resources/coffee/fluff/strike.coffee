@@ -18,8 +18,8 @@ define [], () ->
 	 * Wraps the inner HTML of an element in a span, and applies the class name.
 	###
 	for tag in tags
-		for el in document.getElementsByTagName(tag)
-			el.innerHTML   = "<span>#{ el.innerHTML }</span>"
+		for el in document.getElementsByTagName tag
+			el.innerHTML   = "<span>#{el.innerHTML}</span>"
 			el.className  += " #{className}"
 
 	return

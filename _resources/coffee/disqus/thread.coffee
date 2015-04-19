@@ -2,13 +2,13 @@ define ['disqus/loader'], (loader) ->
 	doc              = document
 	el               = doc.getElementById 'disqus_thread'
 
-	if !el then return
+	return unless el
 
 	docElement       = doc.documentElement || doc.body.parentNode || doc.body
 	timeout          = null
 	delay            = 100
 	buffer           = 250
-	originalOnScroll = window.onscroll || (e) ->
+	originalOnScroll = window.onscroll || ->
 
 	elementIsInView = () ->
 		scrollTop = window.pageYOffset || docElement.scrollTop
@@ -26,5 +26,5 @@ define ['disqus/loader'], (loader) ->
 		timeout = setTimeout loadComments, delay
 
 	window.onscroll()
-		
+
 	return
