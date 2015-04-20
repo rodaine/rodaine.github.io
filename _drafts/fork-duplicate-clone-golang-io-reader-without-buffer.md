@@ -2,7 +2,8 @@
 layout: post
 title: Asynchronously Split an io.Reader in Go (golang)
 description: Or how to work with the same stream without a buffer
-keywords: go, golang, io.Reader, io.Pipe, io.TeeReader, io.MultiWriter, async, asynchronous
+keywords: "go, golang, io.Reader, io.Pipe, io.TeeReader, io.MultiWriter, async, asynchronous"
+published: true
 ---
 
 Experimenting with Go, the simplicity and interoperability of the standard library's APIs impressed me. Particularly, I fell in love with the ubiquity of [`io.Reader`][reader] and [`io.Writer`][writer] when dealing with practically any stream of data. And while I am more or less smitten at this point, the `io.Reader` interface challenged me with something I thought would be simple: splitting a reader in two.
@@ -33,14 +34,16 @@ In some cases, the metadata you need exists in the first handful of bytes of the
 
 GIST
 
-This is a great technique if you intend to gate the upload to only JPEG files. With only two bytes, you can cancel the transfer without entirely reading it into memory or writing it to disk. As you might expect, this method falters in situations where you need to read in more than a little bit of the file to gather the data, such as calculating a word count across the file. And while efficient for quick activities, having this process blocking the upload may not be ideal for longer running tasks. And finally, most 3rd-party (and the majority of the standard library) packages entirely consume a reader, preventing you from using a `io.MultiReader` in this way.
+This is a great technique if you intend to gate the upload to only JPEG files. With only two bytes, you can cancel the transfer without entirely reading it into memory or writing it to disk. As you might expect, this method falters in situations where you need to read in more than a little bit of the file to gather the data, such as calculating a word count across the it. And while efficient for quick activities, having this process blocking the upload may not be ideal for longer running tasks. And finally, most 3rd-party (and the majority of the standard library) packages entirely consume a reader, preventing you from using a `io.MultiReader` in this way.
 
 **Pro's**: Quick and dirty reads off the top of a file, can be used as a gate.<br/>
 **Con's**: Doesn't work for unknown length readers, processing the whole file, long blocking tasks, or with most 3rd party packages
 
 ### Solution 3: The Single-Split `io.TeeReader` and `io.Pipe` ###
 
-Back to our scenario of a large video file, let's change the story a bit. Your users will upload the video in a single format, but you want your service to be able to display those videos in a couple of different formats for compatibility and performance reasons depending on the client. You have a 3rd-party package that can take in an `io.Reader` of (say) MP4 encoded data and return another reader of WebM data. You want the original MP4 and the WebM versions to be uploaded to the cloud as well.
+Back to our scenario of a large video file, let's change the story a bit. Your users will upload the video in a single format, but you want your service to be able to display those videos in a couple of different formats for compatibility and performance reasons depending on the client. You have a 3rd-party transcoder that can take in an `io.Reader` of (say) MP4 encoded data and return another reader of WebM data. You want the original MP4 and the WebM versions to be uploaded to the cloud together. The previous solutions must perform these steps synchronously with some extra overhead; let's find a way to do them in parallel.
+
+
 
 <!-- Now what exactly do I mean by "splitting in two"? **Given an `io.Reader` *r*, I'd like to split *r* into reader *s* that can `Read` in the same data as *r* at the same time.**  -->
 
