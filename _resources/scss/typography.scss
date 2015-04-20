@@ -61,7 +61,6 @@ blockquote {
 
 pre,code,abbr,acronym {
 	@extend %monospace;
-	@extend %weight-normal;
 }
 
 .gist {
