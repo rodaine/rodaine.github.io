@@ -7,7 +7,7 @@ keywords: "go, golang, io.Reader, io.Pipe, io.TeeReader, io.MultiWriter, async, 
 
 I have fallen in love with the flexibility of [`io.Reader`][reader] and [`io.Writer`][writer] when dealing with any stream of data in Go. And while I am more or less smitten at this point, the reader interface challenged me with something you might think simple: splitting it in two.
 
-I'm not even certain "split" is the right word. I would like to receive an `io.Reader` and process it multiple times, possibly in parallel. Because readers don't necessarily expose the `Seek` method to reset them, I need to
+I'm not even certain "split" is the right word. I would like to receive an `io.Reader` and read over it multiple times, possibly in parallel. But because readers don't necessarily expose the `Seek` method to reset them, I need a way to duplicate it. Or would that be clone it? Fork?!
 
 ## The Situation ##
 
@@ -19,11 +19,11 @@ There is not one way to go about solving this problem, of course. Depending on t
 
 ### Solution #1: The Simple `bytes.Reader` ###
 
-To begin, you can pump the source reader into a [`bytes.Reader`][bytes] and rewind it with `Seek` as many times as you like:
+If the source reader doesn't have a `Seek` method, then why not make one? You can pump the input into a [`bytes.Reader`][bytes] and rewind it as many times as you like:
 
 {% include widgets/gist.html id="a4236a51b1a3b66d1e08" file="bytesreader.go" %}
 
-If the data is small enough, this might be the most convenient option; you might even be able to forgo the `bytes.Reader` altogether and work off the byte slice instead. But suppose the file is large, such as a video or RAW photo. These behemoths will chew through memory, especially if the service is high-traffic. Not to mention, you cannot perform these actions in parallel.
+If the data is small enough, this might be the most convenient option; you could forgo the `bytes.Reader` altogether and work off the byte slice instead. But suppose the file is large, such as a video or RAW photo. These behemoths will chew through memory, especially if the service is high-traffic. Not to mention, you cannot perform these actions in parallel.
 
 **Pro's**: Probably the simplest solution.<br/>
 **Con's**: Synchronous and not prudent if you expect many or large files.
@@ -34,7 +34,7 @@ OK, then how about you drop the data into a file on disk (a'la [`ioutil.TempFile
 
 {% include widgets/gist.html id="a4236a51b1a3b66d1e08" file="file.go" %}
 
-If the final destination is on the server's file system, then this is probably your best choice (albeit with a real file), but let's assume it will end up on the cloud. Again, if the files are large, the IO costs here could be noticeable. You also run the risk of bugs or crashes orphaning files on the machine.
+If the final destination is on the server's file system, then this is probably your best choice (albeit with a real file), but let's assume it will end up on the cloud. Again, if the files are large, the IO costs here could be noticeable and unnecessary. You run the risk of bugs or crashes orphaning files on the machine, and I also wouldn't recommend this if the data is sensitive in any way.
 
 **Pro's**: Keeps the whole file out of RAM.<br/>
 **Con's**: Still synchronous, potential for lots of IO, disk space, and orphaned data.
@@ -47,16 +47,16 @@ In some cases, the metadata you need exists in the first handful of bytes of the
 
 {% include widgets/gist.html id="a4236a51b1a3b66d1e08" file="multireader.go" %}
 
-This is a great technique if you intend to gate the upload to only JPEG files. With only two bytes, you can cancel the transfer without entirely reading it into memory or writing it to disk. As you might expect, this method falters in situations where you need to read in more than a little bit of the file to gather the data, such as calculating a word count across the it. Having this process blocking the upload may not be ideal for longer running tasks. And finally, most 3rd-party (and the majority of the standard library) packages entirely consume a reader, preventing you from using a `io.MultiReader` in this way.
+This is a great technique if you intend to gate the upload to only JPEG files. With only two bytes, you can cancel the transfer without entirely reading it into memory or writing it to disk. As you might expect, this method falters in situations where you need to read in more than a little bit of the file to gather the data, such as calculating a word count across it. Having this process blocking the upload may not be ideal for intensive tasks. And finally, most 3rd-party (and the majority of the standard library) packages entirely consume a reader, preventing you from using an `io.MultiReader` in this way.
 
 A similar solution, would be to use [`bufio.Reader.Peek`][peek]. It essentially performs the same operation but you can avoid using a MultiReader. That and it gives you access to some other useful methods on the reader.
 
 **Pro's**: Quick and dirty reads off the top of a file, can act as a gate.<br/>
-**Con's**: Doesn't work for unknown length readers, processing the whole file, long blocking tasks, or with most 3rd party packages.
+**Con's**: Doesn't work for unknown-length reads, processing the whole file, intensive tasks, or with most 3rd-party packages.
 
 ### Solution #4: The Single-Split `io.TeeReader` and `io.Pipe` ###
 
-Back to our scenario of a large video file, let's change the story a bit. Your users will upload the video in a single format, but you want your service to be able to display those videos in a couple of different formats for compatibility and performance reasons depending on the client. You have a 3rd-party transcoder that can take in an `io.Reader` of (say) MP4 encoded data and return another reader of WebM data. The service will upload the original MP4 and WebM versions to the cloud. The previous solutions must perform these steps synchronously and with overhead; you want to do it in parallel.
+Back to our scenario of a large video file, let's change the story a bit. Your users will upload the video in a single format, but you want your service to be able to display those videos in a couple of different formats for compatibility and performance reasons depending on the client. You have a 3rd-party transcoder that can take in an `io.Reader` of (say) MP4 encoded data and return another reader of WebM data. The service will upload the original MP4 and WebM versions to the cloud. The previous solutions must perform these steps synchronously and with overhead; now, you want to do them in parallel.
 
 Take a look at [`io.TeeReader`][teeReader], which has the following signature: `func TeeReader(r Reader, w Writer) Reader`. The docs say "TeeReader returns a Reader that writes to w what it reads from r." This is *exactly* what you want! Now how do you get the data written into *w* to be readable? This is where [`io.Pipe`][pipe] comes into play, yielding a connected `io.PipeReader` and `io.PipeWriter` (i.e., writes to the latter are immediately available in the former). Let's see it in action:
 
@@ -67,11 +67,11 @@ As the uploader consumes `tr`, the transcoder receives and processes the same by
 This method also employs channels to communicate "doneness" and any errors that occur. If you expect a value back from these processes, you could replace the `chan bool` for a more appropriate type.
 
 **Pro's**: Completely independent, parallelized streams of the same data!<br/>
-**Con's**: Requires the added complexity of goroutines and channels to work well.
+**Con's**: Requires the added complexity of goroutines and channels to work.
 
 ### Solution #5: The Multi-Split `io.MultiWriter` and `io.Copy` ###
 
-The `io.TeeReader` solution works great when only one other consumer of the stream exists. As the service parallelizes more tasks (e.g., more transcoding), teeing off of tees becomes gross. Enter the [`io.MultiWriter`][multiWriter]: "a writer that duplicates its writes to all provided writers." This method utilizes pipes like in the previous solution to propagate the data, but instead of a TeeReader, you can instead use [`io.Copy`][copy] to split the data across all the pipes:
+The `io.TeeReader` solution works great when only one other consumer of the stream exists. As the service parallelizes more tasks (e.g., more transcoding), teeing off of tees becomes gross. Enter the [`io.MultiWriter`][multiWriter]: "a writer that duplicates its writes to all provided writers." This method utilizes pipes like in the previous solution to propagate the data, but instead of a TeeReader, you can use [`io.Copy`][copy] to split the data across all the pipes:
 
 {% include widgets/gist.html id="a4236a51b1a3b66d1e08" file="multiwriter.go" %}
 
@@ -86,8 +86,8 @@ Channels are one of the most unique and powerful concurrency tools Go has to off
 
 Looking through the top-level packages of the standard library, channels rarely appear in function signatures:
 
-* `time`: useful for [a select with timeout][chanTimeout]
-* `reflect`: 'cause reflection
+* `time`: useful for a [`select` with timeout][chanTimeout]
+* `reflect`: … 'cause reflection
 * `fmt`: for formatting it as a pointer
 * `builtin`: exposes the `close` function
 
@@ -97,7 +97,7 @@ When developing a reusable package, I'd avoid channels in my public API to be co
 
 ## Wrapping Up ##
 
-I've only broached a handful of ways to go about processing the data coming from an `io.Reader`, and I can only imagine there are plenty more. Go's implicit interface model plus the standard library's heavy use of them permits many creative ways of gluing together various components without having to worry about the source of the data. I cannot begin to express how refreshing this has been. I hope some of the exploration I've done here will prove as useful for you as it did for me!
+I've only broached a handful of ways to go about processing the data coming from an `io.Reader`, and I without a doubt there plenty more. Go's implicit interface model plus the standard library's heavy use of them permits many creative ways of gluing together various components without having to worry about the source of the data. I hope some of the exploration I've done here will prove as useful for you as it did for me!
 
 [bytes]: https://golang.org/pkg/bytes/#NewReader
 [chan]: https://golang.org/ref/mem#tmp_7
