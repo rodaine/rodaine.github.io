@@ -30,18 +30,18 @@ If the data is small enough, this might be the most convenient option; you could
 
 ### Solution #2: The Reliable File System ###
 
-OK, then how about you drop the data into a file on disk (a'la [`ioutil.TempFile`][tempFile]) and avoid the penalties of storing it in RAM?
+OK, then how about you drop the data into a file on disk (a'la [`ioutil.TempFile`][tempFile]) and skip the penalties of storing it in RAM?
 
 {% include widgets/gist.html id="a4236a51b1a3b66d1e08" file="file.go" %}
 
-If the final destination is on the server's file system, then this is probably your best choice (albeit with a real file), but let's assume it will end up on the cloud. Again, if the files are large, the IO costs here could be noticeable and unnecessary. You run the risk of bugs or crashes orphaning files on the machine, and I also wouldn't recommend this if the data is sensitive in any way.
+If the final destination is on the service's file system, then this is probably your best choice (albeit with a real file), but let's assume it will end up on the cloud. Again, if the files are large, the IO costs here could be noticeable and unnecessary. You run the risk of bugs or crashes orphaning files on the machine, and I also wouldn't recommend this if the data is sensitive in any way.
 
 **Pro's**: Keeps the whole file out of RAM.<br/>
 **Con's**: Still synchronous, potential for lots of IO, disk space, and orphaned data.
 
 ### Solution #3: The Duct-Tape `io.MultiReader` ###
 
-In some cases, the metadata you need exists in the first handful of bytes of the file. For instance, identifying a file as a JPEG only requires checking that the first two bytes of the file are `0xFF 0xD8`. This can be handled synchronously using a [`io.MultiReader`][multiReader], which glues together a set of readers as if they were one. Here's our JPEG example:
+In some cases, the metadata you need exists in the first handful of bytes of the file. Identifying a file as a JPEG, for instance, only requires checking that the first two bytes are `0xFF 0xD8`. This can be handled synchronously using a [`io.MultiReader`][multiReader], which glues together a set of readers as if they were one. Here's our JPEG example:
 
 <aside>It is not categorically true that a file beginning with those two bytes is a valid JPEG, but for the most part it's enough. If you're curious, the exiv2 team has documented the <a href="http://dev.exiv2.org/projects/exiv2/wiki/The_Metadata_in_JPEG_files">metadata structure of the JPEG format</a>.</aside>
 
@@ -49,14 +49,14 @@ In some cases, the metadata you need exists in the first handful of bytes of the
 
 This is a great technique if you intend to gate the upload to only JPEG files. With only two bytes, you can cancel the transfer without entirely reading it into memory or writing it to disk. As you might expect, this method falters in situations where you need to read in more than a little bit of the file to gather the data, such as calculating a word count across it. Having this process blocking the upload may not be ideal for intensive tasks. And finally, most 3rd-party (and the majority of the standard library) packages entirely consume a reader, preventing you from using an `io.MultiReader` in this way.
 
-A similar solution, would be to use [`bufio.Reader.Peek`][peek]. It essentially performs the same operation but you can avoid using a MultiReader. That and it gives you access to some other useful methods on the reader.
+Another solution would be to use [`bufio.Reader.Peek`][peek]. It essentially performs the same operation but you can eschew the MultiReader. That, and it gives you access to some other useful methods on the reader.
 
 **Pro's**: Quick and dirty reads off the top of a file, can act as a gate.<br/>
 **Con's**: Doesn't work for unknown-length reads, processing the whole file, intensive tasks, or with most 3rd-party packages.
 
 ### Solution #4: The Single-Split `io.TeeReader` and `io.Pipe` ###
 
-Back to our scenario of a large video file, let's change the story a bit. Your users will upload the video in a single format, but you want your service to be able to display those videos in a couple of different formats for compatibility and performance reasons depending on the client. You have a 3rd-party transcoder that can take in an `io.Reader` of (say) MP4 encoded data and return another reader of WebM data. The service will upload the original MP4 and WebM versions to the cloud. The previous solutions must perform these steps synchronously and with overhead; now, you want to do them in parallel.
+Back to our scenario of a large video file, let's change the story a bit. Your users will upload the video in a single format, but you want your service to be able to display those videos in a couple of different formats. You have a 3rd-party transcoder that can take in an `io.Reader` of (say) MP4 encoded data and return another reader of WebM data. The service will upload the original MP4 and WebM versions to the cloud. The previous solutions must perform these steps synchronously and with overhead; now, you want to do them in parallel.
 
 Take a look at [`io.TeeReader`][teeReader], which has the following signature: `func TeeReader(r Reader, w Writer) Reader`. The docs say "TeeReader returns a Reader that writes to w what it reads from r." This is *exactly* what you want! Now how do you get the data written into *w* to be readable? This is where [`io.Pipe`][pipe] comes into play, yielding a connected `io.PipeReader` and `io.PipeWriter` (i.e., writes to the latter are immediately available in the former). Let's see it in action:
 
@@ -97,7 +97,7 @@ When developing a reusable package, I'd avoid channels in my public API to be co
 
 ## Wrapping Up ##
 
-I've only broached a handful of ways to go about processing the data coming from an `io.Reader`, and without a doubt there plenty more. Go's implicit interface model plus the standard library's heavy use of them permits many creative ways of gluing together various components without having to worry about the source of the data. I hope some of the exploration I've done here will prove as useful for you as it did for me!
+I've only broached a handful of ways to go about processing the data coming from an `io.Reader`, and without a doubt there are plenty more. Go's implicit interface model plus the standard library's heavy use of them permits many creative ways of gluing together various components without having to worry about the source of the data. I hope some of the exploration I've done here will prove as useful for you as it did for me!
 
 [bytes]: https://golang.org/pkg/bytes/#NewReader
 [chan]: https://golang.org/ref/mem#tmp_7
