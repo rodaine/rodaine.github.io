@@ -97,7 +97,7 @@ When developing a reusable package, I'd avoid channels in my public API to be co
 
 ## Wrapping Up ##
 
-I've only broached a handful of ways to go about processing the data coming from an `io.Reader`, and I without a doubt there plenty more. Go's implicit interface model plus the standard library's heavy use of them permits many creative ways of gluing together various components without having to worry about the source of the data. I hope some of the exploration I've done here will prove as useful for you as it did for me!
+I've only broached a handful of ways to go about processing the data coming from an `io.Reader`, and without a doubt there plenty more. Go's implicit interface model plus the standard library's heavy use of them permits many creative ways of gluing together various components without having to worry about the source of the data. I hope some of the exploration I've done here will prove as useful for you as it did for me!
 
 [bytes]: https://golang.org/pkg/bytes/#NewReader
 [chan]: https://golang.org/ref/mem#tmp_7
