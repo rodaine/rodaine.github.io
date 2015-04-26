@@ -2,7 +2,7 @@
 layout: post
 title: Asynchronously Split an io.Reader in Go (golang)
 description: Or the many ways to skin a cat — er — stream
-keywords: "go, golang, io.Reader, io.Pipe, io.TeeReader, io.MultiWriter, async, asynchronous, concurrent"
+keywords: "go, golang, io, stream, async, concurrent, parallel"
 ---
 
 I have fallen in love with the flexibility of [`io.Reader`][reader] and [`io.Writer`][writer] when dealing with any stream of data in Go. And while I am more or less smitten at this point, the reader interface challenged me with something you might think simple: splitting it in two.
