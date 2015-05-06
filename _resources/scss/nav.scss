@@ -28,6 +28,11 @@
 			text-decoration: none;
 			padding: 0.25em 0.5em;
 			margin: 0.25em 0;
+
+			&:hover, &:focus {
+				@extend %color-link-hover;
+				background: $color-link-focus;
+			}
 		}
 	}
 
