@@ -53,7 +53,7 @@
 		{% endif %}
 
 		<li class="bookend">
-			<a href="/" rel="first" {% if paginator.page == 1 %}aria-disabled="true" class="current"{% endif %}>1</a>
+			<a href="/" rel="first" {% if paginator.page == 1 %}tabindex="-1" aria-disabled="true" class="current"{% endif %}>1</a>
 		</li>
 
 		{% if min > min_ellipsis %}
@@ -64,7 +64,7 @@
 
 		{% for num in (min..max) %}
 		<li>
-			<a href="/page/{{num}}" {% if num == paginator.page %}aria-disabled="true" class="current"{% endif %}>{{ num }}</a>
+			<a href="/page/{{num}}" {% if num == paginator.page %}tabindex="-1" aria-disabled="true" class="current"{% endif %}>{{ num }}</a>
 		</li>
 		{% endfor %}
 
