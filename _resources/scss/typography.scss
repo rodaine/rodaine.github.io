@@ -14,14 +14,17 @@ body {
 	-webkit-font-smoothing: subpixel-antialiased;
 }
 
-h1,h2,h3,h4,h5,h6 { @extend %sans-serif; }
+h1,h2,h3,h4,h5,h6 {
+	@extend %sans-serif;
+
+	line-height: 1.25;
+}
 
 a {
 	@extend %color-link;
 	-webkit-tap-highlight-color: $color-link-focus;
 	&:focus { background: $color-link-focus; }
 	&:hover { @extend %color-link-hover; }
-	//&:visited { @extend %color-link-visited; }
 	header & { text-decoration: none; }
 }
 

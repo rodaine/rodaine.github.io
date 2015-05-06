@@ -2,9 +2,8 @@ body > header {
 	@extend %content-margins;
 	@extend %flush-margins;
 	transform: rotate(180deg);
-	height: 2.5em;
+	height: 2.25em;
 	position: relative;
-	top: -.25em;
 	line-height: 1;
 }
 
@@ -17,9 +16,13 @@ body > header {
 	text-transform: lowercase;
 	margin: 0;
 	padding: 0;
+	line-height: 1;
 }
 
-.menu { float: right; }
+.menu {
+	float: right;
+}
+
 .logo {
 	@extend %color-logo;
 	float: left;

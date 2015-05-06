@@ -2,7 +2,7 @@ $size: 18px;
 $base-size: 16px;
 
 html {
-	line-height: 1.5em;
+	line-height: 1.5;
 	font-size: percentage($size / $base-size);
 
 	@for $i from 1 through 10 {
