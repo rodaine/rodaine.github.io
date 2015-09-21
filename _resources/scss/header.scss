@@ -1,10 +1,13 @@
 body > header {
 	@extend %content-margins;
 	@extend %flush-margins;
-	transform: rotate(180deg);
+	transform: scale(-1);
 	height: 2.25em;
 	position: relative;
 	line-height: 1;
+
+	overflow: auto;
+	zoom: 1;
 }
 
 .logo, .menu {
