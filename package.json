@@ -28,7 +28,6 @@
     "grunt-contrib-coffee": "latest",
     "grunt-contrib-concat": "latest",
     "grunt-contrib-watch": "latest",
-    "grunt-requirejs": "latest",
-    "grunt-text-replace": "latest"
+    "grunt-requirejs": "latest"
   }
 }
