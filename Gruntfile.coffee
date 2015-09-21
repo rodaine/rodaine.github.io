@@ -7,9 +7,6 @@ module.exports = (grunt) ->
 		jsDestination:  's.js'
 		jsFooter:       "require('<%= amdMain %>');"
 
-		paginationSource:      '_includes/pagination/_nav.html'
-		paginationDestination: '_includes/pagination/nav.html'
-
 #------------------------------------------------------------------------------
 # Coffeescript Linting
 #------------------------------------------------------------------------------
@@ -69,19 +66,6 @@ module.exports = (grunt) ->
 					'<%= jsDestination %>': '<%= amdSource %>'
 
 #------------------------------------------------------------------------------
-# Replace (Mostly to compress pagination)
-#------------------------------------------------------------------------------
-
-		replace:
-			pagination:
-				src:  '<%= paginationSource %>'
-				dest: '<%= paginationDestination %>'
-				replacements: [{
-					from: /\n|\t/g
-					to: ''
-				}]
-
-#------------------------------------------------------------------------------
 # Watch
 #------------------------------------------------------------------------------
 
@@ -93,10 +77,6 @@ module.exports = (grunt) ->
 				files: '<%= coffeeSource %>/**/*.coffee'
 				tasks: ['scripts']
 
-			pagination:
-				files: '<%= paginationSource %>'
-				tasks: ['replace']
-
 #------------------------------------------------------------------------------
 # Load & Register Tasks
 #------------------------------------------------------------------------------
@@ -107,11 +87,10 @@ module.exports = (grunt) ->
 		'grunt-contrib-concat'
 		'grunt-contrib-watch'
 		'grunt-requirejs'
-		'grunt-text-replace'
 	]
 
 	register =
-		default: ['scripts', 'replace:pagination']
+		default: ['scripts']
 		scripts: ['coffee', 'requirejs', 'concat']
 		test:    ['coffeelint']
 

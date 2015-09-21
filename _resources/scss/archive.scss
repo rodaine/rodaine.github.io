@@ -1,0 +1,22 @@
+$time-indent: 3.25em;
+
+.archive {
+  ol {
+    list-style-type: none;
+    padding-left: 0;
+  }
+
+  li {
+    padding-left: $time-indent;
+    text-indent: -1 * $time-indent;
+  }
+
+  time {
+    color: lighten($color-copy, 50%);
+    z-index: -1;
+    display: inline-block;
+    position: relative;
+    left: $time-indent;
+    min-width: $time-indent;
+  }
+}
