@@ -1,3 +1,4 @@
+sudo: false
 language: ruby
 
 rvm:
@@ -10,3 +11,8 @@ before_script:
 
 script:
   - script/test
+
+cache:
+  directories:
+    - vendor
+    - node_modules
