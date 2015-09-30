@@ -7,6 +7,7 @@ article {
 		h3 {
 			@extend %weight-normal;
 			font-style: italic;
+			margin-top: 0;
 		}
 		.meta {
 			color: lighten($color-copy, 50%);
@@ -14,6 +15,7 @@ article {
 		}
 		h2 {
 			margin-top: 0;
+			margin-bottom: 0;
 			text-transform: uppercase;
 		}
 	}

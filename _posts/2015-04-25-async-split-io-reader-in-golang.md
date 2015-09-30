@@ -9,15 +9,15 @@ I have fallen in love with the flexibility of [`io.Reader`][reader] and [`io.Wri
 
 I'm not even certain "split" is the right word. I would like to receive an `io.Reader` and read over it multiple times, possibly in parallel. But because readers don't necessarily expose the `Seek` method to reset them, I need a way to duplicate it. Or would that be clone it? Fork?!
 
-## The Situation ##
+### The Situation
 
 Suppose you have a web service that allows a user to upload a file. The service will store the file on "the cloud", but first it needs a bit of processing. All you have to work with is the `io.Reader` from the incoming request.
 
-## The Solutions ##
+### The Solutions
 
 There is not one way to go about solving this problem, of course. Depending on the types of files, throughput of the service and the kinds of processing required, some options are more practical than others. Below, I lay out five different methods of varying complexity and flexibility. I imagine there are many more, but these are a good starting point.
 
-### Solution #1: The Simple `bytes.Reader` ###
+#### Solution #1: The Simple `bytes.Reader`
 
 If the source reader doesn't have a `Seek` method, then why not make one? You can pump the input into a [`bytes.Reader`][bytes] and rewind it as many times as you like:
 
@@ -28,7 +28,7 @@ If the data is small enough, this might be the most convenient option; you could
 **Pro's**: Probably the simplest solution.<br/>
 **Con's**: Synchronous and not prudent if you expect many or large files.
 
-### Solution #2: The Reliable File System ###
+#### Solution #2: The Reliable File System
 
 OK, then how about you drop the data into a file on disk (a'la [`ioutil.TempFile`][tempFile]) and skip the penalties of storing it in RAM?
 
@@ -39,7 +39,7 @@ If the final destination is on the service's file system, then this is probably 
 **Pro's**: Keeps the whole file out of RAM.<br/>
 **Con's**: Still synchronous, potential for lots of IO, disk space, and orphaned data.
 
-### Solution #3: The Duct-Tape `io.MultiReader` ###
+#### Solution #3: The Duct-Tape `io.MultiReader`
 
 In some cases, the metadata you need exists in the first handful of bytes of the file. Identifying a file as a JPEG, for instance, only requires checking that the first two bytes are `0xFF 0xD8`. This can be handled synchronously using a [`io.MultiReader`][multiReader], which glues together a set of readers as if they were one. Here's our JPEG example:
 
@@ -54,7 +54,7 @@ Another solution would be to use [`bufio.Reader.Peek`][peek]. It essentially per
 **Pro's**: Quick and dirty reads off the top of a file, can act as a gate.<br/>
 **Con's**: Doesn't work for unknown-length reads, processing the whole file, intensive tasks, or with most 3rd-party packages.
 
-### Solution #4: The Single-Split `io.TeeReader` and `io.Pipe` ###
+#### Solution #4: The Single-Split `io.TeeReader` and `io.Pipe`
 
 Back to our scenario of a large video file, let's change the story a bit. Your users will upload the video in a single format, but you want your service to be able to display those videos in a couple of different formats. You have a 3rd-party transcoder that can take in an `io.Reader` of (say) MP4 encoded data and return another reader of WebM data. The service will upload the original MP4 and WebM versions to the cloud. The previous solutions must perform these steps synchronously and with overhead; now, you want to do them in parallel.
 
@@ -69,7 +69,7 @@ This method also employs channels to communicate "doneness" and any errors that 
 **Pro's**: Completely independent, parallelized streams of the same data!<br/>
 **Con's**: Requires the added complexity of goroutines and channels to work.
 
-### Solution #5: The Multi-Split `io.MultiWriter` and `io.Copy` ###
+#### Solution #5: The Multi-Split `io.MultiWriter` and `io.Copy`
 
 The `io.TeeReader` solution works great when only one other consumer of the stream exists. As the service parallelizes more tasks (e.g., more transcoding), teeing off of tees becomes gross. Enter the [`io.MultiWriter`][multiWriter]: "a writer that duplicates its writes to all provided writers." This method utilizes pipes like in the previous solution to propagate the data, but instead of a TeeReader, you can use [`io.Copy`][copy] to split the data across all the pipes:
 
@@ -80,7 +80,7 @@ This is more or less analogous with the previous method, but noticeably cleaner 
 **Pro's**: Can make as many forks of the original reader as desired.<br/>
 **Con's**: Even more use of goroutines and channels to coordinate.
 
-### What About Channels? ###
+### What About Channels?
 
 Channels are one of the most unique and powerful concurrency tools Go has to offer. Serving as a bridge between goroutines, they combine communication and synchronization in one. You can allocate a channel with or without a buffer, allowing for [many creative ways to share data][channels]. So why did I not provide a solution that leverages them for more than sync?
 
@@ -95,7 +95,7 @@ The implementation of [`io.Pipe`][pipeSrc] forgoes a channel in favor of `sync.M
 
 When developing a reusable package, I'd avoid channels in my public API to be consistent with the standard library but maybe use them internally for synchronization. If the complexity is low enough, replacing them with mutexes may even be ideal. That said, within an application, channels are wonderful abstractions, easier to grok than locks and more flexible.
 
-## Wrapping Up ##
+### Wrapping Up
 
 I've only broached a handful of ways to go about processing the data coming from an `io.Reader`, and without a doubt there are plenty more. Go's implicit interface model plus the standard library's heavy use of them permits many creative ways of gluing together various components without having to worry about the source of the data. I hope some of the exploration I've done here will prove as useful for you as it did for me!
 
