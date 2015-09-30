@@ -11,3 +11,8 @@ before_script:
 
 script:
   - script/test
+
+cache:
+  directories:
+    - vendor
+    - node_modules
