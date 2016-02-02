@@ -5,6 +5,11 @@
 	<channel>
 		<title>{{ site.name }}</title>
 		<description>{{ site.description }}</description>
+		<atom:author>
+			<name>{{ site.me }}</name>
+			<email>{{ site.email }}</email>
+			<uri>{{ site.url }}/chris-roche</uri>
+		</atom:author>
 		<link>{{ site.url }}</link>
 		<lastBuildDate>{{ site.time | date_to_rfc822 }}</lastBuildDate>
 		<language>en-US</language>

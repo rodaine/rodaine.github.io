@@ -13,28 +13,29 @@ disqus:      "rodaine"
 username:    "rodaine"
 
 #RENDERING
-markdown: kramdown
+markdown:    kramdown
+highlighter: null
 
 permalink: "/:year/:month/:title/"
 future:    false
 
 #PAGINATION
-paginate:      5
-paginate_path: "page/:num"
+paginate:       5
+paginate_path:  "page/:num"
 paginate_items: 5
 
 #PLUGINS AND EXTENSIONS
 gems:
  - jekyll-sitemap
+ - jekyll-paginate
 
 sass:
   sass_dir: _resources/scss
-  style: :compressed
+  style:    :compressed
 
 #EXCLUSIONS / INCLUSIONS
 exclude:
  - CNAME
- - codekit-config.json
  - config.rb
  - Gemfile
  - Gemfile.lock

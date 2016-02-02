@@ -1,16 +1,10 @@
-sudo: false
+sudo:     false
 language: ruby
+rvm:      2.1.7
 
-rvm:
-  - 2.1.5
-
-install: script/bootstrap
-
-before_script:
-  - script/build
-
-script:
-  - script/test
+install:       script/bootstrap
+before_script: script/build
+script:        script/test
 
 cache:
   directories:
