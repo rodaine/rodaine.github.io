@@ -33,6 +33,20 @@
 	}
 }
 
+%hyphenated {
+  -webkit-hyphens: auto;
+  -moz-hyphens:    auto;
+  -ms-hyphens:     auto;
+  hyphens:         auto;
+}
+
+%dehyphenated {
+  -webkit-hyphens: manual;
+  -moz-hyphens:    manual;
+  -ms-hyphens:     manual;
+  hyphens:         manual;
+}
+
 @function str-replace($string, $search, $replace: '') {
   $index: str-index($string, $search);
 

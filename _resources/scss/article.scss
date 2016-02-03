@@ -20,9 +20,14 @@ article {
 		}
 	}
 
-	p { clear: both; }
+	p {
+		@extend %hyphenated;
+		clear: both;
+	}
 
 	aside {
+		@extend %hyphenated;
+
 		@media (min-width: 900px) {
 			width: 30%;
 			float: left;
@@ -36,7 +41,12 @@ article {
 		}
 	}
 
+	p code, aside code {
+		@extend %dehyphenated;
+	}
+
 	.summary, .summary:visited {
+		@extend %hyphenated;
 		@extend %color-copy;
 		display: block;
 		text-decoration: none;
@@ -66,5 +76,22 @@ article {
 		padding: .25em;
 		background: white;
 		border: 1px solid $color-image-border;
+	}
+
+	.disqus-link {
+		@extend %sans-serif;
+		@extend %color-link-hover;
+
+		background: $color-link-focus;
+
+		text-decoration: none;
+		text-align: center;
+		display: block;
+		margin: 0;
+
+			&:hover, &:focus {
+				@extend %color-background;
+				background: $color-link;
+			}
 	}
 }

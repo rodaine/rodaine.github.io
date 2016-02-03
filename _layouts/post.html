@@ -13,7 +13,9 @@ layout: base
 {{ content }}
 </section>
 
-<section itemprop="comment" id="disqus_thread"></section>
+<section itemprop="comment" id="disqus_thread">
+  <a class="disqus-link" id="disqus_placeholder" href="https://disqus.com/home/forum/{{site.disqus}}">View <span class="disqus-comment-count" data-disqus-identifier="{{ page.url || remove: 'index.html' }}">Comments</span></a>
+</section>
 
 </article>
 
