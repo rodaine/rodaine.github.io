@@ -86,7 +86,7 @@ With this, any key generated using the typical `ssh-keygen` tool should work as 
 
     asn1: structure error: tags don't match (2 vs {class:0 tag:16 length:13 isCompound:true}) {optional:false explicit:false application:false defaultValue:<nil> tag:<nil> stringType:0 timeType:0 set:false omitEmpty:false}  @5
 
-
+While your typical SSH key follows the PKCS #1 standard, the encryption on these keys are easy to crack via brute-force (if they're even encrypted at all).
 
 https://github.com/golang/go/issues/8860
 https://github.com/youmark/pkcs8
