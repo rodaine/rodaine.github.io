@@ -1,10 +1,11 @@
 sudo:     false
-language: ruby
-rvm:      2.1.7
+language: node_js
+node_js:  6.4.0
 
-install:       script/bootstrap
-before_script: script/build
-script:        script/test
+before_install: rvm install 2.3.1 && gem install bundler
+install:        script/bootstrap
+before_script:  script/build
+script:         script/test
 
 cache:
   directories:
