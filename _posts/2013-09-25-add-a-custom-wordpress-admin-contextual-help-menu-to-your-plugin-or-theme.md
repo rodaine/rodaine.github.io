@@ -13,5 +13,5 @@ In the article, I outline a basic implementation for these help tabs and tackle 
 
 CNP - [Add A Custom WordPress Admin Contextual Help Menu To Your Plugin Or Theme][post]
 
-[cnp]: http://www.clarknikdelpowell.com/blog/
-[post]: http://cnp.is/1pu
+[cnp]:  http://www.clarknikdelpowell.com/blog/
+[post]: https://cnpagency.com/blog/add-a-custom-wordpress-admin-contextual-help-menu-to-your-plugin-or-theme/
