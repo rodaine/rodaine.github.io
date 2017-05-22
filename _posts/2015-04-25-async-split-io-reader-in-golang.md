@@ -64,7 +64,7 @@ Take a look at [`io.TeeReader`][teeReader], which has the following signature: `
 
 As the uploader consumes `tr`, the transcoder receives and processes the same bytes before sending it off to storage. All without a buffer and in parallel! Be aware of the use of goroutines for both pathways, though. `io.Pipe` blocks until something writes *and* reads from it. Attempting this on the same thread will give you a `fatal error: all goroutines are asleep - deadlock!` panic. Another point of caution: when using pipes, you will need to explicitly trigger an EOF by closing the `io.PipeWriter` at the appropriate time. In this case, you would close it after the TeeReader has been exhausted.
 
-This method also employs channels to communicate "doneness" and any errors that occur. If you expect a value back from these processes, you could replace the `chan bool` for a more appropriate type.
+This method also employs channels to communicate "doneness". If you expect a value back from these processes, you could replace the `chan bool` for a more appropriate type.
 
 **Pro's**: Completely independent, parallelized streams of the same data!<br/>
 **Con's**: Requires the added complexity of goroutines and channels to work.
@@ -99,6 +99,10 @@ When developing a reusable package, I'd avoid channels in my public API to be co
 
 I've only broached a handful of ways to go about processing the data coming from an `io.Reader`, and without a doubt there are plenty more. Go's implicit interface model plus the standard library's heavy use of them permits many creative ways of gluing together various components without having to worry about the source of the data. I hope some of the exploration I've done here will prove as useful for you as it did for me!
 
+### Errata (Updated: 2017-05-22)
+
+Jamie Talbot kindly pointed out in the comments that [solutions #4 and #5 would panic if one of the concurrent goroutines produced an error][panic]. That's certainly not the intended effect here, especially considering the primary focus is on tee-ing an `io.Reader`. I've since removed the error handling from those examples and will perhaps write up an article at a later date regarding handling errors from concurrent tasks. Thanks again, Jamie!
+
 [bytes]: https://golang.org/pkg/bytes/#NewReader
 [chan]: https://golang.org/ref/mem#tmp_7
 [channels]: https://golang.org/doc/effective_go.html#channels
@@ -114,3 +118,4 @@ I've only broached a handful of ways to go about processing the data coming from
 [teeReader]: https://golang.org/pkg/io/#TeeReader
 [tempFile]: https://golang.org/pkg/io/ioutil/#TempFile
 [writer]: https://golang.org/pkg/io/#Writer
+[panic]: https://disqus.com/home/discussion/rodaine/asynchronously_split_an_ioreader_in_go_golang_rodaine_51/#comment-3170239653
