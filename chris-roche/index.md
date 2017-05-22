@@ -11,8 +11,6 @@ published: true
 
 I'm a 28-year-old software engineer born in Oakland, California, and raised in Orlando, Florida. Currently, I am a software engineer on the Core Services team at [Lyft][lyft]. Previously, I worked with the kick-ass teams at [VSCO][vsco] and [Clark/Nikdel/Powell][cnp].
 
-The majority of my experience lies in back-end web technologies and frameworks. My languages _du jour_ consist of Go, JavaScript (Node, Ember &amp; front-end), PHP (vanilla, WordPress &amp; Laravel) and C# (ASP.Net &amp; MVC). I love experimenting with new technologies and workflows. Roll up your sleeves and get dirty!
-
 In my time away from code, you can usually find me playing video games on the PlayStation or PC, watching TV shows on Netflix, Hulu and CrunchRoll, or cooking up something new in the kitchen. Weekends you'll find me hanging out with my friends at the bottom of a bottle of Malbec.
 
 [lyft]: https://www.lyft.com

@@ -13,7 +13,7 @@ title: Article Archive
       <ol>
   {% endif %}
   <li itemscope itemtype="http://schema.org/BlogPosting">
-    <time datetime="{{post.date | date_to_xmlschema }}" itemprop="datePublished" pubdate>{{post.date | date: "%d %b"}}</time><a href="{{ post.url || remove: 'index.html' }}" itemprop="headline">{{post.title}}</a>
+    <time datetime="{{post.date | date_to_xmlschema }}" itemprop="datePublished" pubdate>{{post.date | date: "%d %b"}}</time><a href="{{ post.url | remove: 'index.html' }}" itemprop="headline">{{post.title}}</a>
   </li>
 {% endfor %}
 </ol></section>

@@ -13,8 +13,11 @@ disqus:      "rodaine"
 username:    "rodaine"
 
 #RENDERING
-markdown:    kramdown
 highlighter: null
+markdown:    kramdown
+kramdown:
+  syntax_highlighter_opts:
+    disable : true
 
 permalink: "/:year/:month/:title/"
 future:    false

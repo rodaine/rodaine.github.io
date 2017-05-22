@@ -2,19 +2,19 @@
 layout: base
 ---
 
-<article role="article" itemscope itemtype="https://schema.org/BlogPosting">
+<article role="article" itemscope itemtype="https://schema.org/{% if page.content_schema %}{{ page.content_schema }}{% else %}BlogPosting{% endif %}">
 
 <header>
 {% include widgets/post-meta.html %}
 {% include widgets/page-title.html %}
 </header>
 
-<section itemprop="articleBody">
+<section itemprop="{% if page.content_schema %}text{% else %}articleBody{% endif %}">
 {{ content }}
 </section>
 
-<section itemprop="comment" id="disqus_thread">
-  <a class="disqus-link" id="disqus_placeholder" href="https://disqus.com/home/forum/{{site.disqus}}">View <span class="disqus-comment-count" data-disqus-identifier="{{ page.url || remove: 'index.html' }}">Comments</span></a>
+<section id="disqus_thread">
+  <a class="disqus-link" id="disqus_placeholder" itemprop="discussionUrl" href="https://disqus.com/home/forum/{{site.disqus}}">View <span class="disqus-comment-count" data-disqus-identifier="{{ page.url | remove: 'index.html' }}">Comments</span></a>
 </section>
 
 </article>
