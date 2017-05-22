@@ -1,0 +1,6 @@
+{% if include.src %}{% assign src = include.src %}{% else %}{% assign src = http://placehold.it/800x600 %}{% endif %}
+
+<div class="fig"><figure {% if include.id %}id="{{ include.id }}"{% endif %}>
+	{% if include.caption %}<figcaption>{{ include.caption }}</figcaption>{% endif %}
+	<img src="{{ src }}" {% if include.alt %}alt="{{ include.alt }}"{% endif %}>
+</figure></div>

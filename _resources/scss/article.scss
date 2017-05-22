@@ -1,4 +1,5 @@
 article {
+	counter-reset: figure;
 	position: relative;
 	top: 0;
 	left: 0;
@@ -25,7 +26,7 @@ article {
 		clear: both;
 	}
 
-	aside {
+	aside, .fig figcaption {
 		@extend %hyphenated;
 
 		@media (min-width: 900px) {
@@ -41,7 +42,7 @@ article {
 		}
 	}
 
-	p code, aside code {
+	p code, aside code, figcaption code {
 		@extend %dehyphenated;
 	}
 
@@ -76,6 +77,33 @@ article {
 		padding: .25em;
 		background: white;
 		border: 1px solid $color-image-border;
+
+		&.raw {
+			border: 0;
+			background: none;
+		}
+	}
+
+	.fig {
+		margin: 1em 0;
+		text-align: center;
+
+		figure {
+			counter-increment: figure;
+			text-align: center;
+			display: inline-block;
+			max-width: 100%;
+			text-align: left;
+		}
+
+		figcaption {
+			margin: 0;
+			
+			&::before {
+				@extend %weight-bold;
+				content: "Fig " counter(figure) ". ";
+			}
+		}
 	}
 
 	.disqus-link {

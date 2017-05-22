@@ -54,12 +54,12 @@ blockquote {
 	}
 	&:before {
 		content: "“";
-		top: .25em;
+		top: -.2em;
 		left: -.75em;
 	}
 	&:after {
 		content: "”";
-		bottom: -.25em;
+		bottom: -.5em;
 		right: -.75em;
 	}
 }
@@ -78,12 +78,12 @@ code {
 	display: block;
 	white-space: pre;
 	overflow-x: scroll;
-	background: rgba($color-link, 0.25);
+	background: rgba($color-link, 0.075);
 	margin-left: 1em;
 	margin-right: 1em;
 	padding: .5em 1em;
 
-	h1 &, h2 &, h3 &, h4 &, h5 &, h6 &, p &, li &, aside & {
+	h1 &, h2 &, h3 &, h4 &, h5 &, h6 &, p &, li &, aside &, figcaption & {
 		display: inline;
 		padding: 0 .25em;
 		margin: inherit;
@@ -99,7 +99,7 @@ strike, strike span, del, del span {
 	@extend %color-link;
 }
 
-aside {
+aside, figcaption {
 	font-size: 0.75em;
 	font-style: italic;
 	line-height: 1.5;

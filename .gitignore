@@ -6,12 +6,5 @@ _resources/amd
 node_modules/
 vendor/
 
-.DS_Store
-.rbenv-version
-.rvmrc
 .sass-cache
-
-rodaine.com.sublime-project
-rodaine.com.sublime-workspace
-Thumbs.db
-
+.jekyll-metadata

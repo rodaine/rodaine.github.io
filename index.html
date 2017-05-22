@@ -10,7 +10,7 @@ title: Hello, World!
 {% include widgets/page-title.html %}
 </header>
 
-<p><a href="{{ page.url || remove: 'index.html' }}" class="summary" itemprop="description" >{{ page.content | strip_html | truncatewords:75 }}</a></p>
+<p><a href="{{ page.url | remove: 'index.html' }}" class="summary" itemprop="description" >{{ page.content | strip_html | truncatewords:75 }}</a></p>
 
 </article>
 {% endfor %}

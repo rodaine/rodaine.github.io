@@ -1,0 +1,5 @@
+<ol style="list-style:disc;">{% for article in site.posts reversed %}{% if article.layout == 'x-files' %}{% if include.current != article.id %}
+  <li><a itemprop="hasPart" href="{{ article.url }}">{{ article.title }}</a></li>
+{% endif %}{% endif %}{% endfor %}
+  <li>With many more to come!</li>
+</ol>

@@ -1,24 +1,19 @@
 ---
 ---
-/* WHO DAT IS? */
-
-		Owner & Developer: {{ site.me }}
-		Contact:           {{ site.email }}
-		Twitter:           {{ site.twitter }}
-		GitHub:            {{ site.username }}
+Owner & Developer: {{ site.me }}
+Contact:           {{ site.email }}
+Twitter:           {{ site.twitter }}
+GitHub:            {{ site.username }}
 {% if site.github.contributors %}
-		Contributors (Thanks!):{% assign sortedContributors = site.github.contributors | sort_by:contributions %}{% for contributor in sortedContributors %}{% unless contributor.login == 'rodaine' %}
-			{{ contributor.login }} <{{ contributor.html_url }}>
+Contributors (Thanks!):{% assign sortedContributors = site.github.contributors | sort_by:contributions %}{% for contributor in sortedContributors %}{% unless contributor.login == 'rodaine' %}
+	{{ contributor.login }} <{{ contributor.html_url }}>
 {% endunless %}{% endfor %}{% endif %}
-/* WHERE WE BE! */
+Last Updated: {{ site.time | date_to_xmlschema }}
 
-	Last Updated: {{ site.time | date_to_xmlschema }}
-
-	Software / Components:
-		CoffeeScript:         http://coffeescript.org
-		Github Pages:         http://pages.github.com
-		Grunt:                http://gruntjs.com/
-		Jekyll:               http://jekyllrb.org
-		Node/NPM:             http://nodejs.org/
-		Sass (SCSS - Flavor): http://sass-lang.com
-		Sublime Text 2:       http://www.sublimetext.com/2
+Software / Components:
+	CoffeeScript:         http://coffeescript.org
+	Github Pages:         http://pages.github.com
+	Grunt:                http://gruntjs.com/
+	Jekyll:               http://jekyllrb.org
+	Node/NPM:             http://nodejs.org/
+	Sass (SCSS - Flavor): http://sass-lang.com
