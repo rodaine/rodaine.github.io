@@ -1,11 +1,12 @@
 body > header {
 	@extend %content-margins;
 	@extend %flush-margins;
+
 	transform: scale(-1);
 	height: 2.25em;
+	max-width: $max-main-width;
 	position: relative;
 	line-height: 1;
-
 	overflow-y: hidden;
 	zoom: 1;
 }

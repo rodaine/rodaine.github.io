@@ -6,10 +6,8 @@ layout: post
 
 {{ content }}
 
-{% comment %} RESTORE ME ONCE THERE'S MORE THAN ONE ARTICLE
 <footer itemprop="isPartOf" itemscope itemtype="http://schema.org/CreativeWorkSeries">
   <h3>Thanks for reading <span itemprop="headline">The X-Files!</span></h3>
-  <p itemprop="about">This post is part of <a itemprop="url" href="#">The X-Files</a>, a blog series exploring the Go sub-repositories (<code>golang.org/x/*</code>). For more sub-repo goodness, check out the series so far:</p>
+  <p itemprop="about">This post is part of <a itemprop="url" href="{% link _posts/2017-05-21-x-files-intro.md %}">The X-Files</a>, a blog series exploring the Go sub-repositories (<code>golang.org/x/*</code>). For more sub-repo goodness, check out the series so far:</p>
   {% include widgets/x-files.html current=page.id %} 
 </footer>
-{% endcomment %}

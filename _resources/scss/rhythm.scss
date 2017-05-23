@@ -5,7 +5,7 @@ html {
 	line-height: 1.5;
 	font-size: percentage($size / $base-size);
 
-	@for $i from 1 through 10 {
+	@for $i from 1 through 2 {
 		@media (min-width: 900px + $i * 200px) {
 			font-size: percentage(($size + 2px * $i)/ $base-size);
 		}
