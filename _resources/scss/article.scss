@@ -13,11 +13,14 @@ article {
 		.meta {
 			color: lighten($color-copy, 50%);
 			margin-bottom: 0;
+
+			& + a h2 {
+				margin-top: 0;
+			}
 		}
 		h2 {
-			margin-top: 0;
-			margin-bottom: 0;
 			text-transform: uppercase;
+			margin-bottom: 0;
 		}
 	}
 
@@ -98,7 +101,7 @@ article {
 
 		figcaption {
 			margin: 0;
-			
+
 			&::before {
 				@extend %weight-bold;
 				content: "Fig " counter(figure) ". ";
