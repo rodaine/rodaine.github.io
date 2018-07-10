@@ -1,45 +1,52 @@
-#SITE SETTINGS
+# SITE SETTINGS
 name:        "Rodaine"
 me:          "Chris Roche"
 url:         "https://rodaine.com"
 description: "In which Chris Roche blogs about web development and the questionably finer things in life."
 keywords:    "chris, roche, web, development, rodaine"
 
-#CONTACT / SOCIAL INFO
+# CONTACT / SOCIAL INFO
 email:       "rodaine@gmail.com"
 twitter:     "@rodaine"
 facebook:    "2057767"
 disqus:      "rodaine"
 username:    "rodaine"
 
-#RENDERING
+# RENDERING
 highlighter: null
 markdown:    kramdown
 kramdown:
   syntax_highlighter_opts:
     disable : true
 
-permalink: "/:year/:month/:title/"
-future:    false
-
-#PAGINATION
-paginate:       5
-paginate_path:  "page/:num"
-paginate_items: 5
-
-#PLUGINS AND EXTENSIONS
-plugins:
- - jekyll-sitemap
- - jekyll-paginate
-
 sass:
   sass_dir: _resources/scss
   style:    :compressed
 
+permalink: "/:year/:month/:title/"
+future:    false
+
+# PLUGINS AND EXTENSIONS
+plugins:
+ - jekyll-sitemap
+ - jekyll-paginate
+
+#FRONT MATTER DEFAULT VALUES
+defaults:
+  - # no sitemap entry for pagination pages (already marked as no-index)
+    scope:
+      path:            "page"
+    values:
+      sitemap:         false
+
+# PAGINATION
+paginate:       5
+paginate_path:  "page/:num"
+paginate_items: 5
+
 #EXCLUSIONS / INCLUSIONS
 exclude:
  - CNAME
- - config.rb
  - Gemfile
  - Gemfile.lock
  - Gruntfile.coffee
@@ -47,6 +54,5 @@ exclude:
  - node_modules
  - package.json
  - README.md
- - rodaine.com.sublime-project
  - script
  - vendor
