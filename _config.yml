@@ -1,7 +1,7 @@
 #SITE SETTINGS
 name:        "Rodaine"
 me:          "Chris Roche"
-url:         "http://rodaine.com"
+url:         "https://rodaine.com"
 description: "In which Chris Roche blogs about web development and the questionably finer things in life."
 keywords:    "chris, roche, web, development, rodaine"
 
@@ -28,7 +28,7 @@ paginate_path:  "page/:num"
 paginate_items: 5
 
 #PLUGINS AND EXTENSIONS
-gems:
+plugins:
  - jekyll-sitemap
  - jekyll-paginate
 
