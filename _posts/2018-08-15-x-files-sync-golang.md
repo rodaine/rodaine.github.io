@@ -156,4 +156,4 @@ The sync subrepository has a ton of utility, but I'm surprised to see it shows u
 [sync.map]: https://golang.org/pkg/sync/#Map
 [async]: {% link _posts/2015-04-25-async-split-io-reader-in-golang.md %}
 [async-errata]: {% link _posts/2015-04-25-async-split-io-reader-in-golang.md %}#errata-updated-2017-05-22
-[rate]: { % link _posts/2017-05-22-x-files-time-rate-golang.md %}
+[rate]: {% link _posts/2017-05-22-x-files-time-rate-golang.md %}
