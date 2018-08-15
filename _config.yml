@@ -18,7 +18,6 @@ markdown:    kramdown
 kramdown:
   syntax_highlighter_opts:
     disable : true
-
 sass:
   sass_dir: _resources/scss
   style:    :compressed
@@ -26,7 +25,12 @@ sass:
 permalink: "/:year/:month/:title/"
 future:    false
 
-# PLUGINS AND EXTENSIONS
+# PAGINATION
+paginate:       5
+paginate_path:  "page/:num"
+paginate_items: 5
+
+#PLUGINS AND EXTENSIONS
 plugins:
  - jekyll-sitemap
  - jekyll-paginate
