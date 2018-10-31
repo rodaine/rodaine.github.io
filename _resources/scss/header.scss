@@ -12,7 +12,6 @@ body > header {
 }
 
 .logo, .menu {
-	@extend %sans-serif;
 	@extend %weight-normal;
 
 	display: block;

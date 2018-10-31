@@ -1,7 +1,6 @@
 body > footer {
 	@extend %content-margins;
 	@extend %flush-margins;
-	@extend %sans-serif;
 	@extend %color-background;
 
 	max-width: $max-main-width;
