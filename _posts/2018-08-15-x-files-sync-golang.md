@@ -29,7 +29,7 @@ Capturing the first error and cancelling outstanding goroutines is an incredibly
 
 When first calling `Parallel.Execute`, an instance of `errgroup.Group` is created from the provided `context.Context`. This permits the caller to stop the whole shebang at any time. Then, instead of starting vanilla goroutines, each `Action` runs via `grp.Go`. The `Group` spawns goroutines with the boilerplate to capture errors from each.
 
-<aside>Note that `Parallel.execFn` morphs the `Action.Execute` method to the expected signature of `Group.Go`.</aside>
+<aside>Note that <code>Parallel.execFn</code> morphs the <code>Action.Execute</code> method to the expected signature of <code>Group.Go</code>.</aside>
 
 Finally, `grp.Wait()` blocks until all the scheduled `Actions` complete. The method returns either the first error it receives from the `Actions` or `nil`. If any of the `Actions` produce an error, the `ctx` is cancelled and propagated through to the others. This allows them to short-circuit and return early.
 
@@ -108,7 +108,7 @@ This nuanced dance of locking and unlocking mutexes is error prone. One false st
 
 Well, kind of: [`sync.Map`][sync.map]. Originally a part of the sub-repository as [`syncmap.Map`][syncmap], this concurrency-safe map implementation was added to the standard library in Go 1.9\. It was first proposed to address [scaling issues with sync.RWMutex protected maps on machines with many (_many_) CPU cores][map-issue]. Since then, `sync.Map` has replaced map-based caches throughout the standard library. Check out its use in `encoding/json`, `mime`, and `reflect`.
 
-<aside>The internals of `sync.Map` are fascinating. It possesses separate fast and slow paths via an atomically accessed read-only map and a mutex protected dirty copy. Heuristics driven by fast path misses control when the dirty map is persisted onto the read-only map. I recommend giving the <a href="https://golang.org/src/sync/map.go">implementation</a> a read.</aside>
+<aside>The internals of <code>sync.Map</code> are fascinating. It possesses separate fast and slow paths via an atomically accessed read-only map and a mutex protected dirty copy. Heuristics driven by fast path misses control when the dirty map is persisted onto the read-only map. I recommend giving the <a href="https://golang.org/src/sync/map.go">implementation</a> a read.</aside>
 
 Below, is a reimplementation of `statCache` using `sync.Map`:
 

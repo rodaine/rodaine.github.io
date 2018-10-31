@@ -1,8 +1,8 @@
 sudo:     false
 language: node_js
-node_js:  6.4.0
+node_js:  10.11.0
 
-before_install: rvm install 2.3.1 && gem install bundler
+before_install: rvm install 2.5.3 && gem install bundler
 install:        script/bootstrap
 before_script:  script/build
 script:         script/test

@@ -4,7 +4,8 @@
 }
 
 body {
-	@extend %serif;
+	font-family: $font;
+
 	@extend %weight-normal;
 	@extend %color-copy;
 	@extend %background-color;
@@ -15,8 +16,6 @@ body {
 }
 
 h1,h2,h3,h4,h5,h6 {
-	@extend %sans-serif;
-
 	line-height: 1.25;
 
 	a:focus & { background: $color-link-focus; }

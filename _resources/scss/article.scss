@@ -10,6 +10,7 @@ article {
 			font-style: italic;
 			margin-top: 0;
 		}
+
 		.meta {
 			color: lighten($color-copy, 50%);
 			margin-bottom: 0;
@@ -18,6 +19,7 @@ article {
 				margin-top: 0;
 			}
 		}
+
 		h2 {
 			margin-bottom: 0;
 			text-transform: uppercase;
@@ -111,7 +113,6 @@ article {
 	}
 
 	.disqus-link {
-		@extend %sans-serif;
 		@extend %color-link-hover;
 
 		background: $color-link-focus;
