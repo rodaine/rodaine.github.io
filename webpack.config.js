@@ -9,14 +9,14 @@ module.exports = {
 				test: /\.ts$/,
 				enforce: 'pre',
 				use: [
-						{
-								loader: 'tslint-loader',
-								options: {
-									configFile: 'tslint.json',
-									emitErrors: true,
-									typeCheck: true,
-								}
+					{
+						loader: 'tslint-loader',
+						options: {
+							configFile: 'tslint.json',
+							emitErrors: true,
+							typeCheck: true,
 						}
+					}
 				]
 			},
 			{
