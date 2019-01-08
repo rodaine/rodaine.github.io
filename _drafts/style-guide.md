@@ -14,4 +14,4 @@ The second purpose is as an example of most (if not all) of the CSS rules that c
 
 The `h1` tag is used by the site title, and the `h2` is reserved for the article title. While it might be an arbitrary rule with <abbr>HTML5</abbr>, an article should still maintain the header hierarchy and **only contain `h3` and smaller headers.** The headers must follow the page hierarchy, cannot skip (eg, an `h4` before an "opening" `h3`) and should not be consecutive without some body content in-between.
 
-The title of a post should capture the main content of the entire article. It is what shows up in the SERP, the title of the html page, in social cards and embeds
+The title of a post should capture the main content of the entire article. It is what shows up in the SERP, the title of the HTML page, in social cards and embeds.

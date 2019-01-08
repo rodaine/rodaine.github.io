@@ -11,9 +11,8 @@ Contributors (Thanks!):{% assign sortedContributors = site.github.contributors |
 Last Updated: {{ site.time | date_to_xmlschema }}
 
 Software / Components:
-	CoffeeScript:         http://coffeescript.org
-	Github Pages:         http://pages.github.com
-	Grunt:                http://gruntjs.com/
-	Jekyll:               http://jekyllrb.org
-	Node/NPM:             http://nodejs.org/
-	Sass (SCSS - Flavor): http://sass-lang.com
+	Github Pages: http://pages.github.com
+	Jekyll:       http://jekyllrb.org
+	Sass (SCSS):  http://sass-lang.com
+	TypeScript:   https://www.typescriptlang.org
+	Webpack:      https://webpack.js.org

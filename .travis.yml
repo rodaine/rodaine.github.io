@@ -1,13 +1,16 @@
 sudo:     false
 language: node_js
-node_js:  10.11.0
+node_js:  11.0.0
 
 before_install: rvm install 2.5.3 && gem install bundler
-install:        script/bootstrap
-before_script:  script/build
-script:         script/test
+install:        make -B bootstrap # -B due to caching
+script:         make build
 
 cache:
+  npm: true
+  bundler: true
   directories:
-    - vendor
-    - node_modules
+    - /home/travis/.rvm
+before_cache:
+  - npm prune
+  - bundle clean

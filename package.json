@@ -22,13 +22,13 @@
     "test": "script/test"
   },
   "devDependencies": {
-    "coffeelint": "latest",
-    "grunt": "latest",
-    "grunt-cli": "latest",
-    "grunt-coffeelint": "latest",
-    "grunt-contrib-coffee": "latest",
-    "grunt-contrib-concat": "latest",
-    "grunt-contrib-watch": "latest",
-    "grunt-requirejs": "latest"
+    "ts-loader": "^5.3.3",
+    "tslint": "^5.12.0",
+    "tslint-eslint-rules": "^5.4.0",
+    "tslint-loader": "^3.5.4",
+    "tslint-microsoft-contrib": "^6.0.0",
+    "typescript": "^3.2.2",
+    "webpack": "^4.28.3",
+    "webpack-cli": "^3.2.1"
   }
 }
