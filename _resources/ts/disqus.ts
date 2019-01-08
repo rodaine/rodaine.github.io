@@ -1,9 +1,11 @@
 import loader from './script-loader';
 
-function load(script: string) { loader(`https://go.disqus.com/${script}`); }
+const disqusURL = 'https://rodaine.disqus.com/';
 
 if (document.querySelector('[data-disqus-identifier]')) {
-	load('count.js');
+	const s = loader(`${disqusURL}count.js`, false);
+	s.id = 'dsq-count-scr';
+	document.body.appendChild(s);
 }
 
 const thread = document.getElementById('disqus_placeholder');
@@ -11,6 +13,9 @@ if (thread) {
 	thread.onclick = (e) => {
 		e.preventDefault();
 		thread.remove();
-		load('embed.js');
+
+		const s = loader(`${disqusURL}embed.js`, false);
+		s.setAttribute('data-timestamp', (new Date()).toString());
+		document.body.appendChild(s);
 	};
 }
