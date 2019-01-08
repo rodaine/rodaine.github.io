@@ -1,11 +1,9 @@
 !.gitkeep
+.sass-cache
+.jekyll-metadata
 
-_drafts/_hemingway
-_site/
-_resources/js
-_resources/amd
 node_modules/
 vendor/
 
-.sass-cache
-.jekyll-metadata
+_drafts/_hemingway
+_site/

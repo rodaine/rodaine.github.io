@@ -1,6 +1,6 @@
 ### FOR CONTENTS OF `_drafts` AND `_posts` DIRECTORIES ###
 
-© Copyright Chris Roche, 2013-2014. All rights reserved.
+© Copyright Chris Roche, 2013-2019. All rights reserved.
 
 ### ALL OTHER CONTENT ###
 
