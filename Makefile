@@ -1,27 +1,22 @@
 .PHONY: bootstrap
 bootstrap: vendor node_modules
 
-node_modules:
-	npm install
-
-vendor:
-	bundle install
-
 .PHONY: build
 build: bootstrap
-	npx webpack \
+	@npx webpack \
 		& bundle exec jekyll build \
 		& wait
 
 .PHONY: serve
 serve: bootstrap
-	trap 'kill 0' SIGINT; \
+	@trap 'kill 0' SIGINT; \
 		npx webpack -w \
 		& bundle exec jekyll serve -w -D -H localhost \
 		& wait
 
-serve-ssl: bootstrap
-	trap 'kill 0' SIGINT; \
+.PHONY: serve-ssl
+serve-ssl: bootstrap _mkcert/localhost+2.pem
+	@trap 'kill 0' SIGINT; \
 		npx webpack -w \
 		& bundle exec jekyll serve \
 			-w -D -H localhost \
@@ -31,6 +26,18 @@ serve-ssl: bootstrap
 
 .PHONY: update
 update:
-	npm update \
+	@npm update \
 		& bundle update \
 		& wait
+
+node_modules:
+	@npm install
+
+vendor:
+	@bundle install
+
+_mkcert/localhost+2.pem: # https://github.com/FiloSottile/mkcert
+	@mkcert -cert-file \
+		_mkcert/localhost+2.pem \
+		-key-file _mkcert/localhost+2-key.pem \
+		localhost 127.0.0.1 ::1
