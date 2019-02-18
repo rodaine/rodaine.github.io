@@ -17,16 +17,17 @@ build: bootstrap
 serve: bootstrap
 	trap 'kill 0' SIGINT; \
 		npx webpack -w \
-		& bundle exec jekyll serve -w -H localhost \
+		& bundle exec jekyll serve -w -D -H localhost \
 		& wait
 
 serve-ssl: bootstrap
 	trap 'kill 0' SIGINT; \
 		npx webpack -w \
 		& bundle exec jekyll serve \
-			-w -H localhost \
+			-w -D -H localhost \
 			--ssl-cert _mkcert/localhost+2.pem \
-			--ssl-key _mkcert/localhost+2-key.pem
+			--ssl-key _mkcert/localhost+2-key.pem \
+		& wait
 
 .PHONY: update
 update:

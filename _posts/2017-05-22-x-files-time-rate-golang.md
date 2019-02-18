@@ -23,13 +23,13 @@ The upstream dependency has some interesting characteristics. First, it takes an
 
 To protect itself from drowning in traffic, the service should conform to an SLA. As an initial step, performing load tests will help derive the right thresholds.
 
-{% include widgets/figure.html 
+{% include widgets/figure.html
 	id="hello"
-	src="https://res.cloudinary.com/rodaine/image/upload/v1483565561/rate/hello.svg" 
+	src="https://res.cloudinary.com/rodaine/image/upload/v1483565561/rate/hello.svg"
 	alt="Performance graphs of unlimited throughput to the service over RPS. Success rate drops below 100% rapidly and logarithmically starting about 450rps, with essentially all failures happening due to the upstream service timeout of 500ms. Successful requests are steady at <50ms (P50 & P95) until approximately 415rps, ramping up quickly to take anywhere from 275ms (P50) to 500ms (P95) at 450rps and onward."
 	caption="Initial load testing with no rate limiting. Success Rate (<strong>top left</strong>) measures the ratio of requests that were successful (200 response codes) at a given RPS. Total P50 and P95 (<strong>top right</strong>) indicates the median and 95th-percentile latencies respectively over all requests. These are split out by successful (<strong>bottom left</strong>) and failed (<strong>bottom right</strong>) requests, additionally." %}
 
-Woof… At approximately 415rps, the upstream service is unable to handle the volume and begins queueing. As the RPS increases, the amount of calls enqueued must wait longer and longer to complete. When the service reaches about 450rps, the upstream calls start exceeding the 500ms threshold and failing at a logarithmic rate as the throughput continues to grow. Those requests that are lucky enough to make it through have a median latency (P50) of ~275ms and a 95th-percentile (P95) just under 500ms. 
+Woof… At approximately 415rps, the upstream service is unable to handle the volume and begins queueing. As the RPS increases, the amount of calls enqueued must wait longer and longer to complete. When the service reaches about 450rps, the upstream calls start exceeding the 500ms threshold and failing at a logarithmic rate as the throughput continues to grow. Those requests that are lucky enough to make it through have a median latency (P50) of ~275ms and a 95th-percentile (P95) just under 500ms.
 
 This behavior is not ideal and usually indicative of a critical failure upstream. But now there is enough information to make an SLA! While the service may be showing signs of degradation at 425rps, the success rate holds steady at 100%. Likewise, the P95 latency at this rate is ~165ms. For this example, it is safe to assume consumers will tolerate up to a P95 of 275ms. Given these limits, a target SLA can be defined:
 
@@ -49,17 +49,17 @@ The `RateLimit` function itself decorates any `http.HandlerFunc` with the limite
 
  Now that everything's all squared away, running the tests again reveals an improved availability:
 
-{% include widgets/figure.html 
+{% include widgets/figure.html
 	id="ticker"
-	src="https://res.cloudinary.com/rodaine/image/upload/v1483565561/rate/ticker.svg" 
+	src="https://res.cloudinary.com/rodaine/image/upload/v1483565561/rate/ticker.svg"
 	alt="Performance graphs of time.Ticker limited service. While the success rate remains at 100% for all RPS values, the latencies scale linearly up from ~25rps at 415rps to between 1250ms (P50) to 2250ms (P95) at 600rps."
 	caption="Load testing of service limited by <code>time.Ticker</code>" %}
 
-Whelp, since only a safe amount of requests are making it through to the upstream service at a time, the service achieves 100% availability through 600rps. This satisfies the 4-nines part of the SLA. Yet, starting at 425rps, latencies show linear growth as requests pile up behind the limiter, exceeding _two seconds_ at 600rps. 
+Whelp, since only a safe amount of requests are making it through to the upstream service at a time, the service achieves 100% availability through 600rps. This satisfies the 4-nines part of the SLA. Yet, starting at 425rps, latencies show linear growth as requests pile up behind the limiter, exceeding _two seconds_ at 600rps.
 
 Not only does this violate the 275ms P95 stipulation, but it also has the potential to wreak havoc on the service itself. If it's memory-bound or has limited resources (eg, file descriptors or threads), the service would soon refuse new connections or die. In fact, for reproducibility, the test harness boosts file descriptors from the default 1,024 (on Mac OS) to a million! Regardless, as long as the SLA holds at 425rps, the limiter should drop requests exceeding the deadline beyond that.
 
-#### `time.Ticker` with `select` Timeout 
+#### `time.Ticker` with `select` Timeout
 
 To cancel the read on the limiter, a `select` statement can short circuit the request with a timeout:
 
@@ -69,13 +69,13 @@ The middleware's signature now adds a `wait` parameter . This specifies how long
 
 Using the same `rate` and `burst` as before, the handler now needs a deadline. Given that the P95 at 425rps is ~165ms, a timeout of 75ms should bring it up to about 240ms, safely below the 275ms rule. Running load tests again, this resolves the unbounded latencies:
 
-{% include widgets/figure.html 
+{% include widgets/figure.html
 	id="fast"
-	src="https://res.cloudinary.com/rodaine/image/upload/v1483565561/rate/fast.svg" 
+	src="https://res.cloudinary.com/rodaine/image/upload/v1483565561/rate/fast.svg"
 	alt="Performance graphs of time.Ticker with select timeout at 75ms. While the success rate falls linearly starting at approximately 435rps (with a SR of 72% at 600rps), failure latencies originate from the select timeout instead of the upstream service. Better still, success latencies remain steady between 175ms (P50) and 260ms (P95)."
 	caption="Load testing of service limited by <code>time.Ticker</code> with a timeout of 75ms" %}
 
-Sweet! The success rate remains at 100% through 435rps before falling, and the P95 latencies stay below 275ms. All the failures are exactly 75ms, indicating the rate limiter timeout is effective. 
+Sweet! The success rate remains at 100% through 435rps before falling, and the P95 latencies stay below 275ms. All the failures are exactly 75ms, indicating the rate limiter timeout is effective.
 
 Still, 75ms is an eternity for a computer to be waiting, and a traffic spike could yet overwhelm the process. Knowing the limiter's queue depth, it could determine if a request will even make it through. If there's no chance, the limiter should cancel the request without waiting for the deadline.
 
@@ -83,7 +83,7 @@ Still, 75ms is an eternity for a computer to be waiting, and a traffic spike cou
 
 Alright, hold up. Before implementing this strategy on top of the limiter, there are a couple of things to note. First, the Go wiki suggests [avoiding `time.Ticker` if the rate exceeds tens per second][wiki]. This is likely a fidelity issue with either the clock, the performance of channels, or both. At 425rps, the limiter exceeds this heuristic by an order of magnitude. Instead, a [token bucket][bucket] solution is preferable … like [`rate.Limiter`][rate]!
 
-Second, the `rate` package already implements this extrapolation strategy. `rate.Limiter` uses `Reservations`: promised access to a resource after some time, like getting a table at a restaurant. Since the `Reservation` encodes the time in which it can be fulfilled, the limiter can jettison requests from the start. 
+Second, the `rate` package already implements this extrapolation strategy. `rate.Limiter` uses `Reservations`: promised access to a resource after some time, like getting a table at a restaurant. Since the `Reservation` encodes the time in which it can be fulfilled, the limiter can jettison requests from the start.
 
 For the purposes of this service, [`rate.Limiter#Wait`][wait] achieves this desired behavior:
 
@@ -91,15 +91,15 @@ For the purposes of this service, [`rate.Limiter#Wait`][wait] achieves this desi
 
 This version is the same as the previous, albeit trading channels and selects for `context.Context` and error handling. Running the tests, though, shows the benefit of this package:
 
-{% include widgets/figure.html 
+{% include widgets/figure.html
 	id="rate"
-	src="https://res.cloudinary.com/rodaine/image/upload/v1483565561/rate/rate.svg" 
+	src="https://res.cloudinary.com/rodaine/image/upload/v1483565561/rate/rate.svg"
 	alt="Performance graphs of rate.Limiter with a deadline of 75ms. While the SR and overall latency characteristics of these graphs match the previous, failure latencies are now sub millisecond instead of the entire timeout duration."
 	caption="Load testing of service limited with <code>rate.Limiter</code>" %}
 
 While the latencies of these graphs match the previous almost exactly, the failures are now sub-millisecond! This indicates requests doomed to fail are terminated early, preventing a potential pileup on the service. It would be prudent, of course, to provide a retry policy and return back off information to the consumers.
 
-The service now conforms to its SLA, protecting itself, its dependencies and its consumers by shedding excess load. Though a contrived example, this strategy is useful in determining boundaries for a real-world service. Adjusting the parameters driving the limiter (`rps`, `burst`, and `wait`) will eke out as much availability and performance as desired. 
+The service now conforms to its SLA, protecting itself, its dependencies and its consumers by shedding excess load. Though a contrived example, this strategy is useful in determining boundaries for a real-world service. Adjusting the parameters driving the limiter (`rps`, `burst`, and `wait`) will eke out as much availability and performance as desired.
 
 ### More Features and Uses of `rate.Limiter`
 

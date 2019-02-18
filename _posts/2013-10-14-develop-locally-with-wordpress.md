@@ -33,19 +33,19 @@ First, the `Clients` folder. Inside here will be folders containing each of the 
 
 Next up is the `Environments` directory. Here you will keep the actual WordPress installs and where the magic of this workflow will take place. I keep this folder flat with the URL of the project's site (or a fake one for custom plugins, like hansel-gretel.rodaine.com). More on this directory later...
 
-Our `Plugins` folder contains our custom WP plugins that are shared across projects. Each plugin directory in here is a repository linked to either the WordPress SVN or another SCM service. 
+Our `Plugins` folder contains our custom WP plugins that are shared across projects. Each plugin directory in here is a repository linked to either the WordPress SVN or another SCM service.
 
 And finally, the `Vendor` directory collects all our 3rd-party plugins or themes as repositories. This is essentially the same as the Plugins folder, but contains projects you do not actively maintain or contribute to. If it doesn't bother you, you could probably combine the two.
 
 ### Preparing your environment ###
 
-Our first step will be getting WordPress up and running for our dev environment. In the www.example.com folder in `Environments`, we will [download the latest version of WordPress][wpdl]. 
+Our first step will be getting WordPress up and running for our dev environment. In the www.example.com folder in `Environments`, we will [download the latest version of WordPress][wpdl].
 
 Next, we need to point Apache to this directory as the document root for the server. While this might require messing around with the Apache configuration files to set up, MAMP makes it super easy:
 
 1. Start up MAMP and click *Preferences*.
 
-2. In the preferences modal, click Apache and the only setting available is to change to the document root. 
+2. In the preferences modal, click Apache and the only setting available is to change to the document root.
 
 3. Point it to the folder in `Environments` and click *OK*. The Apache and MySQL servers will restart automatically.
 
@@ -61,7 +61,7 @@ With the servers configured and ready, we can now install WordPress. Access your
 
 ### Linking to your plugins and themes ###
 
-Alright, the moment we've been waiting for! How do we include our plugins and themes in the environment without having a configuration mess? The answer: *symoblic links*. 
+Alright, the moment we've been waiting for! How do we include our plugins and themes in the environment without having a configuration mess? The answer: *symoblic links*.
 
 Symbolic links, or [symlinks][symlinks], are similar to Mac's aliases or Windows' shortcuts in that they a reference to a directory (or file) in a different location, but unlike either, they actually affect pathname resolution. *What does that even mean?!* Simply put, it means that WordPress (a'la PHP and Apache) will be able to find and use the files in these links as if they were actually included in the environment. [Wikipedia][symlinks] can elucidate symlinks further, if you are curious, but for the purposes of this discussion, believe me when I say they just work.
 
@@ -99,7 +99,7 @@ WordPress has **many** settings right out of the box. Don't believe me? After a 
 
 For plugin development, this is a non-issue. Your plugins should behave independent of everything else, regardless of where it is installed. Custom themes, on the other hand, are much more reliant on the site settings for certain features (like navigation menus). In these cases, having a copy of the database on your dev machine closely matching the live site is ideal.
 
-You have a couple of options to tackle this issue. The first: manually copy the database from the live site to the dev site. This process is, in a word, unpleasant. You also need to take care in changing some of the values in the tables to refer to localhost as oppossed to the actual site domain. No one likes the first option. 
+You have a couple of options to tackle this issue. The first: manually copy the database from the live site to the dev site. This process is, in a word, unpleasant. You also need to take care in changing some of the values in the tables to refer to localhost as oppossed to the actual site domain. No one likes the first option.
 
 The second, and more reasonable option, is to use a plugin like [WP Migrate DB Pro][wmdp]. You install the plugin on your production and dev sites and click a single button to sync the databases. It's as easy as that. Don't just take my word for it, though; [Chris Coyier loves it][coyier]. It costs a bit if you are managing more than 6 sites, but considering the time it saves, the expense is well justified.
 
