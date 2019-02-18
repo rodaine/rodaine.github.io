@@ -13,10 +13,10 @@ username:    "rodaine"
 
 # RENDERING
 highlighter: null
-markdown:    kramdown
-kramdown:
-  syntax_highlighter_opts:
-    disable : true
+markdown:    CommonMarkGhPages
+commonmark:
+  options: ["SMART", "FOOTNOTES"]
+  extensions: ["strikethrough", "autolink", "table", "tagfilter"]
 sass:
   sass_dir: _resources/scss
   style:    :compressed
@@ -33,6 +33,7 @@ paginate_items: 5
 plugins:
  - jekyll-sitemap
  - jekyll-paginate
+ - jekyll-commonmark-ghpages
 
 #FRONT MATTER DEFAULT VALUES
 defaults:
@@ -42,11 +43,6 @@ defaults:
     values:
       sitemap:         false
 
-# PAGINATION
-paginate:       5
-paginate_path:  "page/:num"
-paginate_items: 5
-
 #EXCLUSIONS / INCLUSIONS
 exclude:
  - CNAME
@@ -55,7 +51,11 @@ exclude:
  - Gruntfile.coffee
  - LICENSE.md
  - node_modules
+ - package-lock.json
  - package.json
  - README.md
  - script
+ - tsconfig.json
+ - tslint.json
  - vendor
+ - webpack.config.js

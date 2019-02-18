@@ -7,7 +7,7 @@ keywords: "html5, canvas, requestAnimationFrame, JavaScript"
 
 ![Screenshot of the animation we will be creating](http://res.cloudinary.com/rodaine/image/upload/c_scale,w_1024/v1379290833/Screen_Shot_2013-09-15_at_8_19_22_PM_hkqqn3.png "Checkout the embeded Pen below to see it in all its screensaver-esque glory")
 
-Recently at work, I was checking out some designs for a client's print piece, and was struck by this mesmerizing geometric pattern in the background. I mentioned to [Taylor Gorman][taylor] that it'd be awesome if &ndash; when these designs were translated to their site &ndash; the background was animated similar to the old [bezier screensaver][bezier] that used to come with Windows (it might still do?). 
+Recently at work, I was checking out some designs for a client's print piece, and was struck by this mesmerizing geometric pattern in the background. I mentioned to [Taylor Gorman][taylor] that it'd be awesome if &ndash; when these designs were translated to their site &ndash; the background was animated similar to the old [bezier screensaver][bezier] that used to come with Windows (it might still do?).
 
 Up to this point, I hadn't experimented with the new-ish canvas features of HTML5, so I figured I'd give it a go. Today, I'll walk through the process I used to create [this animation][pen]. Just a fair warning, I've come to love writing my JavaScript in [CoffeeScript][cs], so if you aren't a fan, I encourage you to check out the generated JS on the [pen][pen]. The entire source is also available as [a gist][gist], too!
 
@@ -17,15 +17,15 @@ The goal was to have a bunch of overlapping translucent triangles animate within
 
 <aside>Honestly, I wrote this portion last, but since I make reference to it throughout the code, it's best to start here.</aside>
 
-The `config` object provides a bunch of static settings for tweaking the behavior of the animation, including the number of triangles to render, their speed, and the ranges for color and opacity for each of the shapes. 
+The `config` object provides a bunch of static settings for tweaking the behavior of the animation, including the number of triangles to render, their speed, and the ranges for color and opacity for each of the shapes.
 
 {% include widgets/gist.html id="6575633" file="config.script.coffee" %}
 
-`clamp` keeps numbers inside a range; this is particularly useful for keeping the triangle vertices within the canvas boundary. `rand` is a small random number utility to keep us DRY. And finally, `requestAnimFrame` is a compatibility wrapper for [`requestAnimationFrame`][raf]. 
+`clamp` keeps numbers inside a range; this is particularly useful for keeping the triangle vertices within the canvas boundary. `rand` is a small random number utility to keep us DRY. And finally, `requestAnimFrame` is a compatibility wrapper for [`requestAnimationFrame`][raf].
 
 #### Ok…so what the heck is `requestAnimationFrame`? ####
 
-Back in the day, JS animations relied on `setTimeout` as the event/update/render loop for animations. While this worked, it was suboptimal especially if multiple animations were occurring simultaneously. 
+Back in the day, JS animations relied on `setTimeout` as the event/update/render loop for animations. While this worked, it was suboptimal especially if multiple animations were occurring simultaneously.
 
 Thus, browser vendors implemented this new API which allows developers to update their animations right before a repaint. Our version of `requestAnimFrame` is brought to you by [Paul Irish][paul], which handles vendor prefixed versions of this method with a fallback to the old-school `setTimeout` method.
 
@@ -47,7 +47,7 @@ A `Vector` instance stores the coordinates (or bearing) in it's `x` and `y` prop
 
 `Vector#scalarProduct` multiples a scalar against the current vector instance, e.g. `2 * {1, 2} = {2, 4}`. This will be important for applying our speed factor set in the `config` object.
 
-And finally, `Vector#reflectAndClamp` checks if a vector is out of bounds, and &ndash; if it is &ndash; reflects the bearing `Vector` instance depending on which side of the boundary it has crossed before clamping the current instance to the provided bounds. That is to say: *collision detection*. 
+And finally, `Vector#reflectAndClamp` checks if a vector is out of bounds, and &ndash; if it is &ndash; reflects the bearing `Vector` instance depending on which side of the boundary it has crossed before clamping the current instance to the provided bounds. That is to say: *collision detection*.
 
 All super exciting stuff, right?! I promise things will get more exciting, but first one more *thrilling* class...
 
@@ -65,15 +65,15 @@ Our meat-and-potatoes (I can do these food analogies all day, if you'd like), a 
 
 {% include widgets/gist.html id="6575633" file="triangle.script.coffee" %}
 
-A `new Triangle` takes a `Bounds` to create a completely random instance. First, the fill color RGBA values are randomly selected from the ranges specified in `config`. Notice that the color numbers must be floored; any non-integer value for the RGB  will result in opaque black triangles. Nooooot what we're looking for. Next, random `vertices` are generated for the three points of the triangle. Likewise, random `bearings` are created from a boundary between `{-1, -1}` and `{1, 1}`, which are then scaled by the speed factor defined in `config`. 
+A `new Triangle` takes a `Bounds` to create a completely random instance. First, the fill color RGBA values are randomly selected from the ranges specified in `config`. Notice that the color numbers must be floored; any non-integer value for the RGB  will result in opaque black triangles. Nooooot what we're looking for. Next, random `vertices` are generated for the three points of the triangle. Likewise, random `bearings` are created from a boundary between `{-1, -1}` and `{1, 1}`, which are then scaled by the speed factor defined in `config`.
 
 `Triangle#update` steps the instance one tick or translation, which we will define explicitly in the next section. Each `Vector` of the triangle is translated by it's bearing, and collision detection is then performed on the point to reflect it's bearing if it's encountered an edge. That's it!
 
-`Triangle#render`, well, renders the triangle on the canvas. Two arguments are provided: the `context`, and a `partialStep`. The `context` handles actually drawing the shape onto canvas element, while `partialStep` will help us extrapolate if there is any lag in the time between the current request to render and the last update (more on this in a moment). 
+`Triangle#render`, well, renders the triangle on the canvas. Two arguments are provided: the `context`, and a `partialStep`. The `context` handles actually drawing the shape onto canvas element, while `partialStep` will help us extrapolate if there is any lag in the time between the current request to render and the last update (more on this in a moment).
 
-First, `Triangle#render` generates the points it needs to render. Basically, this is just the `vertices` of the triangle. However, sometimes the request to render is made midway between calls to `Triangle#update`, so the animation may appear jittery as it's playing catch up. For example, suppose `update` is called every 30ms, but `render` is called every 45ms. The animation would lag the actual position of the triangle's vertices by half an update. 
+First, `Triangle#render` generates the points it needs to render. Basically, this is just the `vertices` of the triangle. However, sometimes the request to render is made midway between calls to `Triangle#update`, so the animation may appear jittery as it's playing catch up. For example, suppose `update` is called every 30ms, but `render` is called every 45ms. The animation would lag the actual position of the triangle's vertices by half an update.
 
-To counteract this lag, `Triangle#render` is passed how many partial update steps &ndash; `partialStep` &ndash; the animation is behind. This will be a real number between 0 (completely in-sync) and 1 (exclusive). `partialStep` is then used to extrapolate the true position of the `Vertex` by translating it partially. Notice, that no collision detection is done, so it is possible the point may render outside of the bounds, but this will only exist for a single frame (hopefully) and the next render will be more closely caught up with the updates). Overkill? Perhaps considering the simplicity of this example, but it guarantees the smoothest possible animation. 
+To counteract this lag, `Triangle#render` is passed how many partial update steps &ndash; `partialStep` &ndash; the animation is behind. This will be a real number between 0 (completely in-sync) and 1 (exclusive). `partialStep` is then used to extrapolate the true position of the `Vertex` by translating it partially. Notice, that no collision detection is done, so it is possible the point may render outside of the bounds, but this will only exist for a single frame (hopefully) and the next render will be more closely caught up with the updates). Overkill? Perhaps considering the simplicity of this example, but it guarantees the smoothest possible animation.
 
 Lastly, notice that the points' coordinates are run through `parseInt` to get an integer value. When rendering to a canvas, using non-integers will result in really hideous anti-aliasing. You could probably also use `Math.floor`, `Math.ceil` or `Math.round` to the same effect.
 
