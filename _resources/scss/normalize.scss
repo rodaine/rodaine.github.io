@@ -57,12 +57,14 @@ audio:not([controls]) {
  * 1. Set default font family to sans-serif.
  * 2. Prevent iOS text size adjust after orientation change, without disabling
  *    user zoom.
+ * 3. Smooth scroll for intra-page links.
  */
 
 html {
     font-family: sans-serif; /* 1 */
     -ms-text-size-adjust: 100%; /* 2 */
     -webkit-text-size-adjust: 100%; /* 2 */
+   scroll-behavior: smooth; /* 3 */
 }
 
 /**
