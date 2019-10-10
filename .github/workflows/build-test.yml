@@ -2,10 +2,10 @@ name: CI
 
 on:
   push:
-    branches: 
+    branches:
       - master
   pull_request:
-    branches: 
+    branches:
       - master
 
 jobs:
@@ -20,8 +20,8 @@ jobs:
       with:
         node-version: '12.x'
     - name: Setup Bundler
-      run: gem install bundler -v 2.0.1
+      run: gem install bundler -v 2.0.1 && bundle config --delete build.nokogiri
     - name: Bootstrap
-      run: make bootstrap  
+      run: make bootstrap
     - name: Build
       run: make build
