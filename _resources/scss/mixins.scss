@@ -3,14 +3,14 @@
 %weight-normal { font-weight: $weight-normal; }
 %weight-bold   { font-weight: $weight-bold; }
 
-%color-copy         { color: $color-copy; }
-%color-link         { color: $color-link; }
-%color-link-hover   { color: $color-link-hover; }
-%color-link-visited { color: $color-link-visited; }
-%color-logo         { color: $color-logo; }
-%color-background   { color: $color-background; }
+%color-copy         { color: v(cc); }
+%color-link         { color: v(cl); }
+%color-link-hover   { color: v(clh); }
+%color-link-visited { color: v(clv); }
+%color-logo         { color: v(clogo); }
+%color-background   { color: v(cb); }
 
-%background-color   { background: $color-background; }
+%background-color   { background: v(cb); }
 
 %content-margins {
 	margin: 0 1em;

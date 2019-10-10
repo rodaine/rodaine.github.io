@@ -12,7 +12,7 @@ article {
 		}
 
 		.meta {
-			color: lighten($color-copy, 25%);
+			color: v(ccl);
 			margin-bottom: 0;
 
 			& + a h2 {
@@ -44,7 +44,7 @@ article {
 			position: relative;
 			top: 0;
 			left: -33%;
-			color: lighten($color-copy, 25%);
+			color: v(ccl);
 		}
 	}
 
@@ -71,7 +71,7 @@ article {
 			left: 0;
 			right: 0;
 			bottom: 0;
-			background-image: linear-gradient(to bottom, rgba($color-background, 0) 0%,rgba($color-background, 1) 85%);
+			background-image: linear-gradient(to bottom, transparent 0%,rgba(v(cb-rgb), 1) 85%);
 		}
 	}
 
@@ -82,7 +82,7 @@ article {
 		display: block;
 		padding: .25em;
 		background: white;
-		border: 1px solid $color-image-border;
+		border: 1px solid v(cib);
 
 		&.raw {
 			border: 0;
@@ -115,7 +115,7 @@ article {
 	.disqus-link {
 		@extend %color-link-hover;
 
-		background: $color-link-focus;
+		background: v(clf);
 
 		text-decoration: none;
 		text-align: center;
@@ -124,7 +124,7 @@ article {
 
 			&:hover, &:focus {
 				@extend %color-background;
-				background: $color-link;
+				background: v(cl);
 			}
 	}
 }

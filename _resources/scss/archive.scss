@@ -9,14 +9,16 @@ $time-indent: 3.25em;
   li {
     padding-left: $time-indent;
     text-indent: -1 * $time-indent;
+    margin-bottom: 0.5em;
   }
 
   time {
-    color: lighten($color-copy, 25%);
+    color: v(ccl);
     z-index: -1;
     display: inline-block;
     position: relative;
-    left: $time-indent;
+    text-align: right;
+    left: $time-indent / -10;
     min-width: $time-indent;
   }
 }

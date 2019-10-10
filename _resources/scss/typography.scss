@@ -1,6 +1,11 @@
 ::selection {
 	@extend %color-background;
-	background: $color-link-visited;
+	background: v(clv);
+
+	@media (prefers-color-scheme: dark) {
+		background: v(clf);
+		color: v(clh);
+	}
 }
 
 body {
@@ -18,13 +23,13 @@ body {
 h1,h2,h3,h4,h5,h6 {
 	line-height: 1.25;
 
-	a:focus & { background: $color-link-focus; }
+	a:focus & { background: v(clf); }
 }
 
 a {
 	@extend %color-link;
-	-webkit-tap-highlight-color: $color-link-focus;
-	&:focus { background: $color-link-focus; }
+	-webkit-tap-highlight-color: v(clf);
+	&:focus { background: v(clf); }
 	&:hover { @extend %color-link-hover; }
 	header & { text-decoration: none; }
 }
@@ -38,7 +43,7 @@ blockquote {
 
 	margin-left: 2em;
 	margin-right: 2em;
-	color: rgba($color-link, 0.85);
+	color: rgba(v(cl-rgb), 0.85);
 
 	cite {
 		display: block;
@@ -77,10 +82,14 @@ code {
 	display: block;
 	white-space: pre;
 	overflow-x: scroll;
-	background: rgba($color-link, 0.075);
+	background: rgba(v(cl-rgb), 0.075);
 	margin-left: 1em;
 	margin-right: 1em;
 	padding: .5em 1em;
+
+	@media (prefers-color-scheme: dark) {
+		background: rgba(v(cl-rgb), 0.3);
+	}
 
 	h1 &, h2 &, h3 &, h4 &, h5 &, h6 &, p &, li &, aside &, figcaption & {
 		display: inline;
@@ -91,7 +100,7 @@ code {
 }
 
 strike, strike span, del, del span {
-	color: rgba($color-copy, 0.25);
+	color: v(ccl);
 }
 
 .fluff-strike {
