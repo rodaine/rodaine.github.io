@@ -12,7 +12,7 @@ $time-indent: 3.25em;
   }
 
   time {
-    color: lighten($color-copy, 25%);
+    color: v(ccl);
     z-index: -1;
     display: inline-block;
     position: relative;

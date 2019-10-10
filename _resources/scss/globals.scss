@@ -24,10 +24,28 @@ $weight-bold:   700;
 $max-main-width: 720px;
 
 $color-background:   #fcfcfc;
-$color-copy:         #1D1D1D;
+$color-background-rgb: red($color-background), green($color-background), blue($color-background);
+$color-copy:         #1d1d1d;
 $color-link:         #536895;
-$color-link-hover:   darken($color-link, 20%);
-$color-link-visited: $color-link;
-$color-link-focus:   rgba($color-link, 0.25);
+$color-link-rgb:       red($color-link), green($color-link), blue($color-link);
+$color-link-hover:     darken($color-link, 20%);
+$color-link-visited:   $color-link;
+$color-link-focus:     rgba($color-link, 0.25);
 $color-logo:         rgba(0,0,0,0.15);
-$color-image-border: rgba($color-link, 0.1);
+$color-image-border:   rgba($color-link, 0.1);
+
+@function v($var) { @return var(--#{$var}); }
+
+:root {
+	--cb: #{$color-background};
+	--cb-rgb: #{$color-background-rgb};
+	--cc: #{$color-copy};
+	--ccl: #{lighten($color-copy, 25%)};
+	--cl: #{$color-link};
+	--cl-rgb: #{$color-link-rgb};
+	--clh: #{$color-link-hover};
+	--clv: #{$color-link-visited};
+	--clf: #{$color-link-focus};
+	--clogo: #{$color-logo};
+	--cib: #{$color-image-border};
+}

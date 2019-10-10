@@ -23,20 +23,20 @@
 			width: 2em;
 			height: 2em;
 			display: block;
-			background: $color-link;
+			background: v(cl);
 			text-decoration: none;
 			padding: 0.25em 0.5em;
 			margin: 0.25em 0;
 
 			&:hover, &:focus {
 				@extend %color-link-hover;
-				background: $color-link-focus;
+				background: v(clf);
 			}
 		}
 	}
 
 	.bookend a, .direction a {
-		background: $color-link-visited;
+		background: v(clv);
 	}
 
 	.current, .bookend .current, .ellipsis a {

@@ -5,7 +5,7 @@ body > footer {
 
 	max-width: $max-main-width;
 	padding: 0.5em 1em;
-	background: $color-link;
+	background: v(cl);
 
 	a {
 		@extend %background-color;
@@ -21,7 +21,7 @@ body > footer {
 
 		&:hover, &:focus {
 			@extend %color-link-hover;
-			background-color: rgba($color-background, 0.75);
+			background-color: rgba(v(cb-rgb), 0.75);
 		}
 	}
 
