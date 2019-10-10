@@ -1,7 +1,7 @@
 {
 	"extends": [
 		"tslint-eslint-rules",
-		"tslint-microsoft-contrib"
+		"tslint-microsoft-contrib/latest"
 	],
 	"defaultSeverity": "error",
 	"rules": {
@@ -142,9 +142,9 @@
 		"no-empty-interfaces": false,
 		"no-empty-line-after-opening-brace": "error",
 		"no-for-in": "error",
-		"no-function-constructor-with-string-args": "error",
+		"function-constructor": true,
 		"no-http-string": "error",
-		"no-increment-decrement": "error",
+		"increment-decrement": true,
 		"no-inner-html": "error",
 		"no-octal-literal": "error",
 		"no-reserved-keywords": false,
@@ -154,7 +154,7 @@
 		"no-string-based-set-interval": "error",
 		"no-string-based-set-timeout": "error",
 		"no-typeof-undefined": "error",
-		"no-unnecessary-bind": "error",
+		"unnecessary-bind": true,
 		"no-unnecessary-field-initialization": "error",
 		"no-unnecessary-local-variable": false,
 		"no-unnecessary-override": "error",
