@@ -10,9 +10,7 @@ on:
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
-    
     steps:
     - uses: actions/checkout@v1
     - uses: actions/setup-ruby@v1
@@ -21,6 +19,7 @@ jobs:
     - uses: actions/setup-node@v1
       with:
         node-version: '12.x'
+    - run: apt-get update && apt-get install pkg-config
     - run: gem install bundler
     - run: make bootstrap
     - run: make build
