@@ -20,7 +20,7 @@ jobs:
       with:
         node-version: '12.x'
     - name: Setup Bundler
-      run: gem install pkg-config bundler && bundle config --delete nokogiri.build
+      run: gem update --system && gem install bundler -v
     - name: Bootstrap
       run: make bootstrap  
     - name: Build
