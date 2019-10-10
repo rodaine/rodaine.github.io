@@ -21,3 +21,4 @@ jobs:
         node-version: '12.x'
     - run: gem install pkg-config bundler
     - run: gem install nokogiri -v '1.10.4' --source 'https://rubygems.org/'
+    - run: make bootstrap  
