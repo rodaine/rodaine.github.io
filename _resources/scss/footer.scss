@@ -8,10 +8,10 @@ body > footer {
 	background: v(cl);
 
 	a {
-		@extend %background-color;
 		@extend %color-link;
 		@extend %weight-bold;
 
+		background: $color-background;
 		text-decoration: none;
 		display: block;
 		text-align: center;
@@ -21,7 +21,11 @@ body > footer {
 
 		&:hover, &:focus {
 			@extend %color-link-hover;
-			background-color: rgba(v(cb-rgb), 0.75);
+			background-color: rgba($color-background, 0.75);
+
+			@media (prefers-color-scheme: dark) {
+				color: v(cb);
+			}
 		}
 	}
 

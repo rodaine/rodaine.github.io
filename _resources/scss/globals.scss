@@ -26,6 +26,7 @@ $max-main-width: 720px;
 $color-background:   #fcfcfc;
 $color-background-rgb: red($color-background), green($color-background), blue($color-background);
 $color-copy:         #1d1d1d;
+$color-copy-rgb: red($color-copy), green($color-copy), blue($color-copy);
 $color-link:         #536895;
 $color-link-rgb:       red($color-link), green($color-link), blue($color-link);
 $color-link-hover:     darken($color-link, 20%);
@@ -48,4 +49,17 @@ $color-image-border:   rgba($color-link, 0.1);
 	--clf: #{$color-link-focus};
 	--clogo: #{$color-logo};
 	--cib: #{$color-image-border};
+}
+
+@media (prefers-color-scheme: dark) {
+	:root {
+		--cb: #{$color-copy};
+		--cb-rgb: #{$color-copy-rgb};
+		--cc: #{$color-background};
+		--ccl: #{darken($color-background, 25%)};
+		--cl: #{lighten($color-link, 10%)};
+		--clh: #{lighten($color-link, 20%)};
+		--clf: #{rgba($color-link, 0.5)};
+		--clogo: rgba(255, 255, 255, 0.15);
+	}
 }

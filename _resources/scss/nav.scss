@@ -18,8 +18,7 @@
 		list-style-type: none;
 
 		a {
-			@extend %color-background;
-
+			color: $color-background;
 			width: 2em;
 			height: 2em;
 			display: block;
@@ -35,11 +34,11 @@
 		}
 	}
 
-	.bookend a, .direction a {
+	.direction a {
 		background: v(clv);
 	}
 
-	.current, .bookend .current, .ellipsis a {
+	.current {
 		@extend %color-link;
 		@extend %background-color;
 		pointer-events: none;
@@ -75,20 +74,12 @@
 		margin-left: 0.25em;
 	}
 
-	.ellipsis {
-		display: none;
-	}
-
 	@media (min-width: 481px) {
 		margin: 0.5em 0;
 
 		.next, .prev { width: auto; }
 
 		li { display: inline-block; }
-	}
-
-	@media (min-width: 800px) {
-		.ellipsis { display: inline-block; }
 	}
 }
 

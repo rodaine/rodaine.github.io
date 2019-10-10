@@ -1,6 +1,11 @@
 ::selection {
 	@extend %color-background;
 	background: v(clv);
+
+	@media (prefers-color-scheme: dark) {
+		background: v(clf);
+		color: v(clh);
+	}
 }
 
 body {
@@ -81,6 +86,10 @@ code {
 	margin-left: 1em;
 	margin-right: 1em;
 	padding: .5em 1em;
+
+	@media (prefers-color-scheme: dark) {
+		background: rgba(v(cl-rgb), 0.3);
+	}
 
 	h1 &, h2 &, h3 &, h4 &, h5 &, h6 &, p &, li &, aside &, figcaption & {
 		display: inline;
