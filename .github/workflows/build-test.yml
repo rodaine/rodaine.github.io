@@ -1,0 +1,27 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v1
+    - uses: actions/setup-ruby@v1
+      with:
+        ruby-version: '2.5.x'
+    - uses: actions/setup-node@v1
+      with:
+        node-version: '12.x'
+    - name: Setup Bundler
+      run: gem install bundler -v 2.0.1
+    - name: Bootstrap
+      run: make bootstrap
+    - name: Build
+      run: make build
