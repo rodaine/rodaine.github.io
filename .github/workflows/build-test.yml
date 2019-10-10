@@ -19,6 +19,9 @@ jobs:
     - uses: actions/setup-node@v1
       with:
         node-version: '12.x'
-    - run: gem install pkg-config bundler
-    - run: gem install nokogiri -v '1.10.4' --source 'https://rubygems.org/'
-    - run: make bootstrap  
+    - name: Setup Bundler
+      run: gem install pkg-config bundler && bundle config --delete nokogiri.build
+    - name: Bootstrap
+      run: make bootstrap  
+    - name: Build
+      run: make build
