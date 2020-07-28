@@ -146,7 +146,7 @@ For example, is there a better way to get shadowing?
 
 - **Make it in-your-face.** Right now, the shadowing behavior is ad-hoc, but using an experimentation library, like GitHub's [scientist][scientist], will make the shadowing explicit and structured in the code. A tool like this might come with builtin statistics and tracing to validate the results.
 
-- **Control it with feature flags.** Feature flag tools, such as [dcdr][dcdr], are not exactly a separate strategy, but more of a recommendation. When introducing a new code path, you may not want to expose all traffic to it simultaneously. A subset of all traffic is often enough to vet experiments. By leveraging feature flags, the shadowing can begin in the "off" state, and then slowly ramped up to 1%, 10%, 25% of requests.
+- **Control it with feature flags.** Feature flag tools, such as [dcdr][dcdr], are not exactly a separate strategy, but more of a recommendation. When introducing a new code path, you may not want to expose all traffic to it simultaneously. A subset of all traffic is often enough to vet experiments. By leveraging feature flags, the shadowing can begin in the "off" state, and then slowly ramped up to increasing percentages of the incoming requests.
 
 All-in-all, while I wouldn't call breaking the chain a _good_ pattern, it can be useful in this context (heh), and other valid use cases surely exist.
 
