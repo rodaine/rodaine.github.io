@@ -108,6 +108,7 @@ code {
   margin-left: 1em;
   margin-right: 1em;
   padding: 0.5em 1em;
+  tab-size: 2;
 
   @media (prefers-color-scheme: dark) {
     background: rgba(v(cc-rgb), 0.25);
