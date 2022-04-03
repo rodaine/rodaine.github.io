@@ -3,7 +3,7 @@ bootstrap: vendor node_modules
 
 .PHONY: build
 build: bootstrap
-	@npx webpack \
+	@npm run build \
 		& bundle exec jekyll build \
 		& wait
 

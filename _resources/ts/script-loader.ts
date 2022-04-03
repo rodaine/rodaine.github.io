@@ -1,4 +1,4 @@
-export default function(url: string, autoAppend: boolean = true): HTMLScriptElement {
+export default function(url: string, autoAppend = true): HTMLScriptElement {
 	const s = document.createElement('script');
 	s.async = true;
 	s.src = url;

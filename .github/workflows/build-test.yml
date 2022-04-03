@@ -18,9 +18,9 @@ jobs:
         ruby-version: '2.5.x'
     - uses: actions/setup-node@v1
       with:
-        node-version: '12.x'
+        node-version: '16.x'
     - name: Setup Bundler
-      run: gem install bundler -v 2.0.1
+      run: gem install bundler -v 2.3.7
     - name: Bootstrap
       run: make bootstrap
     - name: Build

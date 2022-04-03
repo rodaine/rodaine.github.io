@@ -19,7 +19,7 @@ collections:
 highlighter: null
 markdown: CommonMarkGhPages
 commonmark:
-  options: ["SMART", "FOOTNOTES"]
+  options: ["SMART", "FOOTNOTES", "UNSAFE"]
   extensions: ["strikethrough", "autolink", "table", "tagfilter"]
 sass:
   sass_dir: _resources/scss

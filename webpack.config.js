@@ -1,30 +1,23 @@
 const path = require('path');
 
 module.exports = {
-	entry: './_resources/ts/index.ts',
 	mode: 'production',
+	entry: './_resources/ts/index.ts',
+	output: {
+			path: path.join(__dirname, 'dist'),
+			filename: '[name].js'
+	},
 	module: {
-		rules: [
-			{
-				test: /\.ts$/,
-				enforce: 'pre',
-				use: [
+			rules: [
 					{
-						loader: 'tslint-loader',
-						options: {
-							configFile: 'tslint.json',
-							emitErrors: true,
-							typeCheck: true,
-						}
+							test: /\.tsx?$/,
+							use: 'ts-loader',
+							exclude: /node_modules/
 					}
-				]
-			},
-			{
-				test: /\.tsx?$/,
-				use: 'ts-loader',
-				exclude: /node_modules/
-			}
-		]
+			]
+	},
+	resolve: {
+			extensions: ['.ts', '.tsx', '.js', '.json']
 	},
 	output: {
 		filename: 's.js',
