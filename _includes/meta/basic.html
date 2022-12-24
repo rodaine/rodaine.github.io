@@ -1,8 +1,0 @@
-<meta charset="utf-8">
-<meta http-equiv="x-ua-compatible" content="ie=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>{{ page.title }}{% if paginator.total_pages > 1 and paginator.page > 1 %} « Page {{ paginator.page}}{% endif %} « {{ site.name }}</title>
-<meta name="keywords" itemprop="keywords" content="{% if page.keywords %}{{ page.keywords }}{% else %}{{ site.keywords }}{% endif %}">
-<meta name="author" itemprop="author" content="{{site.me}}">
-<meta name="description" itemprop="description" content="{% if page.description %}{{ page.description }}{% else %}{{ site.description }}{% endif %}">{% if paginator.total_pages > 1 and paginator.page > 1 %}
-<meta name="robots" content="noindex,follow">{% endif %}

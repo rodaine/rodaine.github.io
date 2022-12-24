@@ -1,0 +1,12 @@
+<blockquote>
+    {{ .Inner | .Page.RenderString (dict "display" "block") }}
+    {{ with .Get "title" }}
+        <cite>
+            {{ with $.Get "url" }}<a href="{{ . }}">{{ end }}
+            {{ . }}
+            {{ with $.Get "url" }}</a>{{ end }}
+        </cite>
+    {{ else }}
+        {{ errorf "missing value for param 'title': %s" .Position }}
+    {{ end }}
+</blockquote>

@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="{{ .Site.LanguageCode }}">
+    <head>
+        <meta charset="utf-8">
+        <title>{{ .Page.Title }} » {{ .Site.Title }}</title>
+        <meta name="description" content="{{ .Page.Description }}">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#7BB79C">
+        <link rel="icon" type="image/x-icon" href="/favicon.ico">
+
+        {{ template "_internal/opengraph.html" . }}
+        {{ template "_internal/twitter_cards.html" . }}
+
+        {{ partialCached "scripts.html" . }}
+        {{ partialCached "styles.html" . }}
+    </head>
+    <body>
+        <header role="banner">
+            <nav>
+                <a href="{{ .Site.Home.RelPermalink }}" class="logo" aria-label="Rodaine">{{ partial "inline-svg" "logo" }}<h1>Rodaine</h1></a>
+                <a href="/chris-roche/">About</a>
+                <a href="/archive/">Archive</a>
+                <a href="/til/">TIL</a>
+                <a href="/talks/">Talks</a>
+            </nav>
+        </header>
+        <main>{{ block "main" . }}
+            <article>
+                {{ partial "article-header" . }}
+                <section>{{ block "content" . }}{{ .Content }}{{ end }}</section>
+            </article>
+        {{ end }}</main>
+        <footer>
+            <a href="https://mas.to/@rodaine" rel="me" aria-label="Mastodon - @rodaine@mas.to">{{ partial "inline-svg" "mastodon" }}</a>
+            <a href="https://github.com/rodaine" rel="me" aria-label="GitHub - @rodaine">{{ partial "inline-svg" "github" }}</a>
+            <a href="https://feeds.feedburner.com/rodaine" aria-label="RSS/Atom Feed - rodaine.com">{{ partial "inline-svg" "rss" }}</a>
+        </footer>
+    </body>
+</html>

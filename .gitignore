@@ -1,10 +1,4 @@
-!.gitkeep
-.sass-cache
-.jekyll-metadata
+public/
+resources/_gen
 
-node_modules/
-vendor/
-
-_drafts/_hemingway
-_site/
-_mkcert/
+.hugo_build.lock

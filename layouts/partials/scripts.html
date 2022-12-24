@@ -1,0 +1,2 @@
+{{- $js := resources.Get "ts/index.ts" | js.Build (dict "minify" "true") | resources.Fingerprint "md5" -}}
+<script async defer src="{{ $js.RelPermalink }}"></script>

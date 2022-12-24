@@ -1,0 +1,22 @@
+{{ define "metadata" }}{{ end }}
+
+{{ define "content" }}
+    {{ .Content }}
+
+    {{ $year := 9999 }}
+    {{ range sort .Site.Data.talks "date" "desc" }}
+        {{ $date := time .date }}
+        {{ $now := $date.Year }}
+        {{ if ne $now $year }}
+            {{ if ne $year 9999 }}</ol></section>{{ end }}
+            {{ $year = $now }}
+            <section class="archive">
+                <h3>{{ $year }}</h3>
+                <ol>
+        {{ end }}
+        <li>
+            <time datetime="{{ $date.Format "2006-01-02T15:04:05Z07:00" }}" pubdate>{{ $date.Format "02 Jan" }}</time>
+            {{ .title }}
+        </li>
+    {{ end }}
+{{ end }}

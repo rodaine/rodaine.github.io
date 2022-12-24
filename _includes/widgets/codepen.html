@@ -1,9 +1,0 @@
-{% if include.height %}{% assign height = include.height %}{% else %}{% assign height = 250 %}{% endif %}
-{% if include.theme %}{% assign theme = include.theme %}{% else %}{% assign theme = 1192 %}{% endif %}
-{% if include.slug %}{% assign slug = include.slug %}{% else %}{% assign slug = 'mEnuw' %}{% endif %}
-{% if include.tab %}{% assign tab = include.tab %}{% else %}{% assign tab = 'result' %}{% endif %}
-{% if include.user %}{% assign user = include.user %}{% else %}{% assign user = 'rodaine' %}{% endif %}
-
-<p data-height="{{ height }}" data-theme-id="{{ theme }}" data-slug-hash="{{ slug }}" data-user="{{ user }}" data-default-tab="{{ tab }}" class='codepen'>
-	View this <a href="https://codepen.io/{{ user }}/pen/{{ slug }}">Pen</a> on CodePen.
-</p>

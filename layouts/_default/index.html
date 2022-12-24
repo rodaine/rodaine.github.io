@@ -1,0 +1,5 @@
+{{ define "main" }}
+{{ range first 5 (where .Site.RegularPages "Type" "posts") }}
+    {{ .Render "summary" }}
+{{ end }}
+{{ end }}

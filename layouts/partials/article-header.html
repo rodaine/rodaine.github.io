@@ -1,0 +1,11 @@
+<header {{ if .Description }}class="subtitled"{{ end }}>{{ block "header" . }}
+    {{ block "metadata" . }}
+        {{ if .PublishDate }}
+        <time datetime="{{ .PublishDate.Format "2006-01-02T15:04:05Z07:00" }}" pubdate>{{ .PublishDate.Format "02 January 2006" }}</time>
+        {{ end }}
+    {{ end }}
+    {{ block "title" . }}
+        <a href="{{ .RelPermalink }}"><h2>{{ .Title }}</h2></a>
+        {{ if .Description }}<h3>{{ .Description }}</h3>{{ end }}
+    {{ end }}
+{{ end }}</header>

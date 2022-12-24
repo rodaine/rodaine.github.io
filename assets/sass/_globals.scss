@@ -1,0 +1,104 @@
+// The base font size to use across the site. This will be the font-size of the
+// main copy of the page.
+$base-font-size: 16px;
+
+// The base line-height used by the main copy of the page, and defines the
+// vertical rhythm.
+$base-line-height: 1.5;
+
+// All heights should step by this amount to preserve the vertical rhythm of
+// copy.
+$rhythm-step: $base-font-size * $base-line-height;
+
+:root {
+    --color-black: 42, 40, 40;
+    --color-white: 244, 246, 245;
+    --color-accent: 123, 183, 156;
+
+    --color-fg: var(--color-black);
+    --color-bg: var(--color-white);
+}
+
+@media (prefers-color-scheme: light) {
+    :root {
+        --color-black: 42, 40, 40;
+        --color-white: 244, 246, 245;
+        --color-accent: 123, 183, 156;
+
+        --color-fg: var(--color-black);
+        --color-bg: var(--color-white);
+    }
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --color-black: 42, 40, 40;
+        --color-white: 244, 246, 245;
+        --color-accent: 123, 183, 156;
+
+        --color-fg: var(--color-white);
+        --color-bg: var(--color-black);
+    }
+}
+
+// The main font used by literally everything on the site. We're not shipping
+// any web-fonts, so choose the appropriate system font.
+.sans-serif {
+    font-family: system-ui,
+             -apple-system, BlinkMacSystemFont,
+             "Segoe UI",
+             "Roboto",
+             "Oxygen",
+             "Ubuntu",
+             "Cantarell",
+             "Fira Sans",
+             "Droid Sans",
+             "Helvetica Neue",
+             Arial, sans-serif;
+}
+
+// The monospace font used for code. We're not shipping any web-fonts, so
+// choose the appropriate system font.
+.monospace {
+    font-family: ui-monospace,
+             Menlo, Monaco,
+             "Cascadia Mono", "Segoe UI Mono",
+             "Roboto Mono",
+             "Oxygen Mono",
+             "Ubuntu Monospace",
+             "Source Code Pro",
+             "Fira Mono",
+             "Droid Sans Mono",
+             "Courier New", monospace;
+}
+
+
+@function strip-unit($number) {
+    @return $number / ($number * 0 + 1);
+}
+
+@mixin rhythm($font-size, $line-heights, $margin-lines: $line-heights) {
+    @if unit($font-size) !="em" {
+        @error "Parameter $font-size mut be em";
+    }
+
+    @if not unitless($line-heights) {
+        @error "Parameter $line-heights must be unitless";
+    }
+
+    @if floor($line-heights) != $line-heights {
+        @error "Parameter $line-heights must be an integer";
+    }
+
+    @if floor($margin-lines) != $margin-lines {
+        @error "Parameter $margin-lines must be an integer"
+    }
+
+    $line-height-adjust: $line-heights / strip-unit($font-size);
+    $margin-lines-adjust: $margin-lines / strip-unit($font-size);
+
+    font-size: $font-size;
+    line-height: $base-line-height * $line-height-adjust;
+    padding: 0;
+    margin: ($margin-lines-adjust * $base-line-height)*1em 0 0;
+}

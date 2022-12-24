@@ -1,0 +1,6 @@
+baseURL = 'http://12.7.0.1/'
+buildDrafts = true
+
+[params]
+    cssOutputStyle = "expanded"
+    cssDebug = true

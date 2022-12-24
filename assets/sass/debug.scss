@@ -1,0 +1,29 @@
+// Debug CSS is only added to the site when hugo does not build with the
+// production environment. Use this file to help style and call out bad layout
+// behaviors.
+@import "globals";
+
+// Renders the vertical rhythm lines. Helpful for debugging rhythm-related bugs.
+main {
+    background: linear-gradient(to bottom, rgba(32, 160, 255, .35) 1px, transparent 1px);
+    background-size: 100% $rhythm-step;
+}
+
+// Because the :has selector is not supported in Firefox yet, we'll want to avoid using task-lists until it's enabled.
+ul:has(> li > input), ul:has(> li > p > input) {
+    &::before {
+        content: "DO NOT USE TASK LISTS! CANNOT BE PROPERLY STYLED IN FIREFOX YET";
+    }
+    background-color: rgba(200, 0, 0, .5);
+}
+
+// To maintain the page hierarchy, we're going to say no to H1 (Site Title) and
+// H2 (Article Title).
+article section {
+    h1, h2 {
+        &::before {
+            content: "DO NOT USE H1/2 IN POST BODIES";
+        }
+        background-color: rgba(200, 0, 0, .5);
+    }
+}

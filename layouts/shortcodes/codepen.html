@@ -1,0 +1,29 @@
+{{- $lines := 12 -}}
+{{- $default_tab := "result" -}}
+{{- $editable := "true" -}}
+{{- $user := "rodaine" -}}
+{{- $id := "" -}}
+
+{{- if .IsNamedParams -}}
+    {{ with .Get "slug" }}
+        {{ $id = . }}
+    {{ else }}
+        {{ errorf "missing value for param 'slug': %s" .Position }}
+    {{ end }}
+    {{ with .Get "lines" }}{{ $lines = int . }}{{ end }}
+    {{ with .Get "default-tab" }}{{ $default_tab = . }}{{ end }}
+    {{ with .Get "editable" }}{{ $editable = . }}{{ end }}
+    {{ with .Get "user" }}{{ $user = . }}{{ end }}
+{{- else -}}
+    {{ with index .Params 0 }}
+        {{ $id = . }}
+    {{ else }}
+        {{ errorf "missing value for param 'slug': %s" .Position}}
+    {{ end }}
+{{- end -}}
+
+{{ $height := mul $lines 24 }}
+
+<p class="codepen" data-height="{{ $height }}" data-default-tab="{{ $default_tab }}" data-slug-hash="{{ $id }}" data-editable="{{ $editable }}" data-user="{{ $user }}" style="height: {{ $height }}px;">
+    <span>See the <a href="https://codepen.io/{{$user}}/pen/{{$id}}">Pen</a> by <a href="https://codepn.io/{{$user}}">@{{ $user }}</a> on <a href="https://codepen.io">CodePen</a>.</span>
+</p>

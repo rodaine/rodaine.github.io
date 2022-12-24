@@ -1,0 +1,8 @@
+<li data-pubdate="{{ .PublishDate.Format "Jan 02" }}"><p>
+    <span class="talk-metadata">
+        {{ if .Param "event-link" }}<a href="{{ .Param "event-link" }}">{{ .Param "event" }}</a>{{ end }}
+        {{ with .Resources.GetMatch "slides*" }}{{ if $.Param "event-link" }}· {{ end }}<a href="{{ .RelPermalink }}">Slides</a>{{ end }}
+        {{ with .Param "video" }}· <a href="{{ . }}">Video</a>{{ end }}
+    </span>
+    <br/><strong>{{ .Title }}</strong>
+</li>

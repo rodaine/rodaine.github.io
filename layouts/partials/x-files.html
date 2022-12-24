@@ -1,0 +1,11 @@
+<ol style="list-style:disc;">
+{{ range (where .Site.RegularPages "Params.layout" "x-files").Reverse }}
+{{ $title := .Title | strings.TrimPrefix "The X-Files: " }}
+{{ if eq $.File.UniqueID .File.UniqueID }}
+    <li>{{ $title }} <em>(This Article!)</em></li>
+{{ else }}
+    <li><a href="{{ .RelPermalink }}">{{ $title }}</a></li>
+{{ end }}
+{{ end }}
+    <li>With many more to come!</li>
+</ol>

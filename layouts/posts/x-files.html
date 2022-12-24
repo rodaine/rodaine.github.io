@@ -1,0 +1,14 @@
+{{ define "content" }}
+    {{ $intro := .GetPage "2017-05-21-x-files-intro.md" }}
+
+    <blockquote>This post is part of <a href="{{ $intro.RelPermalink }}">The X-Files</a>, a blog series exploring the Go sub-repositories (<code>golang.org/x/*</code>).</blockquote>
+
+    {{ .Content }}
+
+    <blockquote>
+        <p><strong>Thanks for reading The X-Files!</strong></p>
+        <p>This post is part of <a href="{{ $intro.RelPermalink }}">The X-Files</a>, a blog series exploring the Go sub-repositories (<code>golang.org/x/*</code>). For more sub-repo goodness, check out the series so far:</p>
+
+        {{ partial "x-files" . }}
+    </blockquote>
+{{ end }}

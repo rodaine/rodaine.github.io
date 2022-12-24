@@ -1,0 +1,31 @@
+baseURL = 'https://rodaine.com/'
+languageCode = 'en-us'
+title = 'Rodaine'
+enableGitInfo = true
+paginate = 5
+disableHugoGeneratorInject = true
+enableRobotsTXT = true
+footnoteReturnLinkContents = "↑"
+
+
+disableKinds = [
+    "taxonomy",
+    "term"
+]
+
+[markup]
+    [markup.highlight]
+        noClasses = false
+    [markup.goldmark]
+        [markup.goldmark.parser]
+            [markup.goldmark.parser.attribute]
+                block = true
+
+[permalinks]
+    posts = '/:year/:month/:slug/'
+    til = '/til/:year/:month/:slug/'
+
+[frontmatter]
+    date = [':filename', ':default']
+    lastmod = [':git', ':fileModTime', ':filename', ':default']
+    publishDate = [':filename', ':default']
