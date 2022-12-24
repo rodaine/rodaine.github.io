@@ -1,6 +1,6 @@
 ---
 layout: x-files
-title: "The X-Files: Avoiding Concurrency Boilerplate With golang.org/­x/sync"
+title: "The X-Files: Avoiding Concurrency Boilerplate With golang.org/­​x/​sync"
 description: Or abstracting common synchronization patterns in Go
 keywords: go, golang, x-files, sub-repositories, sync, semaphore, errgroup, singleflight, concurrent map, syncmap
 ---
