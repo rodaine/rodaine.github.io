@@ -9,7 +9,7 @@ draft: true
 
 ~~An eon~~ Six years ago, I gave a [lightning talk][talk] at the GoSF meetup about the features of the `golang.org/x/crypto/ssh` package. I had used it previously to build tools that abstracted away `~/.ssh` configuration chicanery to perform debugging/triage operations, handle deployments, as well as a variety of other _devopsy_ arcana for service developers. I was (am!) proud of that tool.
 
-Infra-oriented tooling has come a long way in that time, and hand rolling these components is probably overkill for small organizations. Your team may get a much better ROI from using something off the shelf. That is to say, this article could be reduced to "Use Datadog and [Tailscale]..."
+Infra-oriented tooling has come a long way in that time, and hand rolling these components is probably overkill for small organizations. Your team may get a much better ROI from using something off the shelf. That is to say, a lot of this article could be reduced to "Use Datadog and [Tailscale]..."
 
 ... But that's no fun. And we're here to learn about this Go sub-repository, right? Cool.
 
@@ -19,7 +19,7 @@ Our goal today is one of the features of the original tool. Suppose we have a se
 
 [^debugging]: _"But, Chris, why didn't you use a log aggregator?"_ We did, but it was so-so slow and very expensive. Since then, I've suffered through an ELK stack, was pleasantly surprised by Loki, and spoiled by ~~caviar~~ Datadog Logs. I'll just say this: logs are expensive and inferior to metrics & traces.
 
-We cannot just connect to each host directly however. In order to minimize the attack surface of our VPC, we only expose SSH on a single well-hardened host, called a bastion.
+We cannot just connect to each host directly however. In order to minimize the attack surface of our private network, we only expose SSH on a single well-hardened host, called a bastion.
 
 [talk]: /talks/2016-08-25-ssh-with-go/slides.pdf
 [Tailscale]: https://tailscale.com/
