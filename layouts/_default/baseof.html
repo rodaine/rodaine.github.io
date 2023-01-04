@@ -6,7 +6,9 @@
         <meta name="description" content="{{ .Page.Description }}">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="theme-color" content="#7BB79C">
+
         <link rel="icon" type="image/x-icon" href="/favicon.ico">
+        <link rel="canonical" href="{{ .Permalink }}" />
 
         {{ template "_internal/opengraph.html" . }}
         {{ template "_internal/twitter_cards.html" . }}
