@@ -4,6 +4,8 @@ description: And enabling a context to be used after cancellation
 keywords: go, golang, context, cancellation, shadowing, goroutines
 ---
 
+> **Go 1.21 Update**: Apparently alongside me writing this article, the Go project was tracking this very same [issue][issue]. Comments in the thread bring up some very valid concerns with this pattern beyond the caveats I cover below, but ultimately the feature is now part of the Go 1.21 changeset as [`context.WithoutCancel`][WithoutCancel].
+
 Recently, I recalled a useful pattern that's cropped up a few times at work. API handlers (think `http.Handler`), include a `context.Context` tied to the connectivity of the caller. If the client disconnects, the context closes, signaling to the handler that it can fail early and clean itself up. Importantly, the handler function returning _also_ cancels the context.
 
 But what if you want to do an out-of-band operation after the request is complete? Like shadowing a new implementation or emitting analytics data that isn't cheap enough to send inline? Perhaps there are some [request-scoped values][values] attached to the context necessary to perform these operations.
@@ -157,3 +159,5 @@ All-in-all, while I wouldn't call breaking the chain a _good_ pattern, it can be
 [scientist]: https://github.com/github/scientist
 [values]: https://blog.golang.org/context
 [dcdr]: https://github.com/vsco/dcdr
+[issue]: https://github.com/golang/go/issues/40221
+[WithoutCancel]: https://pkg.go.dev/context@go1.21rc2#WithoutCancel
