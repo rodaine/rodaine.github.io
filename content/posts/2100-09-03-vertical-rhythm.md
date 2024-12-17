@@ -80,6 +80,8 @@ This line contains inline `code` that we want to treat special.
 
 - [ ] Could be interesting
 
+New List~
+
 - This is a paragraphed unorder list.
 
 - It should basically behave like left/right-padded paragraphs with the floating prefix.

@@ -1,9 +1,9 @@
 {{ $options := (dict "outputStyle" (default "compressed" .Site.Params.cssOutputStyle)) -}}
-{{- with resources.Get "sass/main.scss" | resources.ToCSS $options -}}
+{{- with resources.Get "sass/main.scss" | css.Sass $options -}}
 <style>{{- .Content | safeCSS -}}</style>
 {{- end -}}
 {{ if .Site.Params.cssDebug }}
-{{- with resources.Get "sass/debug.scss" | resources.ToCSS $options -}}
+{{- with resources.Get "sass/debug.scss" | css.Sass $options -}}
 <style>{{- .Content | safeCSS -}}</style>
 {{ end }}
 {{ end }}

@@ -2,30 +2,26 @@ baseURL = 'https://rodaine.com/'
 languageCode = 'en-us'
 title = 'Rodaine'
 enableGitInfo = true
-paginate = 5
 disableHugoGeneratorInject = true
 enableRobotsTXT = true
 footnoteReturnLinkContents = "↑"
+disableKinds = ["taxonomy", "term"]
 
+[pagination]
+pagerSize = 5
 
-disableKinds = [
-    "taxonomy",
-    "term"
-]
+[markup.highlight]
+noClasses = false
 
-[markup]
-    [markup.highlight]
-        noClasses = false
-    [markup.goldmark]
-        [markup.goldmark.parser]
-            [markup.goldmark.parser.attribute]
-                block = true
+[markup.goldmark]
+parser.attribute.block = true
+renderer.unsafe = true
 
 [permalinks]
-    posts = '/:year/:month/:slug/'
-    til = '/til/:year/:month/:slug/'
+posts = '/:year/:month/:slug/'
+til = '/til/:year/:month/:slug/'
 
 [frontmatter]
-    date = [':filename', ':default']
-    lastmod = [':git', ':fileModTime', ':filename', ':default']
-    publishDate = [':filename', ':default']
+date = [':filename', ':default']
+lastmod = [':git', ':fileModTime', ':filename', ':default']
+publishDate = [':filename', ':default']

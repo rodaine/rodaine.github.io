@@ -1,4 +1,4 @@
 <article class="summary">
     {{ partial "article-header" . }}
-    <a href="{{ .RelPermalink }}"><p>{{ .Summary }}</p></a>
+    <a href="{{ .RelPermalink }}"><p>{{ .Summary | strings.Truncate 400 | plainify }}</p></a>
 </article>
